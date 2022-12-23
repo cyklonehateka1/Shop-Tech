@@ -1,3 +1,10 @@
 .home {
     width: 100%;
 }
+
+.homeMainCont {
+    position: relative;
+    top: 15.6vh;
+    width: 100%;
+    padding: 0px 20px;
+}
