@@ -1,0 +1,44 @@
+.filterList {
+    width: 100%;
+    padding: 30px 0;
+}
+
+.filterListCont {
+    display: flex;
+    justify-content: space-between;
+}
+
+.filterListCont>.parentCont {
+    display: flex;
+    width: 70%;
+}
+
+.filterListCont>.parentCont>div {
+    background-color: rgb(241, 241, 241);
+    padding: 5px 10px;
+    border-radius: 50px;
+    margin-right: 10px;
+
+}
+
+.filterListCont>.parentCont>div>select {
+    background-color: inherit;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: rgb(92, 92, 92);
+}
+
+.filterListCont>.sortBy {
+    background-color: rgb(241, 241, 241);
+    padding: 5px 10px;
+    border-radius: 50px;
+}
+
+.filterListCont>.sortBy>select {
+    background-color: inherit;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: rgb(92, 92, 92);
+}
