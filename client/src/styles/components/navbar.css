@@ -1,0 +1,119 @@
+.navbar {
+    width: 100%;
+    position: fixed;
+    z-index: 999;
+    margin-top: 5.6vh;
+    padding: 10px 20px;
+    background-color: white;
+}
+
+.navbarCont {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbarCont>.navLogoCont {
+    width: 10%;
+    display: flex;
+    align-items: center;
+}
+
+.navbarCont>.navLogoCont>img {
+    width: 100%;
+}
+
+.navMenu>ul {
+    display: flex;
+    list-style: none;
+}
+
+.navMenu>ul>li {
+    margin: 0 15px;
+    color: rgb(92, 92, 92);
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.navMenu>ul>li:hover {
+    color: rgb(70, 70, 70);
+
+}
+
+.navMenu>ul>li>a {
+    text-decoration: none;
+    color: rgb(92, 92, 92);
+}
+
+.navMenu>ul>li>a:hover {
+    color: rgb(70, 70, 70);
+
+}
+
+.navSearchCont {
+    display: flex;
+    align-items: center;
+    width: 25%;
+    background-color: rgb(241, 241, 241);
+    justify-content: center;
+    border-radius: 50px;
+    padding: 5px 10px;
+}
+
+.navSearchCont>input {
+    width: 90%;
+    background-color: inherit;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    color: rgb(92, 92, 92);
+    padding-left: 3px;
+}
+
+.navSearchCont>input::placeholder {
+    color: rgb(92, 92, 92);
+    font-size: 13px;
+}
+
+.navSearchCont>div {
+    font-size: 22px;
+    width: 10%;
+    color: rgb(92, 92, 92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cartAccountCont {
+    display: flex;
+}
+
+.cartAccountCont>div {
+    display: flex;
+    align-items: center;
+    color: rgb(92, 92, 92);
+}
+
+.cartAccountCont>div>div {
+    margin-right: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.cartAccountCont>.cart {
+    display: flex;
+    margin-left: 30px;
+}
+
+.cartAccountCont>.cart>a {
+    display: flex;
+    color: rgb(92, 92, 92);
+    text-decoration: none;
+}
+
+.cartAccountCont>.cart>a>div {
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
+}

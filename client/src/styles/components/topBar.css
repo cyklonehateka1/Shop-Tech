@@ -1,0 +1,75 @@
+.topBar {
+    width: 100%;
+    padding: 5px 10px;
+    background-color: rgb(0, 112, 112);
+    position: fixed;
+    z-index: 999;
+}
+
+.topBarCont {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 5%;
+}
+
+.topBarCont>.left {
+    display: flex;
+    display: flex;
+    align-items: center;
+}
+
+.topBarCont>.left>div {
+    font-size: 17px;
+    margin-right: 6px;
+    color: rgb(240, 240, 240);
+    display: flex;
+    align-items: center;
+}
+
+.topBarCont>.left>span {
+    font-size: 14px;
+    color: rgb(202, 202, 202);
+}
+
+.topBarCont>.center {
+    display: flex;
+    align-items: center;
+}
+
+.topBarCont>.center>p {
+    font-size: 14px;
+    color: rgb(240, 240, 240);
+}
+
+.topBarCont>.center>span {
+    margin: 0 5px;
+    color: white;
+    font-weight: 500;
+}
+
+.topBarCont>.right {
+    display: flex;
+    align-items: center;
+}
+
+.topBarCont>.right>div {
+    display: flex;
+    cursor: pointer;
+}
+
+.topBarCont>.right>div>p {
+    color: rgb(240, 240, 240);
+    font-size: 14px;
+}
+
+.topBarCont>.right>div>div {
+    margin-left: 3px;
+    font-size: 20px;
+    display: flex;
+    color: white;
+}
+
+.topBarCont>.right>.lang {
+    display: flex;
+    margin-right: 10px;
+}
