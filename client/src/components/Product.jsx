@@ -2,21 +2,22 @@ import { AiOutlineHeart, AiFillStar } from "react-icons/ai";
 import "../styles/components/product.css";
 
 const Product = (props) => {
+  const { name, price, desc, ratingCount, image } = props.item;
   return (
     <div className="product">
       <div className="productCont">
         <div className="imgIconCont">
-          <img src="https://i.ibb.co/7pnyjjT/pinkheadphones.png" alt="" />
+          <img src={image} alt="" />
           <span>
             <AiOutlineHeart />
           </span>
         </div>
         <div className="productDetCont">
           <div className="bold">
-            <h5>Samsung Headphones</h5>
-            <span>$78.00</span>
+            <h5>{name}</h5>
+            <span>${price}</span>
           </div>
-          <span>Super quality sound and neck adjustment</span>
+          <span>{desc}</span>
           <div className="rating">
             <div className="stars">
               <span className="starFill">
@@ -35,7 +36,7 @@ const Product = (props) => {
                 <AiFillStar />
               </span>
             </div>
-            <span className="text">(121)</span>
+            <span className="text">({ratingCount})</span>
           </div>
           <button>Add to Cart</button>
         </div>

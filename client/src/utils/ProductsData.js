@@ -27,4 +27,11 @@ export const productsData = [
     desc: "Have you ever imagined echo from the gallaxy?",
     ratingCount: 945,
   },
+  {
+    name: "Maroon Boom",
+    image: "https://i.ibb.co/FXgB7CD/potential-Hero.png",
+    price: 900,
+    desc: "Comes with a smartphone",
+    ratingCount: 165,
+  },
 ];
