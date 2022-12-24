@@ -10,7 +10,7 @@ const TopBar = () => {
           <div>
             <BiPhoneCall />
           </div>
-          <span>+233 123 456 cd789</span>
+          <span>+233 123 456 789</span>
         </div>
         <div className="center">
           <p>Get 50% 0ff on Selected items</p>

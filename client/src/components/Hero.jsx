@@ -7,7 +7,7 @@ const Hero = () => {
       <div className="heroCont">
         <div className="heroLeft">
           <div className="heroTextCont">
-            <h1>Grab Upto 50% Off On Selected Headphone</h1>
+            <h1>Grab Up To 50% Off On Selected Headphone</h1>
           </div>
           <button>Buy Now</button>
         </div>

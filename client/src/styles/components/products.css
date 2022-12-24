@@ -1,0 +1,23 @@
+.products {
+    width: 100%;
+    padding: 20px 0;
+}
+
+.products>.productsCont {
+    width: 100%;
+}
+
+.products>.productsCont>h4 {
+    font-size: 20px;
+    color: rgb(92, 92, 92);
+}
+
+.products>.productsCont>div {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(4, 23.6%);
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.2%;
+    margin-top: 20px;
+}
