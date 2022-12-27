@@ -1,0 +1,220 @@
+.productPage {
+    width: 100%;
+}
+
+.productPageCont {
+    width: 100%;
+    padding: 0px 50px;
+    position: relative;
+    top: 16vh;
+}
+
+.productPageCont>div {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid rgb(204, 204, 204);
+    width: 100%;
+    padding: 50px 0px;
+    align-items: flex-start;
+}
+
+.productPageCont>div>.left {
+    width: 48.5%;
+    background-color: rgb(231, 231, 231);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.productPageCont>div>.left>img {
+    width: 80%;
+}
+
+.productPageCont>div>.right {
+    width: 48.5%;
+}
+
+.productPageCont>div>.right>h2 {
+    font-size: 30px;
+    color: rgb(53, 53, 53);
+    margin-bottom: 10px;
+}
+
+.productPageCont>div>.right>p {
+    font-size: 13px;
+    margin-bottom: 10px;
+    width: 70%;
+}
+
+.productPageCont>div>.right>.rating {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.productPageCont>div>.right>.rating>.stars {
+    display: flex;
+    margin-right: 5px;
+    color: rgb(2, 196, 2);
+}
+
+.productPageCont>div>.right>.rating>span {
+    font-size: 13px;
+}
+
+.productPageCont>div>.right>.pricing {
+    padding: 20px 0;
+    border-top: 1px solid rgb(204, 204, 204);
+    border-bottom: 1px solid rgb(204, 204, 204);
+}
+
+.productPageCont>div>.right>.pricing>h4 {
+    font-size: 25px;
+    color: rgb(66, 66, 66);
+}
+
+.productPageCont>div>.right>.pricing>p {
+    font-size: 13px;
+    width: 70%;
+}
+
+.productPageCont>div>.right>.colorCont {
+    padding: 20px 0;
+}
+
+.productPageCont>div>.right>.colorCont>h5 {
+    color: rgb(66, 66, 66);
+    margin-bottom: 5px;
+}
+
+.productPageCont>div>.right>.colorCont>div {
+    display: flex;
+}
+
+.productPageCont>div>.right>.colorCont>div>div {
+    width: 35px;
+    height: 35px;
+    border: 1px solid rgb(99, 99, 99);
+    padding: 2px;
+    border-radius: 50px;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.productPageCont>div>.right>.colorCont>div>div:hover {
+    scale: 1.2;
+}
+
+.productPageCont>div>.right>.colorCont>div>div>div {
+    width: 100%;
+    height: 100%;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.productPageCont>div>.right>.productButton {
+    padding: 20px 0;
+    border-top: 1px solid rgb(204, 204, 204);
+    border-bottom: 1px solid rgb(204, 204, 204);
+    width: 80%;
+}
+
+.productPageCont>div>.right>.productButton>.productCount {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.productPageCont>div>.right>.productButton>.productCount>.incdec {
+    width: 35%;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 50px;
+    background-color: rgb(231, 231, 231);
+    margin-right: 15px;
+}
+
+.productPageCont>div>.right>.productButton>.productCount>.incdec>.dec {
+    width: 35%;
+    color: rgb(66, 66, 66);
+    transition: 0.2s;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.productPageCont>div>.right>.productButton>.productCount>.incdec>.count {
+    color: rgb(66, 66, 66);
+    transition: 0.2s;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.productPageCont>div>.right>.productButton>.productCount>.incdec>.dec:hover {
+    background-color: rgb(0, 53, 0);
+    color: white;
+}
+
+.productPageCont>div>.right>.productButton>.productCount>.incdec>.inc {
+    width: 35%;
+    color: rgb(3, 94, 0);
+    transition: 0.2s;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.productPageCont>div>.right>.productButton>.productCount>.incdec>.inc:hover {
+    background-color: rgb(0, 53, 0);
+    color: white;
+}
+
+.productPageCont>div>.right>.productButton>.productCount>span {
+    font-size: 13px;
+    color: rgb(66, 66, 66);
+}
+
+.productPageCont>div>.right>.productButton>.buttons {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.productPageCont>div>.right>.productButton>.buttons>button {
+    width: 48%;
+    border-radius: 50px;
+    padding: 10px 0;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.productPageCont>div>.right>.productButton>.buttons>button:hover {
+    scale: 1.05;
+}
+
+.productPageCont>div>.right>.productButton>.buttons>.buy {
+    border: none;
+    background-color: rgb(0, 53, 0);
+    color: white;
+}
+
+.productPageCont>div>.right>.productButton>.buttons>.addToCart {
+    border: 1px solid rgb(0, 53, 0);
+    color: rgb(0, 53, 0);
+    background-color: white;
+}
