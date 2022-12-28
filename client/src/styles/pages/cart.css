@@ -1,0 +1,229 @@
+.cart {
+    width: 100%;
+}
+
+.cartCont {
+    width: 100%;
+    padding: 0px 50px;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    top: 20vh;
+}
+
+.cartCont>.left {
+    width: 49.3%;
+}
+
+.cartCont>.left>.cartProduct {
+    width: 100%;
+    border: 1px solid rgb(204, 204, 204);
+    padding: 15px;
+}
+
+.cartCont>.left>.cartProduct>h5 {
+    font-size: 22px;
+    color: rgb(37, 37, 37);
+    font-weight: 500;
+}
+
+.cartCont>.left>.cartProduct>.productsListCont {
+    width: 100%;
+}
+
+.cartCont>.left>.cartProduct>.productsListCont>.itemCont {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    /* border: 1px solid red; */
+    margin: 5px 0;
+    cursor: pointer;
+}
+
+.cartCont>.left>.cartProduct>.productsListCont>.itemCont>.left {
+    display: flex;
+    align-items: center;
+}
+
+.cartCont>.left>.cartProduct>.productsListCont>.itemCont>.left>.imgCont {
+    display: flex;
+    margin-right: 10px;
+    align-items: center;
+    justify-content: center;
+    height: 85px;
+    width: 85px;
+    background-color: rgb(231, 231, 231);
+}
+
+.cartCont>.left>.cartProduct>.productsListCont>.itemCont>.left>.imgCont>img {
+    width: 60px;
+}
+
+.cartCont>.left>.cartProduct>.productsListCont>.itemCont>.left>.center>h5 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.cartCont>.left>.cartProduct>.productsListCont>.itemCont>.left>.center>span {
+    font-size: 12px;
+}
+
+.cartCont>.left>.cartProduct>.productsListCont>.itemCont>.right {
+    text-align: right;
+}
+
+.cartCont>.left>.cartProduct>.productsListCont>.itemCont>.right>h5 {
+    font-size: 16px;
+    font-weight: 500;
+    color: rgb(24, 24, 24);
+}
+
+.cartCont>.left>.cartProduct>.productsListCont>.itemCont>.right>span {
+    font-size: 13px;
+}
+
+.cartCont>.left>.shipping {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid rgb(204, 204, 204);
+    margin-top: 17px;
+}
+
+.cartCont>.left>.shipping>h5 {
+    font-size: 20px;
+    font-weight: 500;
+    color: rgb(24, 24, 24);
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    word-spacing: 8px;
+}
+
+.cartCont>.left>.shipping>form {
+    width: 100%;
+}
+
+.cartCont>.left>.shipping>form>.names {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.cartCont>.left>.shipping>form>.names>.name {
+    display: flex;
+    flex-direction: column;
+    width: 49.5%;
+
+}
+
+.cartCont>.left>.shipping>form>.names>.name>label {
+    font-size: 14px;
+
+}
+
+.cartCont>.left>.shipping>form>.names>.name>input {
+    border: 1px solid rgb(226, 226, 226);
+    padding: 10px;
+    outline: none;
+    font-size: 13px;
+    color: rgb(58, 58, 58);
+}
+
+.cartCont>.left>.shipping>form>.names>.name>input::placeholder {
+    font-size: 12px;
+}
+
+.cartCont>.left>.shipping>form>.address {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.cartCont>.left>.shipping>form>.address>label {
+    font-size: 14px;
+}
+
+.cartCont>.left>.shipping>form>.address>input {
+    border: 1px solid rgb(226, 226, 226);
+    padding: 10px;
+    outline: none;
+    width: 100%;
+    font-size: 13px;
+    color: rgb(58, 58, 58);
+}
+
+.cartCont>.left>.shipping>form>.address>input::placeholder {
+    font-size: 12px;
+}
+
+.cartCont>.left>.shipping>form>.location {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.cartCont>.left>.shipping>form>.location>div {
+    display: flex;
+    flex-direction: column;
+    width: 49.5%;
+}
+
+.cartCont>.left>.shipping>form>.location>div>label {
+    font-size: 14px;
+}
+
+.cartCont>.left>.shipping>form>.location>div>input {
+    width: 100%;
+    padding: 10px;
+    outline: none;
+    border: 1px solid rgb(226, 226, 226);
+    font-size: 13px;
+    color: rgb(58, 58, 58);
+}
+
+.cartCont>.left>.shipping>form>.address>div>input::placeholder {
+    font-size: 12px;
+}
+
+.cartCont>.left>.shipping>form>.contact {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.cartCont>.left>.shipping>form>.contact>div {
+    display: flex;
+    flex-direction: column;
+    width: 49.5%;
+}
+
+.cartCont>.left>.shipping>form>.contact>div>label {
+    font-size: 14px;
+}
+
+.cartCont>.left>.shipping>form>.contact>div>input {
+    width: 100%;
+    padding: 10px;
+    outline: none;
+    border: 1px solid rgb(226, 226, 226);
+    font-size: 13px;
+    color: rgb(58, 58, 58);
+}
+
+.cartCont>.left>.shipping>form>.contact>div>input::placeholder {
+    font-size: 12px;
+}
+
+.cartCont>.right {
+    width: 49.3%;
+    border: 1px solid rgb(204, 204, 204);
+    padding: 15px
+}
+
+.icons>img {
+    width: 100px;
+}
