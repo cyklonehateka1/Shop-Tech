@@ -9,10 +9,11 @@
     justify-content: space-between;
     position: relative;
     top: 20vh;
+    padding-bottom: 10px;
 }
 
 .cartCont>.left {
-    width: 49.3%;
+    width: 65%;
 }
 
 .cartCont>.left>.cartProduct {
@@ -219,11 +220,199 @@
 }
 
 .cartCont>.right {
-    width: 49.3%;
+    width: 33.7%;
     border: 1px solid rgb(204, 204, 204);
     padding: 15px
 }
 
-.icons>img {
-    width: 100px;
+.cartCont>.right>h3 {
+    font-size: 20px;
+    color: rgb(37, 37, 37);
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.cartCont>.right>.inputCont {
+    border-top: 1px solid rgb(226, 226, 226);
+    border-bottom: 1px solid rgb(226, 226, 226);
+    padding: 15px 0;
+    width: 100%;
+}
+
+.cartCont>.right>.inputCont>.input {
+    padding: 5px 5px 5px 0;
+    background-color: rgb(231, 231, 231);
+    border-radius: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 45px;
+}
+
+.cartCont>.right>.inputCont>.input>input {
+    border-radius: 50px 0 0 50px;
+    border: none;
+    background: none;
+    outline: none;
+    padding-left: 10px;
+    width: 60%;
+    color: rgb(58, 58, 58);
+}
+
+.cartCont>.right>.inputCont>.input>button {
+    width: 30%;
+    height: 100%;
+    border: none;
+    border-radius: 50px;
+    background-color: rgb(2, 109, 2);
+    color: white;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.cartCont>.right>h5 {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 15px 0;
+}
+
+.cartCont>.right>.paymentDetails {
+    border-top: 1px solid rgb(226, 226, 226);
+    padding: 10px 0;
+}
+
+.cartCont>.right>.paymentDetails>ul {
+    list-style: none;
+    margin-bottom: 10px;
+}
+
+.cartCont>.right>.paymentDetails>ul>li {
+    margin: 5px 0;
+    display: flex;
+}
+
+.cartCont>.right>.paymentDetails>ul>li>input {
+    margin-right: 6px;
+    cursor: pointer;
+
+}
+
+.cartCont>.right>.paymentDetails>ul>li>label {
+    color: rgb(68, 68, 68);
+    font-size: 14px;
+}
+
+.cartCont>.right>.paymentDetails>.icons {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+
+}
+
+.cartCont>.right>.paymentDetails>.icons>img {
+    width: 70px;
+    padding: 5px;
+    margin-right: 10px;
+    cursor: pointer;
+
+}
+
+.cartCont>.right>form {
+    width: 100%;
+}
+
+.cartCont>.right>form>.row {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 10px 0;
+}
+
+.cartCont>.right>form>.row>label {
+    font-size: 13px;
+    margin-bottom: 3px;
+}
+
+.cartCont>.right>form>.row>input {
+    border: 1px solid rgb(226, 226, 226);
+    padding: 10px;
+    outline: none;
+    width: 100%;
+    font-size: 13px;
+    color: rgb(58, 58, 58);
+}
+
+.cartCont>.right>form>.cvcExpiry {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cartCont>.right>form>.cvcExpiry>.expiry {
+    width: 54%;
+}
+
+.cartCont>.right>form>.cvcExpiry>.expiry>input {
+    border: 1px solid rgb(226, 226, 226);
+    padding: 10px;
+    outline: none;
+    width: 100%;
+    font-size: 13px;
+    color: rgb(58, 58, 58);
+}
+
+.cartCont>.right>form>.cvcExpiry>.cvc {
+    width: 44%;
+}
+
+.cartCont>.right>form>.cvcExpiry>.cvc>input {
+    border: 1px solid rgb(226, 226, 226);
+    padding: 10px;
+    outline: none;
+    width: 100%;
+    font-size: 13px;
+    color: rgb(58, 58, 58);
+}
+
+.cartCont>.right>.summary {
+    width: 100%;
+    margin-top: 30px;
+}
+
+.cartCont>.right>.summary>.row {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    font-size: 14.5px;
+}
+
+.cartCont>.right>.summary>.totalButton {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px 0;
+    border-top: 1px solid rgb(226, 226, 226);
+}
+
+.cartCont>.right>.summary>.totalButton>.row {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    margin-bottom: 10px;
+
+}
+
+.cartCont>.right>.summary>.totalButton>button {
+    width: 100%;
+    padding: 10px 0;
+    color: white;
+    border-radius: 50px;
+    border: none;
+    background-color: rgb(2, 109, 2);
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.cartCont>.right>.summary>.totalButton>button:hover {
+    scale: 1.02;
 }
