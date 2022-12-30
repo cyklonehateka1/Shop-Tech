@@ -116,64 +116,64 @@ const Cart = () => {
           <h3>Order Summary</h3>
           <div className="inputCont">
             <div className="input">
-              <input type="text" />
+              <input type="text" placeholder="Enter Coupon Code" />
               <button>Add Coupon</button>
             </div>
-            <h5>Payment Details</h5>
-            <div className="paymentDetails">
-              <ul>
-                <li>
-                  <input type="radio" id="cash" />
-                  <label htmlFor="">Cash on Delivery</label>
-                </li>
-                <li>
-                  <input type="radio" id="shoppingCard" />
-                  <label htmlFor="">Shopcart Card</label>
-                </li>
-                <li>
-                  <input type="radio" id="paypal" />
-                  <label htmlFor="">Paypal</label>
-                </li>
-                <li>
-                  <input type="radio" id="debitCredit" />
-                  <label htmlFor="">Credit or Debit Card</label>
-                </li>
-              </ul>
-              <div className="icons">
-                <img
-                  src="https://i.ibb.co/2KSnNN6/Mastercard-2019-logo-svg.png"
-                  alt=""
-                  name="master"
-                />
-                <img
-                  src="https://i.ibb.co/qYX7jT8/Visa-Inc-logo-svg.png"
-                  alt=""
-                  name="visa"
-                />
-              </div>
+          </div>
+          <h5>Payment Details</h5>
+          <div className="paymentDetails">
+            <ul>
+              <li>
+                <input type="radio" id="cash" name="paymentMethod" />
+                <label htmlFor="">Cash on Delivery</label>
+              </li>
+              <li>
+                <input type="radio" id="shoppingCard" name="paymentMethod" />
+                <label htmlFor="">Shopcart Card</label>
+              </li>
+              <li>
+                <input type="radio" id="paypal" name="paymentMethod" />
+                <label htmlFor="">Paypal</label>
+              </li>
+              <li>
+                <input type="radio" id="debitCredit" name="paymentMethod" />
+                <label htmlFor="">Credit or Debit Card</label>
+              </li>
+            </ul>
+            <div className="icons">
+              <img
+                src="https://i.ibb.co/2KSnNN6/Mastercard-2019-logo-svg.png"
+                alt=""
+                name="master"
+              />
+              <img
+                src="https://i.ibb.co/qYX7jT8/Visa-Inc-logo-svg.png"
+                alt=""
+                name="visa"
+              />
             </div>
           </div>
           <form action="">
             <div className="row">
               <label htmlFor="email">Email</label>
-              <input type="email" />
+              <input type="email" placeholder="Type here" />
             </div>
             <div className="row">
               <label htmlFor="cardName">Card Holder Name</label>
-              <input type="text" />
+              <input type="text" placeholder="Type here" />
             </div>
             <div className="row">
               <label htmlFor="cardNumber">Card Number</label>
-              <input type="text" />
+              <input type="text" placeholder="0000********1234" />
             </div>
             <div className="cvcExpiry">
-              <div>
+              <div className="expiry">
                 <label htmlFor="">Expiry</label>
-                <input type="text" />
+                <input type="text" placeholder="MM/YY" />
               </div>
-              <div>
+              <div className="cvc">
                 <label htmlFor="">CVC</label>
-                <input type="text" />
+                <input type="text" placeholder="000" />
               </div>
             </div>
           </form>
