@@ -1,4 +1,5 @@
 import React from "react";
+import Categories from "../components/Categories";
 import FilterList from "../components/FilterList";
 import Hero from "../components/Hero";
 import Navbar from "../components/Navbar";
@@ -13,6 +14,7 @@ const Home = () => {
       <Navbar />
       <div className="homeMainCont">
         <Hero />
+        <Categories />
         <FilterList />
         <Products />
       </div>
