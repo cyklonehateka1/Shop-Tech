@@ -1,0 +1,89 @@
+.categories {
+    width: 100%;
+    margin-top: 40px;
+}
+
+.categoriesCont {
+    width: 100%;
+}
+
+.categoriesCont>h4 {
+    margin-bottom: 20px;
+    word-spacing: 1px;
+    font-size: 22px;
+    font-weight: 500;
+    color: rgb(66, 66, 66);
+}
+
+.categoriesCont>div {
+    display: flex;
+    justify-content: space-between;
+    width: 100%
+}
+
+.categoriesCont>div>div {
+    width: 15.5%;
+    height: 300px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    padding-top: 30px;
+    position: relative;
+    transition: 0.2s ease-in-out;
+    cursor: pointer;
+    background-position: center;
+    background-repeat: no-repeat;
+
+}
+
+.categoriesCont>div>div:hover {
+    transform: translateY(-10px);
+}
+
+.categoriesCont>div>div>h5 {
+    color: white;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.categoriesCont>div>.phones {
+    background-image: linear-gradient(to top, #0000008f,
+            rgba(0, 0, 0, 0.479)),
+        url(../../assets/images/Pixel7-6.jpg);
+    background-size: cover;
+}
+
+.categoriesCont>div>.laptops {
+    background-image: linear-gradient(to top, #0000008f,
+            rgba(0, 0, 0, 0.479)),
+        url(../../assets/images/326-hero.jpg);
+    background-size: cover;
+}
+
+.categoriesCont>div>.gaming {
+    background-image: linear-gradient(to top, #0000008f,
+            rgba(0, 0, 0, 0.479)),
+        url(../../assets/images/xboxx.jpg);
+    background-size: cover;
+}
+
+.categoriesCont>div>.accessories {
+    background-image: linear-gradient(to top, #0000008f,
+            rgba(0, 0, 0, 0.479)),
+        url(../../assets/images/diagonally-earphones.jpg);
+    background-size: cover;
+}
+
+.categoriesCont>div>.monitors {
+    background-image: linear-gradient(to top, #0000008f,
+            rgba(0, 0, 0, 0.479)),
+        url(../../assets/images/336500.jpg);
+    background-size: cover;
+}
+
+.categoriesCont>div>.desktops {
+    background-image: linear-gradient(to top, #0000008f,
+            rgba(0, 0, 0, 0.479)),
+        url(../../assets/images/istockphoto-1314343964-612x612.jpg);
+    background-size: cover;
+}
