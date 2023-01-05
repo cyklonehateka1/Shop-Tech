@@ -1,4 +1,5 @@
 import React from "react";
+import Brands from "../components/Brands";
 import Categories from "../components/Categories";
 import FilterList from "../components/FilterList";
 import Hero from "../components/Hero";
@@ -15,6 +16,7 @@ const Home = () => {
       <div className="homeMainCont">
         <Hero />
         <Categories />
+        <Brands />
         <FilterList />
         <Products />
       </div>
