@@ -7,6 +7,7 @@ import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import Product from "./pages/Product";
 import AwaitEmailConfirm from "./pages/AwaitEmailConfirm";
+import ForgotPassword from "./pages/ForgotPassword";
 
 function App() {
   return (
@@ -19,7 +20,8 @@ function App() {
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/awaitEmailconfirm" element={<AwaitEmailConfirm />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/Login" element={<Login />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/forgotpassword" element={<ForgotPassword />} />
         </Routes>
       </Router>
     </div>
