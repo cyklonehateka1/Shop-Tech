@@ -1,0 +1,173 @@
+.register {
+    max-width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(to top, #575757c4,
+            rgba(136, 136, 136, 0.74)),
+        url(../../assets/images/loginbjpg.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.register>.registerCont {
+    display: flex;
+    border-radius: 10px;
+    width: 70%;
+}
+
+.register>.registerCont>.left {
+    background-color: white;
+    width: 50%;
+    padding: 40px 4%;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: space-between;
+}
+
+.register>.registerCont>.left>img {
+    width: 150px;
+    margin-bottom: 20px;
+}
+
+.register>.registerCont>.left>.registerHeadingCont {
+    width: 100%;
+}
+
+.register>.registerCont>.left>.registerHeadingCont>h2 {
+    font-size: 25px;
+    font-weight: 500;
+    color: #242424c4;
+    margin-bottom: 10px;
+}
+
+.register>.registerCont>.left>form {
+    width: 100%;
+}
+
+.register>.registerCont>.left>form>.name,
+.register>.registerCont>.left>form>.email,
+.register>.registerCont>.left>form>.password {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.register>.registerCont>.left>form>.name>label,
+.register>.registerCont>.left>form>.email>label,
+.register>.registerCont>.left>form>.password>label {
+    margin-bottom: 5px;
+    color: rgb(0, 88, 0);
+    font-size: 14px;
+}
+
+.register>.registerCont>.left>form>.name>input,
+.register>.registerCont>.left>form>.email>input,
+.register>.registerCont>.left>form>.password>input {
+    width: 100%;
+    border-top: none;
+    border-right: none;
+    border-bottom: 1px solid rgb(92, 92, 92);
+    border-left: none;
+    margin-bottom: 20px;
+    outline: none;
+    display: flex;
+    padding: 5px 0;
+}
+
+.register>.registerCont>.left>form>.termsAgree {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.register>.registerCont>.left>form>.termsAgree>input {
+    margin-right: 5px;
+}
+
+.register>.registerCont>.left>form>.termsAgree>p {
+    font-size: 12px;
+    color: #242424c4;
+}
+
+.register>.registerCont>.left>form>.termsAgree>p>a {
+    text-decoration: none;
+    color: green;
+}
+
+.register>.registerCont>.left>form>button {
+    width: 100%;
+    border-radius: 50px;
+    padding: 10px 0;
+    border: none;
+    background-color: rgb(2, 163, 2);
+    cursor: pointer;
+    color: white;
+    font-size: 17px;
+    transition: 0.2s;
+}
+
+.register>.registerCont>.left>form>button:hover {
+    scale: 1.02;
+}
+
+.register>.registerCont>.right {
+
+    background-color: rgb(2, 163, 2);
+    width: 50%;
+    padding: 40px 4%;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.register>.registerCont>.right>.imgTextCont {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 90%;
+}
+
+.register>.registerCont>.right>.imgTextCont>img {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.register>.registerCont>.right>.imgTextCont>p {
+    color: white;
+    margin-bottom: 30px;
+    font-weight: 300;
+    font-size: 22px;
+}
+
+.register>.registerCont>.right>button {
+    width: 100%;
+    background-color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 10px 0;
+}
+
+.register>.registerCont>.right>button>a {
+    color: rgb(2, 163, 2);
+    text-decoration: none;
+    font-size: 16px;
+    width: 100%;
+}
+
+/* 
+
+
+*/
