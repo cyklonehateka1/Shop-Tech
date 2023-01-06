@@ -77,7 +77,7 @@
     align-items: center;
 }
 
-.right>img {
+.login>.loginCont>.right>img {
     width: 150px;
     margin-bottom: 20px;
 }
