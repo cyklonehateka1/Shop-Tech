@@ -18,5 +18,8 @@ const register = async (req, res, next) => {
           "An account with this email already exist, will you like to login instead"
         )
       );
+    user = new UserSchema({ ...req.body });
+    await user.save();
+    res.status(201).json("Please click on the link in the email sent to you");
   } catch (error) {}
 };
