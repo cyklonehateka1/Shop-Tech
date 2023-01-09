@@ -3,6 +3,7 @@ import { errorHandler } from "../middlewares/errorHandler.js";
 import { sendEmail } from "../utils/sendEmail.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
+import e from "express";
 
 export const register = async (req, res, next) => {
   let { name, email, password } = req.body;
@@ -13,10 +14,14 @@ export const register = async (req, res, next) => {
   const salt = bcrypt.genSaltSync(10);
   const hash = bcrypt.hashSync(password, salt);
 
-  if (!name || !email || password)
+  if (!name || !email || !password)
     return next(errorHandler(400, "All fields are requried"));
+  if (name.trim() === "" || email.trim() === "" || password.trim() === "")
+    return next(errorHandler(400, "No field can be made up of spaces only"));
+  if (password.length <= 6)
+    return next(errorHandler(400, "Password too short"));
   try {
-    const user = await UserSchema.findOne({ email });
+    let user = await UserSchema.findOne({ email });
     if (user)
       return next(
         errorHandler(
@@ -32,8 +37,14 @@ export const register = async (req, res, next) => {
     });
     const url = `${process.env.BASE_URL}/api/auth/${user._id}/verify/${token}`;
 
-    res.status(201).json("Please click on the link in the email sent to you");
-  } catch (error) {}
+    res
+      .status(201)
+      .json(
+        "Please click on the link in the email sent to you to verify your account"
+      );
+  } catch (error) {
+    return next(error);
+  }
 };
 
 export const confirmAccount = async (req, res, next) => {
@@ -47,13 +58,13 @@ export const confirmAccount = async (req, res, next) => {
       (error, response) => {
         if (error) return next(errorHandler(401, "Token has expired"));
 
-        if (response.id !== req.params.partnerId)
+        if (response.id !== req.params.userId)
           return next(errorHandler(403, "Invalid token"));
       }
     );
 
-    const verify = await PartnerSchema.findByIdAndUpdate(
-      req.params.partnerId,
+    const verify = await UserSchema.findByIdAndUpdate(
+      req.params.userId,
       {
         $set: { emailVerified: true },
       },
