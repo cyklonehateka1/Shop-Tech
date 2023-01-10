@@ -36,6 +36,7 @@ export const register = async (req, res, next) => {
       expiresIn: "1h",
     });
     const url = `${process.env.BASE_URL}/api/auth/${user._id}/verify/${token}`;
+    sendEmail(user.email, "Confirm Account", url);
 
     res
       .status(201)

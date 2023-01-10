@@ -11,6 +11,8 @@ const INITAL_STATE = {
 };
 
 const Register = () => {
+  const [error, setError] = useState("");
+  const [state, dispatch] = useReducer(registerReducer, INITAL_STATE);
   const [inputValue, setInputValue] = useState({
     name: "",
     email: "",
@@ -18,32 +20,32 @@ const Register = () => {
     confirmPassword: "",
   });
 
-  const [error, setError] = useState("");
-
   const handleChange = (e) => {
     setInputValue({ ...inputValue, [e.target.name]: e.target.value });
-    console.log(inputValue);
   };
-  // const { name, email, password, confirmPassword } = inputValue;
-
+  const { name, email, password, confirmPassword } = inputValue;
   const details = {
-    name: inputValue.name,
-    email: inputValue.email,
-    password: inputValue.password,
+    name,
+    email,
+    password,
   };
 
   const navigate = useNavigate();
 
-  const [state, dispatch] = useReducer(registerReducer, INITAL_STATE);
   const registerHandler = async (e) => {
     e.preventDefault();
-    if (inputValue.password !== inputValue.confirmPassword) {
-      setError("Passwords do not match");
-      dispatch({ type: "REGISTER_FAILURE", payload: error });
-      return;
+
+    if (name.trim() === "" || email.trim() === "" || password.trim() === "") {
+      dispatch({ type: "RESET" });
+      return setError("All fields are required");
     }
+
+    if (password !== confirmPassword) {
+      dispatch({ type: "RESET" });
+      return setError("Passwords do not match");
+    }
+
     dispatch({ type: "REGISTER_START" });
-    console.log(details);
     try {
       const res = await backendConnection.post("/auth/register", details);
       dispatch({ type: "REGISTER_SUCCESS" });
@@ -53,8 +55,7 @@ const Register = () => {
         type: "REGISTER_FAILURE",
         payload: error.response.data.message,
       });
-      // console.log(error);
-      console.log(details);
+      setError("");
     }
   };
 
@@ -75,6 +76,7 @@ const Register = () => {
                 id="name"
                 placeholder="Your Name"
                 onChange={handleChange}
+                name="name"
                 required
               />
             </div>
@@ -86,6 +88,7 @@ const Register = () => {
                 placeholder="example@mail.com"
                 onChange={handleChange}
                 required
+                name="email"
               />
             </div>
             <div className="password">
@@ -96,6 +99,7 @@ const Register = () => {
                 placeholder="Your Password"
                 onChange={handleChange}
                 required
+                name="password"
               />
             </div>
             <div className="password">
@@ -105,6 +109,7 @@ const Register = () => {
                 id="confirmPassword"
                 placeholder="Your Password"
                 onChange={handleChange}
+                name="confirmPassword"
               />
             </div>
             <div className="termsAgree">
@@ -114,9 +119,10 @@ const Register = () => {
                 <Link>terms and conditions</Link>
               </p>
             </div>
+            <p>{error}</p>
+            <p>{state.err && state.err}</p>
             <button>SIGN up</button>
           </form>
-          <p>{state.err}</p>
         </div>
         <div className="right">
           <div className="imgTextCont">

@@ -119,6 +119,12 @@
     scale: 1.02;
 }
 
+.register>.registerCont>.left>form>p {
+    margin-top: 10px;
+    font-size: 13px;
+    color: red;
+}
+
 .register>.registerCont>.right {
 
     background-color: rgb(2, 163, 2);
