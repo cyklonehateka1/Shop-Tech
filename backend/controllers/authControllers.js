@@ -77,3 +77,5 @@ export const confirmAccount = async (req, res, next) => {
     return next(error);
   }
 };
+
+export const loginWithGoogle = async (req, res, next) => {};
