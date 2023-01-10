@@ -19,6 +19,15 @@ const registerReducer = (state, action) => {
         success: false,
         err: action.payload,
       };
+
+    case "RESET":
+      return {
+        isLoading: false,
+        success: false,
+        err: null,
+      };
+    default:
+      return state;
   }
 };
 

@@ -19,7 +19,6 @@ const UserSchema = mongoose.Schema(
     },
     phone: {
       type: String,
-      unique: true,
     },
     accountType: {
       type: String,
