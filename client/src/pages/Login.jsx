@@ -29,7 +29,7 @@ const Login = () => {
           </div>
           <button>
             <img src="https://i.ibb.co/D8t7tB7/google.png" alt="" />
-            <p>Sign in with Google</p>
+            <a href="#">Sign in with Google</a>
           </button>
 
           <div className="hrText">

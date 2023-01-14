@@ -3,7 +3,6 @@ import { errorHandler } from "../middlewares/errorHandler.js";
 import { sendEmail } from "../utils/sendEmail.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
-import e from "express";
 
 export const register = async (req, res, next) => {
   let { name, email, password } = req.body;
@@ -78,4 +77,50 @@ export const confirmAccount = async (req, res, next) => {
   }
 };
 
-export const loginWithGoogle = async (req, res, next) => {};
+export const login = async (req, res, next) => {
+  let { email, password } = req.body;
+
+  email = email.trim();
+
+  if (!email || !password)
+    return next(errorHandler(400, "All fields are required"));
+
+  try {
+    const user = await UserSchema.findOne({ email });
+    if (!user)
+      return next(
+        errorHandler(404, "User not found, would you like to sign up instead?")
+      );
+
+    if (user.fromGoogle)
+      return next(
+        errorHandler(403, "You already signed in with a different method")
+      );
+
+    if (!isVerified) {
+      const token = jwt.sign({ id: user._id }, process.env.EMAIL_CON_KEY, {
+        expiresIn: "1h",
+      });
+      const url = `${process.env.BASE_URL}/api/auth/${user._id}/verify/${token}`;
+      sendEmail(user.email, "Confirm Account", url);
+    }
+
+    const checkPassword = bcrypt.compareSync(password, user.password); // true
+
+    if (!checkPassword) return next(errorHandler(403, "Incorrect password"));
+
+    const accessToken = jwt.sign(
+      { id: user._id, fromGoogle: user.fromGoogle },
+      process.env.JWT_SECRET
+    );
+
+    const { password, _id, ...others } = user._doc;
+
+    res
+      .cookie("access_token", accessToken, { httpOnly: true })
+      .status(200)
+      .json(others);
+  } catch (error) {
+    return next(error);
+  }
+};
