@@ -3,12 +3,16 @@ import Brands from "../components/Brands";
 import Categories from "../components/Categories";
 import FilterList from "../components/FilterList";
 import Hero from "../components/Hero";
+import { useSelector } from "react-redux";
 import Navbar from "../components/Navbar";
 import Products from "../components/Products";
 import TopBar from "../components/TopBar";
 import "../styles/pages/home.css";
 
 const Home = () => {
+  const { currentUser } = useSelector((state) => state.user);
+  console.log(currentUser);
+
   return (
     <div className="home">
       <TopBar />

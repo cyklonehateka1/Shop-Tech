@@ -168,6 +168,12 @@
     padding: 5px 0px;
 }
 
+.login>.loginCont>.right>form>p {
+    margin-top: 10px;
+    font-size: 13px;
+    color: red;
+}
+
 .login>.loginCont>.right>form>.forgotButton {
     margin-top: 20px;
     width: 100%;

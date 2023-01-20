@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
+import Cookies from "js-cookie";
 
 const initialState = {
-  currentUser: null,
+  currentUser: Cookies.get("clientId"),
   isLoading: false,
-  error: false,
+  error: null,
 };
 
 export const userSlice = createSlice({
@@ -15,10 +16,9 @@ export const userSlice = createSlice({
     },
     loginSuccess: (state, action) => {
       state.isLoading = false;
-      state.currentUser = action.payload;
     },
     loginFailure: (state, action) => {
-      state.error = true;
+      state.error = action.payload;
       state.isLoading = false;
     },
     logout: (state) => {

@@ -47,7 +47,7 @@ const Register = () => {
 
     dispatch({ type: "REGISTER_START" });
     try {
-      const res = await backendConnection.post("/auth/register", details);
+      await backendConnection.post("/auth/register", details);
       dispatch({ type: "REGISTER_SUCCESS" });
       navigate("/awaitEmailconfirm");
     } catch (error) {

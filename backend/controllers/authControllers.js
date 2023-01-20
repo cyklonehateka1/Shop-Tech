@@ -66,7 +66,7 @@ export const confirmAccount = async (req, res, next) => {
     const verify = await UserSchema.findByIdAndUpdate(
       req.params.userId,
       {
-        $set: { emailVerified: true },
+        $set: { isVerified: true },
       },
       { new: true }
     );
@@ -85,6 +85,8 @@ export const login = async (req, res, next) => {
   if (!email || !password)
     return next(errorHandler(400, "All fields are required"));
 
+  if (email.trim() === "" || password.trim() === "")
+    return next(errorHandler(400, "No field can be left blank"));
   try {
     const user = await UserSchema.findOne({ email });
     if (!user)
@@ -97,7 +99,7 @@ export const login = async (req, res, next) => {
         errorHandler(403, "You already signed in with a different method")
       );
 
-    if (!isVerified) {
+    if (!user.isVerified) {
       const token = jwt.sign({ id: user._id }, process.env.EMAIL_CON_KEY, {
         expiresIn: "1h",
       });
@@ -105,7 +107,7 @@ export const login = async (req, res, next) => {
       sendEmail(user.email, "Confirm Account", url);
     }
 
-    const checkPassword = bcrypt.compareSync(password, user.password); // true
+    const checkPassword = bcrypt.compareSync(req.body.password, user.password); // true
 
     if (!checkPassword) return next(errorHandler(403, "Incorrect password"));
 
@@ -114,12 +116,12 @@ export const login = async (req, res, next) => {
       process.env.JWT_SECRET
     );
 
-    const { password, _id, ...others } = user._doc;
+    const { _id, ...others } = user._doc;
 
     res
       .cookie("access_token", accessToken, { httpOnly: true })
       .status(200)
-      .json(others);
+      .json(_id);
   } catch (error) {
     return next(error);
   }
