@@ -86,6 +86,7 @@
 
 .cartAccountCont {
     display: flex;
+    position: relative;
 }
 
 .cartAccountCont>div {
@@ -94,10 +95,71 @@
     color: rgb(92, 92, 92);
 }
 
-.cartAccountCont>div>div {
+.cartAccountCont>.accountsParent {
+    position: relative;
+}
+
+.cartAccountCont>div>.closedOptions {
     margin-right: 5px;
     display: flex;
     align-items: center;
+    cursor: pointer;
+}
+
+.cartAccountCont>div>.closedOptions>div {
+    margin-right: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.cartAccountCont>div>.openOptions>.close {
+    width: 100%;
+    justify-content: flex-end;
+    display: flex;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.cartAccountCont>div>.openOptions {
+    position: absolute;
+    top: 0;
+    box-shadow: 1px 1px 10px rgb(204, 204, 204);
+    height: 170px;
+    width: 250px;
+    background-color: white;
+    padding: 10px;
+    right: 1px;
+}
+
+.cartAccountCont>div>.openOptions>.cont>.account {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    margin-bottom: 20px;
+
+}
+
+.cartAccountCont>div>.openOptions>.cont>.account>img {
+    width: 20%;
+    border-radius: 50px;
+    margin-right: 10px;
+}
+
+.cartAccountCont>div>.openOptions>.cont>.account>p {
+    font-size: 13px;
+}
+
+.cartAccountCont>div>.openOptions>.cont>.sign {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    cursor: pointer;
+}
+
+.cartAccountCont>div>.openOptions>.cont>.sign>span {
+    font-size: 30px;
+    width: 20%;
+    margin-right: 10px;
 }
 
 .cartAccountCont>.cart {

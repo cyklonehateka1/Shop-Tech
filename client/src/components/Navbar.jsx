@@ -1,8 +1,38 @@
-import { BiCart, BiSearch, BiUser } from "react-icons/bi";
-import { Link } from "react-router-dom";
+import {
+  BiCart,
+  BiSearch,
+  BiUser,
+  BiLogOut,
+  BiWindowClose,
+} from "react-icons/bi";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/components/navbar.css";
+import { useState } from "react";
+import { backendConnection } from "../utils/axiosConnection";
 
 const Navbar = () => {
+  const [accountModalOpen, setAccoutModalOpen] = useState(false);
+
+  const accountModalHanlder = () => {
+    if (accountModalOpen) {
+      setAccoutModalOpen(false);
+    } else {
+      setAccoutModalOpen(true);
+    }
+  };
+
+  const navigate = useNavigate();
+
+  const logoutHandler = async () => {
+    try {
+      const res = await backendConnection.post("/auth/logout", {});
+      console.log(res.data);
+      navigate("/login");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="navbar">
       <div className="navbarCont">
@@ -32,11 +62,35 @@ const Navbar = () => {
           </div>
         </div>
         <div className="cartAccountCont">
-          <div>
-            <div>
-              <BiUser />
+          <div className="accountsParent">
+            <div className="closedOptions" onClick={accountModalHanlder}>
+              <div>
+                <BiUser />
+              </div>
+              <span>Account</span>
             </div>
-            <span>Account</span>
+            {accountModalOpen && (
+              <div className="openOptions">
+                <div className="close">
+                  <BiWindowClose onClick={accountModalHanlder} />
+                </div>
+                <div className="cont">
+                  <div className="account">
+                    <img
+                      src="https://i.ibb.co/dGcxdHw/intern-img-jg.png"
+                      alt=""
+                    />
+                    <p>Cyklone Hateka</p>
+                  </div>
+                  <div className="sign" onClick={logoutHandler}>
+                    <span>
+                      <BiLogOut />
+                    </span>
+                    <p>Logout</p>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
           <div className="cart">
             <Link to="cart">
