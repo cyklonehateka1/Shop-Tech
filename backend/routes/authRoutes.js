@@ -3,6 +3,7 @@ import {
   confirmAccount,
   login,
   register,
+  logout,
 } from "../controllers/authControllers.js";
 
 const router = express.Router();
@@ -10,5 +11,6 @@ const router = express.Router();
 router.post("/register", register);
 router.get("/:userId/verify/:token", confirmAccount);
 router.post("/login", login);
+router.post("/logout", logout);
 
 export default router;

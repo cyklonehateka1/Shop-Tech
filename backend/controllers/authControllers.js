@@ -126,3 +126,10 @@ export const login = async (req, res, next) => {
     return next(error);
   }
 };
+
+export const logout = async (req, res, next) => {
+  res
+    .clearCookie("access_token", { sameSite: "none", secure: true })
+    .status(200)
+    .json("Logged out successfully");
+};

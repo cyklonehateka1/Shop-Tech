@@ -45,7 +45,7 @@ const Login = () => {
         credentials: "include",
       });
       dispatch(loginSuccess());
-      Cookies.set("clientId", res.data);
+      Cookies.set("clientId", res.data, { sameSite: "none", expires: 30 });
       navigate("/");
     } catch (error) {
       dispatch(loginFailure(error));

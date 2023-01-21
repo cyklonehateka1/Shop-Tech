@@ -33,17 +33,62 @@ export const getProduct = async (req, res, next) => {
 };
 
 export const getProducts = async (req, res, next) => {
-  const qCategory = req.query.qcategory;
-  const qSearch = req.query.qSearch;
-  const qBrand = req.query.qBrand;
+  const qCategory = req.query.category;
+  const qSearch = req.query.search;
+  const qBrand = req.query.brand;
+  const qLimit = req.query.limit;
+  const qSkip = req.query.skip;
 
   try {
     let products;
 
     if (qCategory) {
-      products = await ProductSchema.find({ categories: { $in: [qCategory] } });
+      products = await ProductSchema.find({ categories: { $in: [qCategory] } })
+        .limit(qLimit)
+        .skip(qSkip);
     } else if (qBrand) {
-      products = await ProductSchema.find({ brand: qBrand });
+      products = await ProductSchema.find({ brand: qBrand })
+        .limit(qLimit)
+        .skip(qSkip);
+    } else if (qSearch) {
+      products = await ProductSchema.find({
+        $regex: qSearch,
+        $options: "i",
+
+        $or: [
+          {
+            name: {
+              $regex: qSearch,
+              $options: "i",
+            },
+          },
+          {
+            desc: {
+              $regex: qSearch,
+              $options: "i",
+            },
+          },
+          {
+            model: {
+              $regex: qSearch,
+              $options: "i",
+            },
+          },
+          {
+            brand: {
+              $regex: qSearch,
+              $options: "i",
+            },
+          },
+        ],
+      })
+        .limit(qLimit)
+        .skip(qSkip);
+    } else {
+      products = await ProductSchema.find().limit();
     }
-  } catch (error) {}
+    res.status(200).json(products);
+  } catch (error) {
+    return next(error);
+  }
 };
