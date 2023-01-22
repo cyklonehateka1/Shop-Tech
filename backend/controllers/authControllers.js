@@ -129,7 +129,7 @@ export const login = async (req, res, next) => {
 
 export const logout = async (req, res, next) => {
   res
-    .clearCookie("access_token", { sameSite: "none", secure: true })
+    .clearCookie("access_token", { sameSite: "none", secure: true, maxAge: 1 })
     .status(200)
     .json("Logged out successfully");
 };
