@@ -25,9 +25,14 @@ const Navbar = () => {
 
   const logoutHandler = async () => {
     try {
-      const res = await backendConnection.post("/auth/logout", {});
+      const res = await backendConnection.get("/auth/logout", {
+        withCredentials: true,
+        credentials: "include",
+      });
       console.log(res.data);
-      navigate("/login");
+      localStorage.removeItem("clientId");
+      setAccoutModalOpen(false);
+      navigate("/");
     } catch (error) {
       console.log(error);
     }

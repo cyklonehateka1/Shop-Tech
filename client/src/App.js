@@ -29,9 +29,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route
             path="/login"
-            element={
-              currentUser !== undefined ? <Navigate to="/" /> : <Login />
-            }
+            element={currentUser ? <Navigate to="/" /> : <Login />}
           />
           <Route path="/forgotpassword" element={<ForgotPassword />} />
         </Routes>
