@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import { connection } from "./utils/database.js";
 import cors from "cors";
 import authRoutes from "./routes/authRoutes.js";
+import productRoutes from "./routes/productRoutes.js";
 
 dotenv.config();
 
@@ -11,6 +12,7 @@ app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
+app.use("/api/products", productRoutes);
 
 app.use((err, req, res, next) => {
   const status = err.status || 500;

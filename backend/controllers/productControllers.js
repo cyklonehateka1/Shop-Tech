@@ -4,6 +4,8 @@ import { errorHandler } from "../middlewares/errorHandler.js";
 export const addProduct = async (req, res, next) => {
   const { price, desc, name, profileImg } = req.body;
 
+  if (req.user.accType !== "admin")
+    return next(errorHandler(401, "You're not authorized"));
   if (!price || !desc || !name || !profileImg)
     return next(errorHandler(400, "Some fields are required"));
 
@@ -33,7 +35,8 @@ export const getProduct = async (req, res, next) => {
 };
 
 export const getProducts = async (req, res, next) => {
-  const qCategory = req.query.category;
+  const qPCategory = req.query.parentCategory;
+  const qSCategory = req.query.subCategory;
   const qSearch = req.query.search;
   const qBrand = req.query.brand;
   const qLimit = req.query.limit;
@@ -42,8 +45,12 @@ export const getProducts = async (req, res, next) => {
   try {
     let products;
 
-    if (qCategory) {
-      products = await ProductSchema.find({ categories: { $in: [qCategory] } })
+    if (qPCategory) {
+      products = await ProductSchema.find({ categories: { $in: [qPCategory] } })
+        .limit(qLimit)
+        .skip(qSkip);
+    } else if (qSCategory) {
+      products = await ProductSchema.find({ categories: { $in: [qSCategory] } })
         .limit(qLimit)
         .skip(qSkip);
     } else if (qBrand) {

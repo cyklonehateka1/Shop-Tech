@@ -8,10 +8,13 @@ import Navbar from "../components/Navbar";
 import Products from "../components/Products";
 import TopBar from "../components/TopBar";
 import "../styles/pages/home.css";
+import { useState } from "react";
 
 const Home = () => {
   const { currentUser } = useSelector((state) => state.user);
-  console.log(currentUser);
+  const [category, setCategory] = useState(null);
+
+  console.log(category);
 
   return (
     <div className="home">
@@ -19,7 +22,7 @@ const Home = () => {
       <Navbar />
       <div className="homeMainCont">
         <Hero />
-        <Categories />
+        <Categories sendCat={(category) => setCategory(category)} />
         <Brands />
         <FilterList />
         <Products />

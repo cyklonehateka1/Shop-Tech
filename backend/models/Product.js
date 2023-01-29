@@ -26,7 +26,7 @@ const ProuctSchema = mongoose.Schema(
       type: Number,
     },
     rating: {
-      type: Nummber,
+      type: Number,
     },
     colors: {
       type: [String],
@@ -41,7 +41,10 @@ const ProuctSchema = mongoose.Schema(
     model: {
       type: String,
     },
-    categories: {
+    parentCat: {
+      type: [String],
+    },
+    subCat: {
       type: [String],
     },
     price: {
