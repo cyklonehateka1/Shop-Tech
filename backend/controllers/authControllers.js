@@ -112,7 +112,7 @@ export const login = async (req, res, next) => {
     if (!checkPassword) return next(errorHandler(403, "Incorrect password"));
 
     const accessToken = jwt.sign(
-      { id: user._id, fromGoogle: user.fromGoogle },
+      { id: user._id, fromGoogle: user.fromGoogle, accType: user.accountType },
       process.env.JWT_SECRET
     );
 
