@@ -40,10 +40,6 @@ const Navbar = (props) => {
     }
   };
 
-  const handleInputChange = (e) => {
-    props.onInputChange(e.target.value);
-  };
-
   return (
     <div className="navbar">
       <div className="navbarCont">
@@ -67,11 +63,7 @@ const Navbar = (props) => {
           </ul>
         </div>
         <div className="navSearchCont">
-          <input
-            type="text"
-            placeholder="Search Products"
-            onChange={handleInputChange}
-          />
+          <input type="text" placeholder="Search Products" />
           <div>
             <BiSearch />
           </div>
