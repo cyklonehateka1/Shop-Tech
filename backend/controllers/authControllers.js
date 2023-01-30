@@ -118,10 +118,7 @@ export const login = async (req, res, next) => {
 
     const { _id, ...others } = user._doc;
 
-    res
-      .cookie("access_token", accessToken, { httpOnly: true })
-      .status(200)
-      .json(_id);
+    res.cookie("access_token", accessToken).status(200).json(_id);
   } catch (error) {
     return next(error);
   }

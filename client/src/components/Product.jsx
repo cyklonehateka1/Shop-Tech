@@ -2,12 +2,12 @@ import { AiOutlineHeart, AiFillStar } from "react-icons/ai";
 import "../styles/components/product.css";
 
 const Product = (props) => {
-  const { name, price, desc, ratingCount, image } = props.item;
+  const { name, price, desc, ratingCount, profileImg } = props.item;
   return (
     <div className="product">
       <div className="productCont">
         <div className="imgIconCont">
-          <img src={image} alt="" />
+          <img src={profileImg} alt="" />
           <span>
             <AiOutlineHeart />
           </span>

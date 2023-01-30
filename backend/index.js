@@ -4,12 +4,14 @@ import { connection } from "./utils/database.js";
 import cors from "cors";
 import authRoutes from "./routes/authRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
+import cookieParser from "cookie-parser";
 
 dotenv.config();
 
 const app = express();
 app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());
+app.use(cookieParser());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);

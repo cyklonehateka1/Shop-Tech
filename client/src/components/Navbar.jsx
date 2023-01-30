@@ -5,15 +5,15 @@ import {
   BiLogOut,
   BiWindowClose,
 } from "react-icons/bi";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import "../styles/components/navbar.css";
 import { useState } from "react";
 import { backendConnection } from "../utils/axiosConnection";
 
-const Navbar = () => {
+const Navbar = (props) => {
   const [accountModalOpen, setAccoutModalOpen] = useState(false);
 
-  const accountModalHanlder = () => {
+  const accountModalHanlder = (props) => {
     if (accountModalOpen) {
       setAccoutModalOpen(false);
     } else {
@@ -22,6 +22,8 @@ const Navbar = () => {
   };
 
   const navigate = useNavigate();
+
+  const location = useLocation();
 
   const logoutHandler = async () => {
     try {
@@ -36,6 +38,10 @@ const Navbar = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const handleInputChange = (e) => {
+    props.onInputChange(e.target.value);
   };
 
   return (
@@ -61,7 +67,11 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navSearchCont">
-          <input type="text" placeholder="Search Products" />
+          <input
+            type="text"
+            placeholder="Search Products"
+            onChange={handleInputChange}
+          />
           <div>
             <BiSearch />
           </div>
