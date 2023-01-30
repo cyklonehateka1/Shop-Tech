@@ -8,20 +8,14 @@ import { backendConnection } from "../utils/axiosConnection";
 const Products = (props) => {
   const [products, setProducts] = useState(null);
   const [error, setError] = useState(null);
-  console.log(props.search);
-  const { search } = props;
 
   const location = useLocation();
+  const query = location.pathname.split("?")[1];
 
   useEffect(() => {
     const getProducts = async () => {
       let res;
       try {
-        if (search && search.trim() !== "") {
-          res = await backendConnection.get(
-            `/products/getproducts?search=${search}`
-          );
-        }
         res = await backendConnection.get("/products/getproducts");
         setProducts(res.data);
       } catch (error) {
@@ -31,7 +25,7 @@ const Products = (props) => {
     };
 
     getProducts();
-  }, [search]);
+  }, [location.pathname]);
   console.log(products);
   return (
     <div className="products">

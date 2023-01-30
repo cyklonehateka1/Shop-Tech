@@ -12,22 +12,17 @@ import { useState } from "react";
 
 const Home = () => {
   const { currentUser } = useSelector((state) => state.user);
-  const [searchInput, setSearchInput] = useState(null);
-
-  const handleChange = (value) => {
-    setSearchInput(value);
-  };
 
   return (
     <div className="home">
       <TopBar />
-      <Navbar onInputChange={handleChange} />
+      <Navbar />
       <div className="homeMainCont">
         <Hero />
         <Categories />
         <Brands />
         <FilterList />
-        <Products search={searchInput} />
+        <Products />
       </div>
     </div>
   );
