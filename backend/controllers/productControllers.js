@@ -10,7 +10,7 @@ export const addProduct = async (req, res, next) => {
     return next(errorHandler(400, "Some fields are required"));
 
   try {
-    let product = await ProductSchema.findOne(name);
+    let product = await ProductSchema.findOne({ name });
     if (product) return next(errorHandler(400, "Product name already exist"));
 
     product = new ProductSchema(req.body);
@@ -46,11 +46,11 @@ export const getProducts = async (req, res, next) => {
     let products;
 
     if (qPCategory) {
-      products = await ProductSchema.find({ categories: { $in: [qPCategory] } })
+      products = await ProductSchema.find({ parentCat: { $in: [qPCategory] } })
         .limit(qLimit)
         .skip(qSkip);
     } else if (qSCategory) {
-      products = await ProductSchema.find({ categories: { $in: [qSCategory] } })
+      products = await ProductSchema.find({ subCat: { $in: [qSCategory] } })
         .limit(qLimit)
         .skip(qSkip);
     } else if (qBrand) {
@@ -98,4 +98,11 @@ export const getProducts = async (req, res, next) => {
   } catch (error) {
     return next(error);
   }
+};
+
+export const updateProduct = async (req, res, next) => {
+  if (req.user.accType !== "admin")
+    return next(errorHandler(403, "You are not authorized"));
+  try {
+  } catch (error) {}
 };

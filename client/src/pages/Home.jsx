@@ -12,20 +12,22 @@ import { useState } from "react";
 
 const Home = () => {
   const { currentUser } = useSelector((state) => state.user);
-  const [category, setCategory] = useState(null);
+  const [searchInput, setSearchInput] = useState(null);
 
-  console.log(category);
+  const handleChange = (value) => {
+    setSearchInput(value);
+  };
 
   return (
     <div className="home">
       <TopBar />
-      <Navbar />
+      <Navbar onInputChange={handleChange} />
       <div className="homeMainCont">
         <Hero />
-        <Categories sendCat={(category) => setCategory(category)} />
+        <Categories />
         <Brands />
         <FilterList />
-        <Products />
+        <Products search={searchInput} />
       </div>
     </div>
   );
