@@ -26,7 +26,6 @@ const Products = (props) => {
 
     getProducts();
   }, [location.pathname]);
-  console.log(products);
   return (
     <div className="products">
       <div className="productsCont">

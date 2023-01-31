@@ -1,14 +1,26 @@
 import { AiOutlineHeart, AiFillStar } from "react-icons/ai";
 import "../styles/components/product.css";
+import { useNavigate, useLocation } from "react-router-dom";
+import { backendConnection } from "../utils/axiosConnection";
 
 const Product = (props) => {
   const { name, price, desc, ratingCount, profileImg } = props.item;
+  const location = useLocation();
+  const navigate = useNavigate();
+  const sendProduct = (e) => {
+    if (!e.target.closest("#wishlist")) {
+      navigate(`/product/${props.item._id}`);
+    } else {
+      console.log("wishlist");
+    }
+  };
+
   return (
     <div className="product">
       <div className="productCont">
-        <div className="imgIconCont">
+        <div className="imgIconCont" onClick={sendProduct}>
           <img src={profileImg} alt="" />
-          <span>
+          <span id="wishlist">
             <AiOutlineHeart />
           </span>
         </div>
