@@ -1,10 +1,33 @@
-import React from "react";
+import { useState } from "react";
 import { AiFillStar } from "react-icons/ai";
 import Navbar from "../components/Navbar";
 import TopBar from "../components/TopBar";
 import "../styles/pages/product.css";
+import { useLocation } from "react-router-dom";
+import { backendConnection } from "../utils/axiosConnection";
+import { useEffect } from "react";
 
 const Product = () => {
+  const [product, setProduct] = useState(null);
+
+  const location = useLocation();
+
+  const id = location.pathname.split("/")[2];
+
+  useEffect(() => {
+    const getProduct = async () => {
+      try {
+        const res = await backendConnection.get(`/products/getone/${id}`);
+        setProduct(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getProduct();
+  }, [id]);
+
+  console.log(product);
+
   return (
     <div className="productPage">
       <TopBar />
@@ -12,14 +35,11 @@ const Product = () => {
       <div className="productPageCont">
         <div>
           <div className="left">
-            <img src="https://i.ibb.co/7pnyjjT/pinkheadphones.png" alt="" />
+            <img src={product && product.profileImg} alt="" />
           </div>
           <div className="right">
-            <h2>Gallaxy Echo</h2>
-            <p>
-              An experience of ultra-modern high quality sound to give you peace
-              and tranquility from the outside world like never before
-            </p>
+            <h2>{product && product.name}</h2>
+            <p>{product && product.desc}</p>
             <div className="rating">
               <div className="stars">
                 <span className="starFill">
@@ -41,24 +61,25 @@ const Product = () => {
               <span className="text">(241)</span>
             </div>
             <div className="pricing">
-              <h4>$476.99 or 87.76/month</h4>
+              <h4>{`$${product && product.price} or ${
+                product && Math.ceil(product.price / 6)
+              }/month`}</h4>
               <p>Suggested payments with 6 months special financing</p>
             </div>
             <div className="colorCont">
               <h5>Choose a Color</h5>
               <div className="colors">
-                <div>
-                  <div id="pink" style={{ backgroundColor: "pink" }}></div>
-                </div>
-                <div id="blue">
-                  <div id="blue" style={{ backgroundColor: "blue" }}></div>
-                </div>
-                <div id="green">
-                  <div id="green" style={{ backgroundColor: "green" }}></div>
-                </div>
-                <div id="purple">
-                  <div id="purple" style={{ backgroundColor: "purple" }}></div>
-                </div>
+                {product &&
+                  product.colors.map((color, index) => {
+                    return (
+                      <div key={index}>
+                        <div
+                          id={`${color}`}
+                          style={{ backgroundColor: `${color}` }}
+                        ></div>
+                      </div>
+                    );
+                  })}
               </div>
             </div>
             <div className="productButton">
