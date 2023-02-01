@@ -10,9 +10,12 @@ import "../styles/components/navbar.css";
 import { useState } from "react";
 import { backendConnection } from "../utils/axiosConnection";
 import Badge from "@mui/material/Badge";
+import { useSelector } from "react-redux";
 
 const Navbar = (props) => {
   const [accountModalOpen, setAccoutModalOpen] = useState(false);
+  const { products } = useSelector((state) => state.cart);
+  console.log(products);
 
   const accountModalHanlder = (props) => {
     if (accountModalOpen) {
