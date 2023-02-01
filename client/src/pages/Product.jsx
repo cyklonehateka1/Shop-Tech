@@ -6,10 +6,14 @@ import "../styles/pages/product.css";
 import { useLocation } from "react-router-dom";
 import { backendConnection } from "../utils/axiosConnection";
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { addTocart } from "../redux/slices/cartSlice";
 
 const Product = () => {
   const [product, setProduct] = useState(null);
+  const [quantity, setQuantity] = useState(9);
 
+  const dispatch = useDispatch();
   const location = useLocation();
 
   const id = location.pathname.split("/")[2];
@@ -26,6 +30,24 @@ const Product = () => {
     getProduct();
   }, [id]);
 
+  const handleQuantity = (e) => {
+    if (e.target.id === "dec" && quantity > 1) {
+      setQuantity(quantity - 1);
+    } else if (e.target.id === "inc") {
+      setQuantity(quantity + 1);
+    }
+  };
+
+  const payload = {
+    product: product && product._id,
+    price: product && product.price,
+    quantity,
+  };
+
+  const addProductHandler = () => {
+    dispatch(addTocart);
+  };
+
   console.log(product);
 
   return (
@@ -34,7 +56,11 @@ const Product = () => {
       <Navbar />
       <div className="productPageCont">
         <div>
-          <div className="left">
+          <div
+            className="left"
+            name="hell"
+            onClick={(e) => console.log(e.target.name)}
+          >
             <img src={product && product.profileImg} alt="" />
           </div>
           <div className="right">
@@ -85,15 +111,21 @@ const Product = () => {
             <div className="productButton">
               <div className="productCount">
                 <div className="incdec">
-                  <span className="dec">-</span>
-                  <span className="count">1</span>
-                  <span className="inc">+</span>
+                  <span className="dec" id="dec" onClick={handleQuantity}>
+                    -
+                  </span>
+                  <span className="count">{quantity}</span>
+                  <span className="inc" id="inc" onClick={handleQuantity}>
+                    +
+                  </span>
                 </div>
                 <span>Only 21 left</span>
               </div>
               <div className="buttons">
                 <button className="buy">Buy Now</button>
-                <button className="addToCart">Add to Cart</button>
+                <button className="addToCart" onClick={addProductHandler}>
+                  Add to Cart
+                </button>
               </div>
             </div>
           </div>
