@@ -14,8 +14,9 @@ import { useSelector } from "react-redux";
 
 const Navbar = (props) => {
   const [accountModalOpen, setAccoutModalOpen] = useState(false);
-  const { products } = useSelector((state) => state.cart);
+  const { products, quantity } = useSelector((state) => state.cart);
   console.log(products);
+  console.log(quantity);
 
   const accountModalHanlder = (props) => {
     if (accountModalOpen) {
@@ -106,7 +107,7 @@ const Navbar = (props) => {
           <div className="cart">
             <Link to="cart">
               <div>
-                <Badge badgeContent={1} color="primary">
+                <Badge badgeContent={quantity} color="primary">
                   <BiCart style={{ fontSize: "20px" }} />
                 </Badge>
               </div>

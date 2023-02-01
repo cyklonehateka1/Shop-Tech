@@ -11,7 +11,7 @@ import { addTocart } from "../redux/slices/cartSlice";
 
 const Product = () => {
   const [product, setProduct] = useState(null);
-  const [quantity, setQuantity] = useState(9);
+  const [quantity, setQuantity] = useState(1);
 
   const dispatch = useDispatch();
   const location = useLocation();
@@ -45,7 +45,7 @@ const Product = () => {
   };
 
   const addProductHandler = () => {
-    dispatch(addTocart);
+    dispatch(addTocart(payload));
   };
 
   console.log(product);
