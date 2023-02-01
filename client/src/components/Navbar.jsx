@@ -9,6 +9,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import "../styles/components/navbar.css";
 import { useState } from "react";
 import { backendConnection } from "../utils/axiosConnection";
+import Badge from "@mui/material/Badge";
 
 const Navbar = (props) => {
   const [accountModalOpen, setAccoutModalOpen] = useState(false);
@@ -102,7 +103,9 @@ const Navbar = (props) => {
           <div className="cart">
             <Link to="cart">
               <div>
-                <BiCart />
+                <Badge badgeContent={1} color="primary">
+                  <BiCart style={{ fontSize: "20px" }} />
+                </Badge>
               </div>
               <span>Cart</span>
             </Link>
