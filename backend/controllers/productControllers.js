@@ -130,12 +130,12 @@ export const addProductToCart = async (req, res, next) => {
     );
 
     if (product === -1) {
-      cart.items.push({
+      cart.products.push({
         product: req.body.productId,
         quantity: req.body.quantity || 1,
       });
     } else {
-      cart.items[product].quantity += req.body.quantity || 1;
+      cart.products[product].quantity += req.body.quantity || 1;
     }
     await cart.save();
     res.status(200).json("Product added successfully");
@@ -149,12 +149,12 @@ export const removeFromCart = async (req, res, next) => {
     const cart = await CartSchema.findOne({ user: req.params.userId });
     if (!cart) return next(errorHandler(401, "Cart not found"));
 
-    const itemIndex = cart.items.findIndex(
+    const itemIndex = cart.products.findIndex(
       (item) => item.product.toString() === req.body.productId
     );
 
     if (itemIndex === -1) return next(errorHandler(404, "Product not found"));
-    cart.items.splice(itemIndex, 1);
+    cart.products.splice(itemIndex, 1);
 
     await cart.save();
     res.status(200).json(cart);
