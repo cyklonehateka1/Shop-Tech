@@ -3,11 +3,12 @@ import Navbar from "../components/Navbar";
 import TopBar from "../components/TopBar";
 import "../styles/pages/cart.css";
 import { useSelector, useDispatch } from "react-redux";
-import { addTocart, removeFromCart } from "../redux/slices/cartSlice";
+import { removeFromCart } from "../redux/slices/cartSlice";
 import { useState } from "react";
 
 const Cart = () => {
   const { products, total } = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
   console.log(products);
 
   return (
@@ -18,11 +19,16 @@ const Cart = () => {
         <div className="left">
           <div className="cartProduct">
             <h5>Review Item And Shipping</h5>
+            <span>Double click on item to remove</span>
             <div className="productsListCont">
               {products &&
                 products.map((item, index) => {
                   return (
-                    <div className="itemCont" key={index}>
+                    <div
+                      className="itemCont"
+                      key={index}
+                      onDoubleClick={(e) => dispatch(removeFromCart(item))}
+                    >
                       <div className="left">
                         <div className="imgCont">
                           <img src={item.product.profileImg} alt="Product" />
@@ -39,24 +45,6 @@ const Cart = () => {
                     </div>
                   );
                 })}
-              {/* <div className="itemCont">
-                <div className="left">
-                  <div className="imgCont">
-                    <img
-                      src="https://i.ibb.co/7pnyjjT/pinkheadphones.png"
-                      alt=""
-                    />
-                  </div>
-                  <div className="center">
-                    <h5>Gallaxy Echo</h5>
-                    <span>Color: Pink</span>
-                  </div>
-                </div>
-                <div className="right">
-                  <h5>$600.87</h5>
-                  <span>Quantity: 01</span>
-                </div>
-              </div> */}
             </div>
           </div>
 

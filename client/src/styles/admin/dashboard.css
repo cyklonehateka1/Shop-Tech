@@ -1,0 +1,42 @@
+.dashboard {
+    position: relative;
+    left: 15%;
+    /* border: 1px solid red; */
+    padding: 15px;
+    width: 84%;
+}
+
+.statsWidgetCont {
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.chartsReviewsCont {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.tableTopProCont {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.tableTopProCont>.dashboardTable {
+    width: 74.7%;
+    height: 300px;
+    background-color: white;
+    padding-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.tableTopProCont>.dashboardTable>h5 {
+    font-size: 17px;
+    color: #1d96e2;
+    margin-bottom: 20px;
+}

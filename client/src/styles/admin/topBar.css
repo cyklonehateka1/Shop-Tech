@@ -1,0 +1,78 @@
+.topBar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.topBar>.left {
+    display: flex;
+    align-items: center;
+    /* border: 1px solid red; */
+    width: 25%;
+}
+
+.topBar>.left>.searchCont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: rgb(219, 229, 236);
+    border-radius: 5px;
+    padding: 0 10px;
+}
+
+.topBar>.left>.searchCont>input {
+    border: none;
+    width: 100%;
+    height: 35px;
+    background-color: inherit;
+    outline: none;
+}
+
+.topBar>.left>.searchCont>div {
+    color: #1572ac;
+
+}
+
+.topBar>.right {
+    display: flex;
+    align-items: center;
+}
+
+.topBar>.right>.icon {
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    color: #04324e;
+    cursor: pointer;
+}
+
+.topBar>.right>.account {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.topBar>.right>.account>.downArr {
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.profileImgCont {
+    width: 35px;
+    height: 35px;
+    margin-right: 10px;
+}
+
+.topBar>.right>.account>span {
+    font-size: 14px;
+    margin-right: 5px;
+}
+
+.profileImgCont>img {
+    width: 100%;
+    border-radius: 50px;
+}
