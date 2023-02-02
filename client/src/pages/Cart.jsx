@@ -2,8 +2,14 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import TopBar from "../components/TopBar";
 import "../styles/pages/cart.css";
+import { useSelector, useDispatch } from "react-redux";
+import { addTocart, removeFromCart } from "../redux/slices/cartSlice";
+import { useState } from "react";
 
 const Cart = () => {
+  const { products, total } = useSelector((state) => state.cart);
+  console.log(products);
+
   return (
     <div className="cart">
       <TopBar />
@@ -13,7 +19,27 @@ const Cart = () => {
           <div className="cartProduct">
             <h5>Review Item And Shipping</h5>
             <div className="productsListCont">
-              <div className="itemCont">
+              {products &&
+                products.map((item, index) => {
+                  return (
+                    <div className="itemCont" key={index}>
+                      <div className="left">
+                        <div className="imgCont">
+                          <img src={item.product.profileImg} alt="Product" />
+                        </div>
+                        <div className="center">
+                          <h5>{item.product.name}</h5>
+                          <span>Color: {item.product.color}</span>
+                        </div>
+                      </div>
+                      <div className="right">
+                        <h5>${item.product.price}</h5>
+                        <span>Quantity: {item.quantity}</span>
+                      </div>
+                    </div>
+                  );
+                })}
+              {/* <div className="itemCont">
                 <div className="left">
                   <div className="imgCont">
                     <img
@@ -30,25 +56,7 @@ const Cart = () => {
                   <h5>$600.87</h5>
                   <span>Quantity: 01</span>
                 </div>
-              </div>
-              <div className="itemCont">
-                <div className="left">
-                  <div className="imgCont">
-                    <img
-                      src="https://i.ibb.co/7pnyjjT/pinkheadphones.png"
-                      alt=""
-                    />
-                  </div>
-                  <div className="center">
-                    <h5>Gallaxy Echo</h5>
-                    <span>Color: Pink</span>
-                  </div>
-                </div>
-                <div className="right">
-                  <h5>$600.87</h5>
-                  <span>Quantity: 01</span>
-                </div>
-              </div>
+              </div> */}
             </div>
           </div>
 
@@ -180,7 +188,7 @@ const Cart = () => {
           <div className="summary">
             <div className="row">
               <p>Sub Total</p>
-              <span>$690.54</span>
+              <span>{total}</span>
             </div>
             <div className="row">
               <p>Tax(10%)</p>

@@ -14,9 +14,7 @@ import { useSelector } from "react-redux";
 
 const Navbar = (props) => {
   const [accountModalOpen, setAccoutModalOpen] = useState(false);
-  const { products, quantity } = useSelector((state) => state.cart);
-  console.log(products);
-  console.log(quantity);
+  const { products, quantity, total } = useSelector((state) => state.cart);
 
   const accountModalHanlder = (props) => {
     if (accountModalOpen) {
