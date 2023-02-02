@@ -1,0 +1,100 @@
+.addProduct {
+    position: relative;
+    left: 15%;
+    /* border: solid red solid red; */
+    padding: 15px;
+    width: 84%;
+    height: 100vh;
+}
+
+.addProductCont {
+    width: 100%;
+    border-radius: 5px;
+    padding: 50px;
+    background-color: white;
+    height: 85%;
+    margin-top: 30px;
+    box-shadow: 1px 1px 5px 1px rgb(173, 173, 173);
+    border-radius: 5px;
+}
+
+.addProductCont>h4 {
+    font-size: 30px;
+    color: #1d96e2;
+    font-weight: 500;
+    margin-bottom: 30px;
+}
+
+.addProductCont>form {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.addProductCont>form>.details {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.addProductCont>form>.details>.formRow {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    width: 100%;
+    margin: 10px;
+}
+
+.addProductCont>form>.details>.formRow>div {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+}
+
+.addProductCont>form>.details>.formRow>div>label {
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: #1d96e2;
+}
+
+.addProductCont>form>.details>.formRow>div>input {
+    border: 2px solid rgb(161, 161, 161);
+    height: 35px;
+    border-radius: 5px;
+    width: 100%;
+    padding-left: 10px;
+    outline: none;
+    background-color: inherit;
+    box-shadow: 0.1px 0.1px 5px 0.1px rgb(173, 173, 173);
+}
+
+.addProductCont>form>.details>.reactQuillCont {
+    width: 100%;
+    margin-top: 30px;
+    height: 180px;
+
+}
+
+.addProductCont>form>.details>.reactQuillCont>.reactQuill {
+    height: 130px;
+    width: 100%;
+}
+
+.stockImgCont {
+    width: 29%;
+}
+
+.stockImgCont>label {
+    width: 100%;
+}
+
+.stockImgCont>label>img {
+    width: 100%;
+}
+
+.stockImgCont>input {
+    display: none;
+}

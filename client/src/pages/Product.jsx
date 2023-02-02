@@ -12,6 +12,7 @@ import { addTocart } from "../redux/slices/cartSlice";
 const Product = () => {
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
+  const [color, setColor] = useState(product && product.colors[0]);
 
   const dispatch = useDispatch();
   const location = useLocation();
@@ -38,17 +39,19 @@ const Product = () => {
     }
   };
 
+  const colorHandler = (e) => {
+    setColor(e.target.id);
+  };
+
   const payload = {
-    product: product && product._id,
-    price: product && product.price,
+    product: product && product,
     quantity,
+    color,
   };
 
   const addProductHandler = () => {
     dispatch(addTocart(payload));
   };
-
-  console.log(product);
 
   return (
     <div className="productPage">
@@ -98,7 +101,7 @@ const Product = () => {
                 {product &&
                   product.colors.map((color, index) => {
                     return (
-                      <div key={index}>
+                      <div key={index} onClick={colorHandler}>
                         <div
                           id={`${color}`}
                           style={{ backgroundColor: `${color}` }}

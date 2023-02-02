@@ -1,0 +1,131 @@
+.order {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.692);
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.orderCont {
+    width: 60%;
+    height: 85%;
+    background-color: rgb(248, 248, 248);
+    border-radius: 5px;
+    padding: 5px 20px;
+    overflow-y: scroll;
+    overflow-x: scroll;
+}
+
+.orderCont>h5 {
+    font-size: 17px;
+    color: #1d96e2;
+    font-weight: 500;
+    margin-bottom: 10px;
+    margin: 20px 0 20px 20px;
+}
+
+.orderTopBar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    padding: 5px 30px;
+    background-color: white;
+    box-shadow: 1px 1px 5px 1px rgb(173, 173, 173);
+}
+
+.orderTopBar>.first {
+    width: 50%;
+    border-right: 2px solid rgb(175, 175, 175);
+}
+
+.orderTopBar>.second {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.orderTopBar>div>span {
+    margin-bottom: 3px;
+    font-size: 14px;
+    color: rgb(99, 99, 99);
+}
+
+.orderTopBar>div>h5 {
+    color: rgb(58, 58, 58);
+}
+
+.orderCont>.orderInfoH {
+    font-size: 17px;
+    color: #1d96e2;
+    font-weight: 500;
+    margin-bottom: 10px;
+    margin: 20px 0 20px 20px;
+}
+
+.orderCont>.orderInfoCont {
+    margin-bottom: 20px;
+    border-radius: 5px;
+    padding: 5px 10px;
+    background-color: white;
+    box-shadow: 1px 1px 5px 1px rgb(173, 173, 173);
+    padding: 5px 30px;
+}
+
+.orderCont>.orderInfoCont>div {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.orderCont>.orderInfoCont>div>div>span {
+    font-size: 14px;
+    color: rgb(99, 99, 99);
+}
+
+.orderCont>.orderInfoCont>div>div>h5 {
+    color: rgb(58, 58, 58);
+}
+
+.orderCont>.orderInfoCont>div>.first {
+    width: 50%;
+    border-right: 2px solid rgb(175, 175, 175);
+}
+
+.orderCont>.orderInfoCont>div>.second {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.orderCont>.productsInfoCont {
+    width: 100%;
+    background-color: white;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px 1px rgb(173, 173, 173);
+}
+
+.orderCont>.productsInfoCont>h4 {
+    font-size: 17px;
+    color: #1d96e2;
+    font-weight: 500;
+    margin-bottom: 10px;
+    margin: 20px 0 20px 20px;
+}
+
+.orderCont>.productsInfoCont>.products {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    left: 0;
+
+}
