@@ -5,9 +5,28 @@ import "../styles/adminAddProduct.css";
 import { useState } from "react";
 import TopBar from "../components/AdminTopBar";
 import Navbar from "../components/AdminNavbar";
+import { backendConnection } from "../../utils/axiosConnection";
 
 const AddProduct = () => {
   const [value, setValue] = useState("");
+  const [file, setFile] = useState(null);
+
+  const uploadImage = async () => {
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+      const res = await backendConnection.post("/upload", formData);
+      console.log(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    uploadImage();
+  };
+
   return (
     <div className="adminPrent">
       <Navbar />
@@ -15,7 +34,7 @@ const AddProduct = () => {
         <TopBar />
         <div className="addProductCont">
           <h4>Create New Product</h4>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="details">
               <div className="formRow">
                 <div>
@@ -23,7 +42,11 @@ const AddProduct = () => {
                   <input type="text" name="name" />
                 </div>
                 <div>
-                  <label htmlFor="categories">Categories: </label>
+                  <label htmlFor="categories">Main Categories: </label>
+                  <input type="text" name="categories" />
+                </div>
+                <div>
+                  <label htmlFor="categories">Sub Categories: </label>
                   <input type="text" name="categories" />
                 </div>
                 <div>
@@ -33,7 +56,7 @@ const AddProduct = () => {
               </div>
               <div className="formRow">
                 <div>
-                  <label htmlFor="sizes">Sizes: </label>
+                  <label htmlFor="sizes">Description: </label>
                   <input type="text" name="sizes" />
                 </div>
                 <div>
@@ -59,7 +82,13 @@ const AddProduct = () => {
               <label htmlFor="img">
                 <img src="https://i.ibb.co/mymMxyv/download-2.png" alt="" />
               </label>
-              <input type="file" name="img" id="img" />
+              <input
+                type="file"
+                name="img"
+                id="img"
+                onChange={(e) => setFile(e.target.value)}
+              />
+              <button>Add</button>
             </div>
           </form>
         </div>
