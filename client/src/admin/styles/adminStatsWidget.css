@@ -1,0 +1,60 @@
+.statsWidget {
+    background: white;
+    width: 24%;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.statsWidgetSubCont {
+    display: flex;
+    flex-direction: column;
+}
+
+.statsWidgetSubCont>.top {
+    display: flex;
+    margin-bottom: 16px;
+}
+
+.statsWidgetSubCont>.top>div {
+    margin-right: 20px;
+    font-size: 20px;
+}
+
+.statsWidgetSubCont>.top>span {
+    font-size: 14px;
+    color: #4e5358;
+    font-weight: 500;
+}
+
+.statsWidgetSubCont>h4 {
+    margin-bottom: 8px;
+    color: #1d96e2;
+    font-size: 21px;
+}
+
+.statsWidgetSubCont>.bottom {
+    display: flex;
+    align-items: center;
+}
+
+.statsWidgetSubCont>.bottom>.left {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.statsWidgetSubCont>.bottom>.left>div {
+    display: flex;
+    align-items: center;
+    color: rgb(54, 253, 54);
+    font-size: 30px;
+}
+
+.statsWidgetSubCont>.bottom>.left>span {
+    color: rgb(54, 253, 54);
+    font-size: 13px;
+}
+
+.statsWidgetSubCont>.bottom>span {
+    font-size: 14px;
+}

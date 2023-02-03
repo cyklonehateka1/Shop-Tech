@@ -1,10 +1,10 @@
 import React from "react";
-import "../../styles/admin/table.css";
+import "../styles/adminTable.css";
 import { DataGrid } from "@mui/x-data-grid";
 
 const Table = ({ rows, columns, pagination, pageSize }) => {
   return (
-    <div className="table">
+    <div className="adminTable">
       <div className="tableCont">
         <DataGrid
           rows={rows}

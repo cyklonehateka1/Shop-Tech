@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../styles/navbar.css";
+import "../styles/adminNavbar.css";
 import {
   AiOutlineDashboard,
   AiOutlineMessage,
@@ -16,7 +16,7 @@ import { Badge } from "@mui/material";
 
 const Navbar = () => {
   return (
-    <div className="navbar">
+    <div className="adminNavbar">
       <div className="navbarContainer">
         <div className="navLogoCont">
           <img src="https://i.ibb.co/wd9fxVk/ecommerce-logo.png" alt="" />

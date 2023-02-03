@@ -1,0 +1,233 @@
+.messages {
+    position: relative;
+    left: 15%;
+    padding: 15px 15px 0 15px;
+    width: 84%;
+    height: 100vh;
+}
+
+.topBarHelper {
+    width: 100%;
+    position: fixed;
+}
+
+.messagesCont {
+    display: flex;
+    width: 100%;
+    height: 88.2vh;
+    justify-content: space-between;
+    margin-top: 20px;
+    background-color: white;
+    border-radius: 5px;
+    padding: 20px 20px 0 20px;
+}
+
+.messagesCont>.left {
+    width: 40%;
+    background-color: rgb(248, 248, 248);
+    border-radius: 20px 20px 0 0;
+    padding: 10px 10px 0 10px;
+    overflow: hidden;
+    margin-right: 20px;
+}
+
+.messagesCont>.left>h5 {
+    font-size: 20px;
+    color: #1d96e2;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.messagesCont>.left>.messagesList {
+    width: 100%;
+    overflow-y: scroll;
+    height: 100%;
+}
+
+.messagesCont>.left>.messagesList>.messageBox {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.messagesCont>.left>.messagesList>.messageBox:hover {
+    box-shadow: 0.1px 0.1px 5px 0.1px rgb(173, 173, 173);
+    background-color: white;
+}
+
+.activeChat {
+    box-shadow: 0.1px 0.1px 5px 0.1px rgb(173, 173, 173);
+    background-color: white;
+}
+
+.messagesCont>.left>.messagesList>.messageBox>.left {
+    display: flex;
+}
+
+.messagesCont>.left>.messagesList>.messageBox>.left>.textsCont>span {
+    font-size: 14px;
+    color: rgb(10, 10, 10);
+}
+
+.messagesCont>.left>.messagesList>.messageBox>.left>.textsCont>p {
+    font-size: 12px;
+    color: rgb(54, 54, 54);
+}
+
+.messagesCont>.left>.messagesList>.messageBox>.timeCountCont {
+    width: auto;
+
+}
+
+.messagesCont>.left>.messagesList>.messageBox>.timeCountCont>span {
+    font-size: 13px;
+}
+
+.messagesCont>.left>.messagesList>.messageBox>.timeCountCont>div {
+    width: 100%;
+    color: white;
+    background-color: #1d96e2;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+    font-size: 12px;
+    padding: 3px 5px;
+}
+
+.messagesCont>.right {
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+
+}
+
+.messagesCont>.right>.conversationCont {
+    width: 100%;
+    overflow-y: scroll;
+    height: 90%;
+}
+
+.messagesCont>.right>.conversationCont>.partnerCont {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.messagesCont>.right>.conversationCont>.partnerCont>div {
+    max-width: 45%;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.messagesCont>.right>.conversationCont>.partnerCont>div>div {
+    display: flex;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.partnerImgCont {
+    width: 40px;
+    border-radius: 50px;
+    margin-right: 20px;
+}
+
+.partnerImgCont>img {
+    width: 100%;
+    border-radius: 50px;
+}
+
+.messagesCont>.right>.conversationCont>.partnerCont>div>div>.partnerMessageCont {
+    background-color: rgb(0, 196, 26);
+    padding: 10px;
+    border-radius: 0 20px 20px 20px;
+
+}
+
+.messagesCont>.right>.conversationCont>.partnerCont>div>div>.partnerMessageCont>p {
+    font-size: 12px;
+    text-align: justify;
+    color: white;
+}
+
+.messagesCont>.right>.conversationCont>.partnerCont>div>span {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    font-size: 10px;
+    color: rgba(68, 68, 68, 0.836);
+}
+
+.messagesCont>.right>.conversationCont>.userCont {
+    width: 100%;
+    justify-content: flex-end;
+    display: flex;
+}
+
+.messagesCont>.right>.conversationCont>.userCont>div {
+    max-width: 45%;
+
+}
+
+.messagesCont>.right>.conversationCont>.userCont>div>div {
+    background-color: #1d96e2;
+    padding: 10px;
+    border-radius: 20px 20px 0 20px;
+    flex-wrap: wrap;
+    margin-bottom: 3px;
+}
+
+.messagesCont>.right>.conversationCont>.userCont>div>div>p {
+    font-size: 12px;
+    color: rgb(235, 235, 235);
+}
+
+.messagesCont>.right>.conversationCont>.userCont>div>span {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    font-size: 10px;
+    color: rgba(68, 68, 68, 0.836);
+}
+
+.messagesCont>.right>.formCont {
+    width: 100%;
+}
+
+.messagesCont>.right>.formCont>form {
+    width: 100%;
+    display: flex;
+}
+
+.messagesCont>.right>.formCont>form>input {
+    width: 75%;
+    border: none;
+    background-color: rgb(233, 233, 233);
+    height: 43px;
+    border-right: none;
+    border-radius: 50px 0 0 50px;
+    padding-left: 20px;
+    outline: none;
+}
+
+.messagesCont>.right>.formCont>form>button {
+    border: none;
+    width: 60px;
+    background-color: #1d96e2;
+    border-radius: 0 50px 50px 0;
+    font-size: 20px;
+    display: flex;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    height: 43px;
+    cursor: pointer;
+}

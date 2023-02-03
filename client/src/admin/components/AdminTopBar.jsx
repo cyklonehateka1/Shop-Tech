@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/topBar.css";
+import "../styles/adminTopBar.css";
 import { CiSearch, CiDark } from "react-icons/ci";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { MdKeyboardArrowDown } from "react-icons/md";
@@ -8,7 +8,7 @@ import { Badge } from "@mui/material";
 
 const TopBar = () => {
   return (
-    <div className="topBar">
+    <div className="adminTopBar">
       <div className="left">
         <div className="searchCont">
           <input type="text" placeholder="Search" />
