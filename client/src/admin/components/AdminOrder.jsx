@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "../../styles/admin/order.css";
-import Table from "./Table";
-import { orderProductsCol, orderProductRow } from "../../utils/admin/orderData";
+import "../styles/adminOrder.css";
+import Table from "./AdminTable";
+import { orderProductsCol, orderProductRow } from "../utils/data";
 
 const Order = () => {
   const [modalIsOpen, setModalIsOpen] = useState(true);

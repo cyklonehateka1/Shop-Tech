@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/reviews.css";
+import "../styles/adminReviews.css";
 import { BsStarHalf, BsFillStarFill } from "react-icons/bs";
 
 const Reviews = () => {

@@ -1,0 +1,52 @@
+.coupons {
+    position: relative;
+    left: 15%;
+    padding: 10px;
+    width: 84%;
+    height: 100vh;
+}
+
+.coupons>div {
+    width: 100%;
+    height: 100%;
+
+}
+
+.coupons>div>.addCoupon {
+    width: 100%;
+    margin-top: 5px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.coupons>div>.addCoupon>button {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background-color: #1d96e2;
+    color: white;
+    font-size: 30px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.coupons>div>.couponsCont {
+    height: 80%;
+    margin-top: 20px;
+    padding: 20px 30px 30px 30px;
+    box-shadow: 1px 1px 5px 1px rgb(173, 173, 173);
+    background-color: white;
+    border-radius: 5px;
+}
+
+.coupons>div>.couponsCont>h5 {
+    font-size: 26px;
+    color: #1d96e2;
+    font-weight: 500;
+}
+
+.coupons>div>.couponsCont>.couponsTableCont {
+    height: 90%;
+    margin-top: 20px;
+    width: 100%;
+}

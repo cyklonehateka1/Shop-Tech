@@ -14,7 +14,9 @@ import Product from "./pages/Product";
 import AwaitEmailConfirm from "./pages/AwaitEmailConfirm";
 import ForgotPassword from "./pages/ForgotPassword";
 import { useSelector } from "react-redux";
-import Orders from "./pages/Orders";
+import Products from "./admin/pages/AdminProducts";
+import AddProduct from "./admin/pages/AdminAddProduct";
+import Orders from "./admin/pages/AdminOrders";
 
 function App() {
   const { currentUser } = useSelector((state) => state.user);
@@ -33,6 +35,8 @@ function App() {
             element={currentUser ? <Navigate to="/" /> : <Login />}
           />
           <Route path="/forgotpassword" element={<ForgotPassword />} />
+          <Route path="/admin/products" element={<Products />} />
+          <Route path="/admin/addproduct" element={<AddProduct />} />
           <Route path="/admin/orders" element={<Orders />} />
         </Routes>
       </Router>

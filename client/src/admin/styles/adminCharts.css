@@ -1,0 +1,16 @@
+.charts {
+    background-color: white;
+    padding: 15px 15px;
+    border-radius: 5px;
+    width: 74.7%;
+}
+
+.chartsCont {
+    width: 100%;
+}
+
+.chartsCont>h5 {
+    margin-bottom: 20px;
+    font-size: 17px;
+    color: #1d96e2;
+}
