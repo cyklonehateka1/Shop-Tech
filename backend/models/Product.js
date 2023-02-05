@@ -22,7 +22,7 @@ const ProuctSchema = mongoose.Schema(
       type: Boolean,
       default: true,
     },
-    quanity: {
+    quantity: {
       type: Number,
     },
     rating: {
