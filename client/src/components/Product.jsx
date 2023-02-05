@@ -19,7 +19,7 @@ const Product = (props) => {
     <div className="product">
       <div className="productCont">
         <div className="imgIconCont" onClick={sendProduct}>
-          <img src={profileImg} alt="" />
+          <img src={`uploads/${profileImg}`} alt="" />
           <span id="wishlist">
             <AiOutlineHeart />
           </span>

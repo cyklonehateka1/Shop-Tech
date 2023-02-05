@@ -48,7 +48,7 @@ const Login = () => {
       localStorage.setItem("clientId", JSON.stringify(res.data));
       navigate("/");
     } catch (error) {
-      dispatch(loginFailure(error));
+      dispatch(loginFailure(error.data));
       console.log(error);
     }
   };
