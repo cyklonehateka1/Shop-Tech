@@ -5,18 +5,19 @@ import "../styles/components/products.css";
 import { productsData } from "../utils/ProductsData";
 import { backendConnection } from "../utils/axiosConnection";
 
-const Products = (props) => {
+const Products = () => {
   const [products, setProducts] = useState(null);
   const [error, setError] = useState(null);
 
   const location = useLocation();
-  const query = location.pathname.split("?")[1];
+
+  const query = location.search;
 
   useEffect(() => {
     const getProducts = async () => {
       let res;
       try {
-        res = await backendConnection.get("/products/getproducts");
+        res = await backendConnection.get(`/products/getproducts${query}`);
         setProducts(res.data);
       } catch (error) {
         console.log(error);
@@ -29,7 +30,7 @@ const Products = (props) => {
   return (
     <div className="products">
       <div className="productsCont">
-        <h4>Headphones For You!</h4>
+        <h4>Products For You!</h4>
         <div>
           {products && products.length > 0 ? (
             products.map((item, index) => {

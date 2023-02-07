@@ -2,15 +2,18 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import TopBar from "../components/TopBar";
 import "../styles/pages/products.css";
+import Products from "../components/Products";
 
-const Products = () => {
+const ProductsPage = () => {
   return (
-    <div className="products">
+    <div className="productsPage">
       <TopBar />
       <Navbar />
-      <div className="productsPageCont"></div>
+      <div className="productsPageCont">
+        <Products />
+      </div>
     </div>
   );
 };
 
-export default Products;
+export default ProductsPage;
