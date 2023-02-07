@@ -35,12 +35,20 @@ const reactRefreshRuntimeEntry = require.resolve("react-refresh/runtime");
 const reactRefreshWebpackPluginRuntimeEntry = require.resolve(
   "@pmmmwh/react-refresh-webpack-plugin"
 );
+// module.exports = {
+//   // ... other settings
+//   devServer: {
+//     contentBase: path.join(__dirname, "public"),
+//   },
+// };
+
 module.exports = {
-  // ... other settings
-  devServer: {
-    contentBase: path.join(__dirname, "public"),
+  //...
+  watchOptions: {
+    ignored: [path.posix.resolve(__dirname, "./public")],
   },
 };
+
 const babelRuntimeEntry = require.resolve("babel-preset-react-app");
 const babelRuntimeEntryHelpers = require.resolve(
   "@babel/runtime/helpers/esm/assertThisInitialized",
