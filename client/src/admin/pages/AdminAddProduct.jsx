@@ -39,7 +39,7 @@ const AddProduct = () => {
   console.log(value);
 
   const handlePhotoUpload = (e) => {
-    e.stopPropagation();
+    e.preventDefault();
     uploadImage();
   };
 

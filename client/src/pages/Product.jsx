@@ -64,7 +64,7 @@ const Product = () => {
             name="hell"
             onClick={(e) => console.log(e.target.name)}
           >
-            <img src={product && product.profileImg} alt="" />
+            <img src={`/uploads/${product && product.profileImg}`} alt="" />
           </div>
           <div className="right">
             <h2>{product && product.name}</h2>

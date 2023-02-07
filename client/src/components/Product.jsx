@@ -2,8 +2,11 @@ import { AiOutlineHeart, AiFillStar } from "react-icons/ai";
 import "../styles/components/product.css";
 import { useNavigate, useLocation } from "react-router-dom";
 import { backendConnection } from "../utils/axiosConnection";
+import { useDispatch } from "react-redux";
+import { addTocart } from "../redux/slices/cartSlice";
 
 const Product = (props) => {
+  const dispatch = useDispatch();
   const { name, price, desc, ratingCount, profileImg } = props.item;
   const location = useLocation();
   const navigate = useNavigate();
@@ -15,11 +18,17 @@ const Product = (props) => {
     }
   };
 
+  const payload = {
+    product: props.item,
+    quantity: 1,
+    color: props.item.colors[0],
+  };
+
   return (
     <div className="product">
       <div className="productCont">
         <div className="imgIconCont" onClick={sendProduct}>
-          <img src={`uploads/${profileImg}`} alt="" />
+          <img src={`./uploads/${profileImg}`} alt="" />
           <span id="wishlist">
             <AiOutlineHeart />
           </span>
@@ -50,7 +59,9 @@ const Product = (props) => {
             </div>
             <span className="text">({ratingCount})</span>
           </div>
-          <button>Add to Cart</button>
+          <button onClick={() => dispatch(addTocart(payload))}>
+            Add to Cart
+          </button>
         </div>
       </div>
     </div>

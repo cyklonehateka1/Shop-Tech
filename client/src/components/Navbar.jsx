@@ -7,7 +7,7 @@ import {
 } from "react-icons/bi";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import "../styles/components/navbar.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { backendConnection } from "../utils/axiosConnection";
 import Badge from "@mui/material/Badge";
 import { useSelector } from "react-redux";
@@ -16,6 +16,9 @@ const Navbar = (props) => {
   const [accountModalOpen, setAccoutModalOpen] = useState(false);
   const { products, quantity, total } = useSelector((state) => state.cart);
   const { currentUser } = useSelector((state) => state.user);
+  const [searchedProducts, setSearchProducts] = useState(null);
+  const [inputValue, setInputValue] = useState("");
+  const [searchSuggestion, setSearchSuggestion] = useState(false);
 
   const accountModalHanlder = (props) => {
     if (accountModalOpen) {
@@ -44,6 +47,38 @@ const Navbar = (props) => {
     }
   };
 
+  const getSearchedProducts = async (value) => {
+    try {
+      const res = await backendConnection.get(
+        `products/getproducts?search=${value}`
+      );
+      setSearchProducts(res.data);
+      console.log(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  let checkTime;
+  const handleChange = (e) => {
+    setSearchSuggestion(true);
+    clearTimeout(checkTime);
+    let value;
+    if (e.target.value.trim() === "") {
+      value = null;
+      setSearchSuggestion(false);
+    } else {
+      value = e.target.value;
+    }
+    checkTime = setTimeout(() => {
+      getSearchedProducts(value);
+    }, 600);
+  };
+
+  const handleProductClick = (item) => {
+    navigate(`/product/${item._id}`);
+  };
+
   return (
     <div className="navbar">
       <div className="navbarCont">
@@ -67,10 +102,34 @@ const Navbar = (props) => {
           </ul>
         </div>
         <div className="navSearchCont">
-          <input type="text" placeholder="Search Products" />
-          <div>
-            <BiSearch />
+          <div className="navSearch">
+            <input
+              type="text"
+              placeholder="Search Products"
+              onChange={handleChange}
+            />
+            <div>
+              <BiSearch />
+            </div>
           </div>
+          {searchSuggestion && (
+            <div className="navSearchSuggestions">
+              {searchedProducts && searchedProducts.length > 0
+                ? searchedProducts.map((item, index) => {
+                    return (
+                      <div key={index} onClick={() => handleProductClick(item)}>
+                        <div className="left">
+                          <img src={`/uploads/` + item.profileImg} alt="" />
+                        </div>
+                        <div className="right">
+                          <h5>{item.name}</h5>
+                        </div>
+                      </div>
+                    );
+                  })
+                : `No product matched`}
+            </div>
+          )}
         </div>
         <div className="cartAccountCont">
           <div className="accountsParent">

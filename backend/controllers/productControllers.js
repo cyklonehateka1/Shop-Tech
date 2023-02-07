@@ -60,18 +60,9 @@ export const getProducts = async (req, res, next) => {
         .skip(qSkip);
     } else if (qSearch) {
       products = await ProductSchema.find({
-        $regex: qSearch,
-        $options: "i",
-
         $or: [
           {
             name: {
-              $regex: qSearch,
-              $options: "i",
-            },
-          },
-          {
-            desc: {
               $regex: qSearch,
               $options: "i",
             },
