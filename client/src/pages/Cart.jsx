@@ -6,6 +6,7 @@ import "../styles/pages/cart.css";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart } from "../redux/slices/cartSlice";
 import { useState } from "react";
+import PaystackPop from "@paystack/inline-js";
 
 const Cart = () => {
   const { products, total } = useSelector((state) => state.cart);
@@ -19,14 +20,37 @@ const Cart = () => {
   });
   const dispatch = useDispatch();
 
+  const tax = Math.ceil((total * 10) / 100);
+  const shippingCost = Math.ceil((total * 15) / 100);
+
+  const grandTotal = total + tax + shippingCost;
+
   const handlePaymentDetailsChange = (e) => {
     setPaymentDetails({ ...paymentDetails, [e.target.name]: e.target.value });
   };
 
-  console.log(paymentDetails);
+  const paystackDetails = {
+    ...paymentDetails,
+    amount: grandTotal * 100,
+    key: process.env.REACT_APP_PAYSTACK_PUBLIC_KEY,
+    currency: "USD",
+    channels: ["card"],
+  };
+  console.log(paystackDetails);
 
-  const tax = (total * 10) / 100;
-  const shippingCost = (total * 15) / 100;
+  const paymentHandler = (e) => {
+    let handler = new PaystackPop();
+    handler.newTransaction({
+      ...paymentDetails,
+      onSuccess: function (transaction) {
+        let message = "Payment complete! Reference: " + transaction.reference;
+        alert(message);
+      },
+      onclose: function () {
+        window.alert("Hell yeah!");
+      },
+    });
+  };
 
   return (
     <div className="cart">
@@ -137,19 +161,11 @@ const Cart = () => {
           <div className="paymentDetails">
             <ul>
               <li>
-                <input type="radio" id="cash" name="paymentMethod" />
-                <label htmlFor="">Cash on Delivery</label>
-              </li>
-              <li>
-                <input type="radio" id="shoppingCard" name="paymentMethod" />
+                <input type="radio" id="shoppingCard" name="shoppingCard" />
                 <label htmlFor="">Shopcart Card</label>
               </li>
               <li>
-                <input type="radio" id="paypal" name="paymentMethod" />
-                <label htmlFor="">Paypal</label>
-              </li>
-              <li>
-                <input type="radio" id="debitCredit" name="paymentMethod" />
+                <input type="radio" id="debitCredit" name="creditOrDebit" />
                 <label htmlFor="">Credit or Debit Card</label>
               </li>
             </ul>
@@ -235,9 +251,9 @@ const Cart = () => {
             <div className="totalButton">
               <div className="row">
                 <p>Total</p>
-                <span>${total}</span>
+                <span>${grandTotal}</span>
               </div>
-              <button>Pay ${total}</button>
+              <button onClick={paymentHandler}>Pay ${grandTotal}</button>
             </div>
           </div>
         </div>
