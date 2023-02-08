@@ -4,6 +4,7 @@ import {
   AiOutlineTwitter,
   AiFillLinkedin,
 } from "react-icons/ai";
+import "../styles/components/footer.css";
 
 const Footer = () => {
   return (
@@ -14,46 +15,57 @@ const Footer = () => {
             <img src="https://i.ibb.co/wd9fxVk/ecommerce-logo.png" alt="" />
           </div>
           <div className="right">
-            <span className="twitter">
+            <a className="twitter" href="http://localhost:3000">
               <AiOutlineTwitter />
-            </span>
-            <span className="instagram">
+            </a>
+            <a className="instagram" href="http://localhost:3000">
               <AiOutlineInstagram />
-            </span>
-            <span className="linkedin">
+            </a>
+            <a className="linkedin" href="http://localhost:3000">
               <AiFillLinkedin />
-            </span>
+            </a>
           </div>
         </div>
         <div className="cols">
-          <div className="col1">
+          <div className="col">
             <h4>RESOURCES</h4>
-            <p>Application</p>
-            <p>Documentation</p>
-            <p>Systems</p>
-            <p>F&Q</p>
+            <a href="http://localhost:3000">Application</a>
+            <a href="http://localhost:3000">Documentation</a>
+            <a href="http://localhost:3000">Systems</a>
+            <a href="http://localhost:3000">F&Q</a>
           </div>
-          <div className="col1">
+          <div className="col">
             <h4>PRICING</h4>
-            <p>Overview</p>
-            <p>Premium Plans</p>
-            <p>Affiliate Program</p>
-            <p>Promotions</p>
+            <a href="http://localhost:3000">Overview</a>
+            <a href="http://localhost:3000">Premium Plans</a>
+            <a href="http://localhost:3000">Affiliate Program</a>
+            <a href="http://localhost:3000">Promotions</a>
           </div>
-          <div className="col1">
+          <div className="col">
             <h4>COMPANY</h4>
-            <p>About Us</p>
-            <p>Blog</p>
-            <p>Partnerships</p>
-            <p>Careers</p>
-            <p>Press</p>
+            <a href="http://localhost:3000">About Us</a>
+            <a href="http://localhost:3000">Blog</a>
+            <a href="http://localhost:3000">Partnerships</a>
+            <a href="http://localhost:3000">Careers</a>
+            <a href="http://localhost:3000">Press</a>
           </div>
-          <div className="col1">
+          <div className="col">
+            <h4>DATA</h4>
+            <a href="http://localhost:3000">About Us</a>
+            <a href="http://localhost:3000">Blog</a>
+            <a href="http://localhost:3000">Partnerships</a>
+            <a href="http://localhost:3000">Careers</a>
+            <a href="http://localhost:3000">Press</a>
+          </div>
+          <div className="col">
             <h4>SOCIAL</h4>
-            <p>Twitter</p>
-            <p>Instagram</p>
-            <p>Linkedin</p>
+            <a href="http://localhost:3000">Twitter</a>
+            <a href="http://localhost:3000">Instagram</a>
+            <a href="http://localhost:3000">Linkedin</a>
           </div>
+        </div>
+        <div className="copyright">
+          <p>&copy;Copyright. All rights reserved </p>
         </div>
       </div>
     </div>

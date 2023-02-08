@@ -9,8 +9,24 @@ import { useState } from "react";
 
 const Cart = () => {
   const { products, total } = useSelector((state) => state.cart);
+  const { currentUser } = useSelector((state) => state.user);
+  const [paymentDetails, setPaymentDetails] = useState({
+    email: currentUser.email,
+    cardHolderName: "",
+    cardNumber: "",
+    expiryDate: "",
+    cvc: "",
+  });
   const dispatch = useDispatch();
-  console.log(products);
+
+  const handlePaymentDetailsChange = (e) => {
+    setPaymentDetails({ ...paymentDetails, [e.target.name]: e.target.value });
+  };
+
+  console.log(paymentDetails);
+
+  const tax = (total * 10) / 100;
+  const shippingCost = (total * 15) / 100;
 
   return (
     <div className="cart">
@@ -153,24 +169,49 @@ const Cart = () => {
           <form action="">
             <div className="row">
               <label htmlFor="email">Email</label>
-              <input type="email" placeholder="Type here" />
+              <input
+                type="email"
+                placeholder="Type here"
+                name="email"
+                onChange={handlePaymentDetailsChange}
+              />
             </div>
             <div className="row">
               <label htmlFor="cardName">Card Holder Name</label>
-              <input type="text" placeholder="Type here" />
+              <input
+                type="text"
+                placeholder="Type here"
+                name="cardHolderName"
+                onChange={handlePaymentDetailsChange}
+              />
             </div>
             <div className="row">
               <label htmlFor="cardNumber">Card Number</label>
-              <input type="text" placeholder="0000********1234" />
+              <input
+                type="text"
+                placeholder="0000********1234"
+                name="cardNumber"
+                onChange={handlePaymentDetailsChange}
+              />
             </div>
             <div className="cvcExpiry">
               <div className="expiry">
                 <label htmlFor="">Expiry</label>
-                <input type="text" placeholder="MM/YY" />
+                <input
+                  type="text"
+                  placeholder="MM/YY"
+                  name="expiryDate"
+                  onChange={handlePaymentDetailsChange}
+                />
               </div>
               <div className="cvc">
                 <label htmlFor="">CVC</label>
-                <input type="text" placeholder="000" />
+                <input
+                  type="text"
+                  placeholder="000"
+                  name="cvc"
+                  onChange={handlePaymentDetailsChange}
+                />
               </div>
             </div>
           </form>
@@ -181,22 +222,22 @@ const Cart = () => {
             </div>
             <div className="row">
               <p>Tax(10%)</p>
-              <span>$69</span>
+              <span>${tax}</span>
             </div>
             <div className="row">
               <p>Coupon Discount</p>
-              <span>-$54.88</span>
+              <span>-$0.00</span>
             </div>
             <div className="row">
               <p>Shipping Cost</p>
-              <span>$52.98</span>
+              <span>${shippingCost}</span>
             </div>
             <div className="totalButton">
               <div className="row">
                 <p>Total</p>
-                <span>$720.87</span>
+                <span>${total}</span>
               </div>
-              <button>Pay $720.87</button>
+              <button>Pay ${total}</button>
             </div>
           </div>
         </div>
