@@ -9,6 +9,7 @@ import Products from "../components/Products";
 import TopBar from "../components/TopBar";
 import "../styles/pages/home.css";
 import { useState } from "react";
+import Footer from "../components/Footer";
 
 const Home = () => {
   const { currentUser } = useSelector((state) => state.user);
@@ -23,6 +24,7 @@ const Home = () => {
         <Brands />
         <FilterList />
         <Products />
+        <Footer />
       </div>
     </div>
   );

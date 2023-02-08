@@ -2,6 +2,7 @@ import { useState } from "react";
 import { AiFillStar } from "react-icons/ai";
 import Navbar from "../components/Navbar";
 import TopBar from "../components/TopBar";
+import Footer from "../components/Footer";
 import "../styles/pages/product.css";
 import { useLocation } from "react-router-dom";
 import { backendConnection } from "../utils/axiosConnection";
@@ -134,6 +135,7 @@ const Product = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

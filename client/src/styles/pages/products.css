@@ -1,0 +1,11 @@
+.productsPage {
+    width: 100%;
+}
+
+.productsPageCont {
+    width: 100%;
+    top: 15.6vh;
+    width: 100%;
+    padding: 0px 50px;
+    position: relative;
+}
