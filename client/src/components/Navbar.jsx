@@ -7,20 +7,19 @@ import {
 } from "react-icons/bi";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import "../styles/components/navbar.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { backendConnection } from "../utils/axiosConnection";
 import Badge from "@mui/material/Badge";
 import { useSelector } from "react-redux";
 
-const Navbar = (props) => {
+const Navbar = () => {
   const [accountModalOpen, setAccoutModalOpen] = useState(false);
-  const { products, quantity, total } = useSelector((state) => state.cart);
+  const { quantity } = useSelector((state) => state.cart);
   const { currentUser } = useSelector((state) => state.user);
   const [searchedProducts, setSearchProducts] = useState(null);
-  const [inputValue, setInputValue] = useState("");
   const [searchSuggestion, setSearchSuggestion] = useState(false);
 
-  const accountModalHanlder = (props) => {
+  const accountModalHanlder = () => {
     if (accountModalOpen) {
       setAccoutModalOpen(false);
     } else {
@@ -29,8 +28,6 @@ const Navbar = (props) => {
   };
 
   const navigate = useNavigate();
-
-  const location = useLocation();
 
   const logoutHandler = async () => {
     try {
@@ -82,9 +79,9 @@ const Navbar = (props) => {
   return (
     <div className="navbar">
       <div className="navbarCont">
-        <div className="navLogoCont">
+        <Link to="/" className="navLogoCont">
           <img src="https://i.ibb.co/wd9fxVk/ecommerce-logo.png" alt="" />
-        </div>
+        </Link>
         <div className="navMenu">
           <ul>
             <li>
@@ -145,20 +142,40 @@ const Navbar = (props) => {
                   <BiWindowClose onClick={accountModalHanlder} />
                 </div>
                 <div className="cont">
-                  <div className="account">
-                    <img
-                      src="https://i.ibb.co/dGcxdHw/intern-img-jg.png"
-                      alt=""
-                    />
-                    <p>Cyklone Hateka</p>
-                  </div>
-                  {currentUser && (
+                  {currentUser ? (
+                    <div className="account">
+                      <img
+                        src="https://i.ibb.co/dGcxdHw/intern-img-jg.png"
+                        alt=""
+                      />
+                      <p>Cyklone Hateka</p>
+                    </div>
+                  ) : (
+                    <Link
+                      to="/register"
+                      className="sign"
+                      onClick={logoutHandler}
+                    >
+                      <span>
+                        <BiLogOut />
+                      </span>
+                      <p>Sign Up</p>
+                    </Link>
+                  )}
+                  {currentUser ? (
                     <div className="sign" onClick={logoutHandler}>
                       <span>
                         <BiLogOut />
                       </span>
                       <p>Logout</p>
                     </div>
+                  ) : (
+                    <Link to="/login" className="sign" onClick={logoutHandler}>
+                      <span>
+                        <BiLogOut />
+                      </span>
+                      <p>Login</p>
+                    </Link>
                   )}
                 </div>
               </div>

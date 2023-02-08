@@ -1,8 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/pages/login.css";
-import Cookies from "js-cookie";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   loginFailure,
@@ -21,7 +20,7 @@ const Login = () => {
   const [inputError, setInputError] = useState("");
 
   const dispatch = useDispatch();
-  const { currentUser, error, isLoading } = useSelector((state) => state.user);
+  const { error, isLoading } = useSelector((state) => state.user);
 
   const changeHandler = (e) => {
     setInputValue({ ...inputValue, [e.target.name]: e.target.value });
@@ -48,8 +47,13 @@ const Login = () => {
       localStorage.setItem("clientId", JSON.stringify(res.data));
       navigate("/");
     } catch (error) {
-      dispatch(loginFailure(error.data));
-      console.log(error);
+      dispatch(
+        loginFailure(
+          error.response.data
+            ? error.response.data.message
+            : "Something went wrong"
+        )
+      );
     }
   };
 
@@ -76,16 +80,6 @@ const Login = () => {
 
           <div className="loginHeadingCont">
             <h2>Login</h2>
-          </div>
-          <button>
-            <img src="https://i.ibb.co/D8t7tB7/google.png" alt="" />
-            <p href="#">Sign in with Google</p>
-          </button>
-
-          <div className="hrText">
-            <hr className="hrLeft" />
-            <p>or Sign in with Email</p>
-            <hr className="hrRight" />
           </div>
 
           <form action="" onSubmit={submitHandler}>

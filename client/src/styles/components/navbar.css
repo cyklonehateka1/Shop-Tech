@@ -173,6 +173,14 @@
     right: 1px;
 }
 
+.cartAccountCont>div>.openOptions>.cont>a {
+    display: flex;
+    align-items: center;
+    color: rgb(92, 92, 92);
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+
 .cartAccountCont>div>.openOptions>.cont>.account {
     display: flex;
     width: 100%;
