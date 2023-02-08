@@ -165,7 +165,7 @@ const Navbar = (props) => {
             )}
           </div>
           <div className="cart">
-            <Link to="cart">
+            <Link to="/cart">
               <div>
                 <Badge badgeContent={quantity} color="primary">
                   <BiCart style={{ fontSize: "20px" }} />
