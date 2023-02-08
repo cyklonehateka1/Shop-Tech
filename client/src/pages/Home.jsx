@@ -24,8 +24,8 @@ const Home = () => {
         <Brands />
         <FilterList />
         <Products />
-        <Footer />
       </div>
+      <Footer />
     </div>
   );
 };
