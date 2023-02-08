@@ -15,7 +15,7 @@ import AwaitEmailConfirm from "./pages/AwaitEmailConfirm";
 import ForgotPassword from "./pages/ForgotPassword";
 import { useSelector } from "react-redux";
 import AdminProducts from "./admin/pages/AdminProducts";
-import AddProduct from "./admin/pages/AdminAddProduct";
+import AdminAddProduct from "./admin/pages/AdminAddProduct";
 import Orders from "./admin/pages/AdminOrders";
 import Products from "./pages/Products";
 
@@ -38,7 +38,7 @@ function App() {
           />
           <Route path="/forgotpassword" element={<ForgotPassword />} />
           <Route path="/admin/products" element={<AdminProducts />} />
-          <Route path="/admin/addproduct" element={<AddProduct />} />
+          <Route path="/admin/addproduct" element={<AdminAddProduct />} />
           <Route path="/admin/orders" element={<Orders />} />
         </Routes>
       </Router>

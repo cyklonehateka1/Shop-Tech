@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import TopBar from "../components/TopBar";
+import Footer from "../components/Footer";
 import "../styles/pages/cart.css";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart } from "../redux/slices/cartSlice";
@@ -200,6 +201,7 @@ const Cart = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
