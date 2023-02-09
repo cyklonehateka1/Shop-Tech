@@ -5,7 +5,7 @@ import {
   BiLogOut,
   BiWindowClose,
 } from "react-icons/bi";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/components/navbar.css";
 import { useState } from "react";
 import { backendConnection } from "../utils/axiosConnection";

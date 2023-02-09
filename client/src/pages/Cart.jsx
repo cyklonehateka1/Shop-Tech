@@ -12,7 +12,7 @@ const Cart = () => {
   const { products, total } = useSelector((state) => state.cart);
   const { currentUser } = useSelector((state) => state.user);
   const [paymentDetails, setPaymentDetails] = useState({
-    email: currentUser.email,
+    email: currentUser ? currentUser.email : "",
     cardHolderName: "",
     cardNumber: "",
     expiryDate: "",
