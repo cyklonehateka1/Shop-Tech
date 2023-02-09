@@ -1,7 +1,7 @@
-import { errorHandler } from "../middlewares/errorHandler.js";
-import CartSchema from "../models/Cart.js";
+const { errorHandler } = require("../middlewares/errorHandler.js");
+const CartSchema = require("../models/Cart.js");
 
-export const createCart = async (req, res, next) => {
+const createCart = async (req, res, next) => {
   try {
     let cart = await CartSchema.findOne({ user: req.params.userId });
     if (cart) return errorHandler(400, "User already has a cart");
@@ -13,7 +13,7 @@ export const createCart = async (req, res, next) => {
   }
 };
 
-export const addToCart = async (req, res, next) => {
+const addToCart = async (req, res, next) => {
   try {
     const cart = await CartSchema.findOne({ user: req.params.userId });
     if (!cart) return next(errorHandler(401, "Cart not found"));
@@ -37,7 +37,7 @@ export const addToCart = async (req, res, next) => {
   }
 };
 
-export const removeFromCart = async (req, res, next) => {
+const removeFromCart = async (req, res, next) => {
   try {
     const cart = await CartSchema.findOne({ user: req.params.userId });
     if (!cart) return next(errorHandler(401, "Cart not found"));
@@ -54,4 +54,10 @@ export const removeFromCart = async (req, res, next) => {
   } catch (error) {
     return next(error);
   }
+};
+
+module.exports = {
+  addToCart,
+  removeFromCart,
+  createCart,
 };

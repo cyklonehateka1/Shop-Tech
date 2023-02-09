@@ -1,7 +1,7 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
 
-export const connection = async () => {
+const connection = async () => {
   try {
     await mongoose.connect(process.env.MONGO_URI);
     console.log("Database connection Successfull");
@@ -9,3 +9,5 @@ export const connection = async () => {
     console.log(error);
   }
 };
+
+module.exports = connection;

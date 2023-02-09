@@ -1,12 +1,13 @@
-import express from "express";
-import dotenv from "dotenv";
-import { connection } from "./utils/database.js";
-import cors from "cors";
-import authRoutes from "./routes/authRoutes.js";
-import productRoutes from "./routes/productRoutes.js";
-import cartRoutes from "./routes/cartRoutes.js";
-import cookieParser from "cookie-parser";
-import multer from "multer";
+const express = require("express");
+const dotenv = require("dotenv");
+const connection = require("./utils/database.js");
+const cors = require("cors");
+const authRoutes = require("./routes/authRoutes.js");
+const productRoutes = require("./routes/productRoutes.js");
+const cartRoutes = require("./routes/cartRoutes.js");
+const cookieParser = require("cookie-parser");
+const path = require("path");
+const multer = require("multer");
 
 dotenv.config();
 
@@ -43,6 +44,12 @@ app.use((err, req, res, next) => {
     status,
     message,
   });
+});
+
+app.use(express.static(path.join(__dirname, "./client/build")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
 app.listen(process.env.PORT || 9000, () => {

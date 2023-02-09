@@ -1,8 +1,8 @@
-import ProductSchema from "../models/Product.js";
-import { errorHandler } from "../middlewares/errorHandler.js";
-import CartSchema from "../models/Cart.js";
+const ProductSchema = require("../models/Product.js");
+const { errorHandler } = require("../middlewares/errorHandler.js");
+const CartSchema = require("../models/Cart.js");
 
-export const addProduct = async (req, res, next) => {
+const addProduct = async (req, res, next) => {
   const { price, desc, name, profileImg } = req.body;
 
   if (req.user.accType !== "admin")
@@ -23,7 +23,7 @@ export const addProduct = async (req, res, next) => {
   }
 };
 
-export const getProduct = async (req, res, next) => {
+const getProduct = async (req, res, next) => {
   try {
     const product = await ProductSchema.findById(req.params.productId);
 
@@ -35,7 +35,7 @@ export const getProduct = async (req, res, next) => {
   }
 };
 
-export const getProducts = async (req, res, next) => {
+const getProducts = async (req, res, next) => {
   const qPCategory = req.query.parentCategory;
   const qSCategory = req.query.subCategory;
   const qSearch = req.query.search;
@@ -92,7 +92,7 @@ export const getProducts = async (req, res, next) => {
   }
 };
 
-export const updateProduct = async (req, res, next) => {
+const updateProduct = async (req, res, next) => {
   if (req.user.accType !== "admin")
     return next(errorHandler(403, "You are not authorized"));
   try {
@@ -109,4 +109,11 @@ export const updateProduct = async (req, res, next) => {
   } catch (error) {
     return next(error);
   }
+};
+
+module.exports = {
+  addProduct,
+  getProduct,
+  getProducts,
+  updateProduct,
 };

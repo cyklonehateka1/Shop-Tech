@@ -1,7 +1,7 @@
-import nodemailer from "nodemailer";
-import hbs from "nodemailer-express-handlebars";
+const nodemailer = require("nodemailer");
+const hbs = require("nodemailer-express-handlebars");
 
-export const sendEmail = async (email, subject, text) => {
+const sendEmail = async (email, subject, text) => {
   try {
     const transporter = nodemailer.createTransport({
       service: "gmail",
@@ -40,3 +40,5 @@ export const sendEmail = async (email, subject, text) => {
     console.log(error);
   }
 };
+
+module.exports = sendEmail;

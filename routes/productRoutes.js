@@ -1,11 +1,11 @@
-import express from "express";
-import { verifyToken } from "../middlewares/verifyToken.js";
-import {
+const express = require("express");
+const verifyToken = require("../middlewares/verifyToken.js");
+const {
   addProduct,
   getProduct,
   getProducts,
   updateProduct,
-} from "../controllers/productControllers.js";
+} = require("../controllers/productControllers.js");
 
 const router = express.Router();
 
@@ -14,4 +14,4 @@ router.get("/getone/:productId", getProduct);
 router.get("/getproducts", getProducts);
 router.get("/updateone/:id", verifyToken, updateProduct);
 
-export default router;
+module.exports = router;

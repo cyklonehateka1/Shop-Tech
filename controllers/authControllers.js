@@ -1,10 +1,10 @@
-import UserSchema from "../models/User.js";
-import { errorHandler } from "../middlewares/errorHandler.js";
-import { sendEmail } from "../utils/sendEmail.js";
-import jwt from "jsonwebtoken";
-import bcrypt from "bcryptjs";
+const UserSchema = require("../models/User.js");
+const { errorHandler } = require("../middlewares/errorHandler.js");
+const { sendEmail } = require("../utils/sendEmail.js");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
 
-export const register = async (req, res, next) => {
+const register = async (req, res, next) => {
   let { name, email, password } = req.body;
   name = name.trim();
   password = password.trim();
@@ -47,7 +47,7 @@ export const register = async (req, res, next) => {
   }
 };
 
-export const confirmAccount = async (req, res, next) => {
+const confirmAccount = async (req, res, next) => {
   try {
     const user = await UserSchema.findById(req.params.userId);
     if (!user) return next(errorHandler(401, "Invalid user"));
@@ -77,7 +77,7 @@ export const confirmAccount = async (req, res, next) => {
   }
 };
 
-export const login = async (req, res, next) => {
+const login = async (req, res, next) => {
   let { email, password } = req.body;
 
   email = email.trim();
@@ -124,9 +124,16 @@ export const login = async (req, res, next) => {
   }
 };
 
-export const logout = async (req, res, next) => {
+const logout = async (req, res, next) => {
   res
     .clearCookie("access_token", { sameSite: "none", secure: true, maxAge: 1 })
     .status(200)
     .json("Logged out successfully");
+};
+
+module.exports = {
+  logout,
+  register,
+  login,
+  confirmAccount,
 };

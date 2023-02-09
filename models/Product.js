@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const ProuctSchema = mongoose.Schema(
   {
@@ -61,4 +61,4 @@ const ProuctSchema = mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.model("product", ProuctSchema);
+module.exports = mongoose.model("product", ProuctSchema);
