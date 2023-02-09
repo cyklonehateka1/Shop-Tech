@@ -20,6 +20,8 @@ const Cart = () => {
   });
   const dispatch = useDispatch();
 
+  console.log(products);
+
   const tax = Math.ceil((total * 10) / 100);
   const shippingCost = Math.ceil((total * 15) / 100);
 
@@ -72,11 +74,14 @@ const Cart = () => {
                     >
                       <div className="left">
                         <div className="imgCont">
-                          <img src={item.product.profileImg} alt="Product" />
+                          <img
+                            src={"/uploads/" + item.product.profileImg}
+                            alt="Product"
+                          />
                         </div>
                         <div className="center">
                           <h5>{item.product.name}</h5>
-                          <span>Color: {item.product.color}</span>
+                          <span>Color: {item.color}</span>
                         </div>
                       </div>
                       <div className="right">

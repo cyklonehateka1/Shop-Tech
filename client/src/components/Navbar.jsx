@@ -38,7 +38,7 @@ const Navbar = () => {
       console.log(res.data);
       localStorage.removeItem("clientId");
       setAccoutModalOpen(false);
-      navigate("/");
+      navigate("/login");
     } catch (error) {
       console.log(error);
     }
@@ -69,7 +69,7 @@ const Navbar = () => {
     }
     checkTime = setTimeout(() => {
       getSearchedProducts(value);
-    }, 600);
+    }, 400);
   };
 
   const handleProductClick = (item) => {

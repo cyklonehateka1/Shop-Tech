@@ -103,6 +103,7 @@
     max-height: 200px;
     overflow-y: scroll;
     background-color: white;
+    overflow-x: hidden;
     z-index: 1;
     flex-direction: column;
 }
@@ -111,9 +112,9 @@
     display: flex;
     width: 100%;
     align-items: center;
-    overflow-x: hidden;
-    margin: 3px 0;
+    margin: 5px 0;
     cursor: pointer;
+    height: 100px;
 }
 
 .navSearchCont>.navSearchSuggestions>div>.left>img {
