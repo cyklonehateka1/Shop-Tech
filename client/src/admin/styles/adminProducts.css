@@ -1,13 +1,12 @@
-.products {
+.adminParent>.products {
     position: relative;
     left: 15%;
-    /* border: 1px solid red; */
     padding: 15px;
     width: 84%;
     height: 100vh;
 }
 
-.products>.productsCont {
+.adminParent>.products>.productsCont {
     height: 90%;
     margin-top: 20px;
     padding: 20px 30px 30px 30px;
