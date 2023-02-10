@@ -5,6 +5,7 @@ const cors = require("cors");
 const authRoutes = require("./routes/authRoutes.js");
 const productRoutes = require("./routes/productRoutes.js");
 const cartRoutes = require("./routes/cartRoutes.js");
+const paymentRoutes = require("./routes/paymentRoutes.js");
 const cookieParser = require("cookie-parser");
 const path = require("path");
 const multer = require("multer");
@@ -34,6 +35,7 @@ app.post("/api/upload", upload.single("file"), function (req, res) {
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/cart", cartRoutes);
+app.use("/api/payment", paymentRoutes);
 
 app.use((err, req, res, next) => {
   const status = err.status || 500;

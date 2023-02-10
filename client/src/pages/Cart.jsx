@@ -6,6 +6,7 @@ import "../styles/pages/cart.css";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart } from "../redux/slices/cartSlice";
 import { useState } from "react";
+import { backendConnection } from "../utils/axiosConnection";
 
 const Cart = () => {
   const { products, total } = useSelector((state) => state.cart);
@@ -19,8 +20,6 @@ const Cart = () => {
   });
   const dispatch = useDispatch();
 
-  console.log(products);
-
   const tax = Math.ceil((total * 10) / 100);
   const shippingCost = Math.ceil((total * 15) / 100);
 
@@ -30,15 +29,6 @@ const Cart = () => {
     setPaymentDetails({ ...paymentDetails, [e.target.name]: e.target.value });
   };
 
-  const paystackDetails = {
-    ...paymentDetails,
-    amount: grandTotal * 100,
-    key: process.env.REACT_APP_PAYSTACK_PUBLIC_KEY,
-    currency: "USD",
-    channels: ["card"],
-  };
-  console.log(paystackDetails);
-
   const paymentHandler = (e) => {
     e.preventDefault();
     const handler = window.PaystackPop.setup({
@@ -47,10 +37,24 @@ const Cart = () => {
       amount: grandTotal * 100, // the amount value is multiplied by 100 to convert to the lowest currency unit
       currency: "GHS", // Use GHS for Ghana Cedis or USD for US Dollars
       channels: ["card"],
-      callback: function (response) {
-        //this happens after the payment is completed successfully
-        var reference = response.reference;
+      callback: (response) => {
+        const reference = response.reference;
         alert("Payment complete! Reference: " + reference);
+        const verifytransaction = async (reference) => {
+          try {
+            const res = await backendConnection.get(
+              `/payments/verifytransaction?referenc=${reference}`
+            );
+            console.log(res);
+
+            alert("Payment complete! Reference: " + reference);
+          } catch (error) {
+            console.log(error);
+          }
+        };
+
+        verifytransaction(reference);
+
         // Make an AJAX call to your server with the reference to verify the transaction
       },
       onClose: function () {

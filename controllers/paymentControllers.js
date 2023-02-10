@@ -15,10 +15,12 @@ const verifyPayment = async (req, res, next) => {
   };
 
   try {
-    const verify = axios.get(url, options);
+    const verify = await axios.get(url, options);
     res.status(verify.request.status).json(verify.data);
     console.log(verify.data);
   } catch (error) {
     return next(error);
   }
 };
+
+module.exports = verifyPayment;
