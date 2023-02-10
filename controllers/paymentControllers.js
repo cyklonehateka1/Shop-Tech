@@ -6,6 +6,8 @@ const verifyPayment = async (req, res, next) => {
   const reference = req.query.reference;
   const paystackSecretKey = process.env.PAYSTACK_SEC_KEY;
 
+  console.log("hell");
+
   const url = `https://api.paystack.co/transaction/verify/${reference}`;
 
   const options = {
@@ -16,8 +18,8 @@ const verifyPayment = async (req, res, next) => {
 
   try {
     const verify = await axios.get(url, options);
-    res.status(verify.request.status).json(verify.data);
     console.log(verify.data);
+    res.status(200).json(verify.data);
   } catch (error) {
     return next(error);
   }
