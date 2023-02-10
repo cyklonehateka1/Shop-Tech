@@ -1,6 +1,6 @@
 const UserSchema = require("../models/User.js");
-const { errorHandler } = require("../middlewares/errorHandler.js");
-const { sendEmail } = require("../utils/sendEmail.js");
+const errorHandler = require("../middlewares/errorHandler.js");
+const sendEmail = require("../utils/sendEmail.js");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
@@ -34,7 +34,7 @@ const register = async (req, res, next) => {
     const token = jwt.sign({ id: user._id }, process.env.EMAIL_CON_KEY, {
       expiresIn: "1h",
     });
-    const url = `${process.env.BASE_URL}/api/auth/${user._id}/verify/${token}`;
+    const url = `$https://navy-blue-panther-sari.cyclic.app/api/auth/${user._id}/verify/${token}`;
     sendEmail(user.email, "Confirm Account", url);
 
     res

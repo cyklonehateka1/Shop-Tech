@@ -1,4 +1,4 @@
-const { errorHandler } = require("../middlewares/errorHandler.js");
+const errorHandler = require("../middlewares/errorHandler.js");
 const CartSchema = require("../models/Cart.js");
 
 const createCart = async (req, res, next) => {

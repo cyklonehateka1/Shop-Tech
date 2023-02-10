@@ -1,5 +1,4 @@
 const ProductSchema = require("../models/Product.js");
-const { errorHandler } = require("../middlewares/errorHandler.js");
 const CartSchema = require("../models/Cart.js");
 
 const addProduct = async (req, res, next) => {
@@ -86,7 +85,7 @@ const getProducts = async (req, res, next) => {
     } else {
       products = await ProductSchema.find().limit();
     }
-    res.status(200).json(products);
+    res.status(201).json(products);
   } catch (error) {
     return next(error);
   }

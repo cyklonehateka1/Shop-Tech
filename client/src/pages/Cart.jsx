@@ -6,7 +6,6 @@ import "../styles/pages/cart.css";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart } from "../redux/slices/cartSlice";
 import { useState } from "react";
-import PaystackPop from "@paystack/inline-js";
 
 const Cart = () => {
   const { products, total } = useSelector((state) => state.cart);
@@ -41,17 +40,24 @@ const Cart = () => {
   console.log(paystackDetails);
 
   const paymentHandler = (e) => {
-    let handler = new PaystackPop();
-    handler.newTransaction({
-      ...paymentDetails,
-      onSuccess: function (transaction) {
-        let message = "Payment complete! Reference: " + transaction.reference;
-        alert(message);
+    e.preventDefault();
+    const handler = window.PaystackPop.setup({
+      key: process.env.REACT_APP_PAYSTACK_PUBLIC_KEY,
+      email: paymentDetails.email,
+      amount: grandTotal * 100, // the amount value is multiplied by 100 to convert to the lowest currency unit
+      currency: "GHS", // Use GHS for Ghana Cedis or USD for US Dollars
+      channels: ["card"],
+      callback: function (response) {
+        //this happens after the payment is completed successfully
+        var reference = response.reference;
+        alert("Payment complete! Reference: " + reference);
+        // Make an AJAX call to your server with the reference to verify the transaction
       },
-      onclose: function () {
-        window.alert("Hell yeah!");
+      onClose: function () {
+        alert("Transaction was not completed, window closed.");
       },
     });
+    handler.openIframe();
   };
 
   return (
