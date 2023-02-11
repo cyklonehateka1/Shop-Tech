@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.awaitEmailCont {
+    max-width: 100vw;
+    height: 95vh;
+    background-color: rgba(0, 0, 0, 0.171);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.messageBox {
+    width: 40%;
+    height: 50%;
+    background-color: white;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 30px;
+}
+
+.messageBox>.imgContainer {
+    width: 20%;
+    margin-bottom: 20px;
+}
+
+.messageBox>.imgContainer>img {
+    width: 100%;
+}
+
+.messageBox>p {
+    font-size: 20px;
+    text-align: center;
+}
+
+button {
+    margin-top: 20px;
+    background-color: rgb(1, 165, 165);
+    color: white;
+    width: 80px;
+    height: 40px;
+    border: none;
+}

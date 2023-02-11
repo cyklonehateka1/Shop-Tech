@@ -34,7 +34,7 @@ const register = async (req, res, next) => {
     const token = jwt.sign({ id: user._id }, process.env.EMAIL_CON_KEY, {
       expiresIn: "1h",
     });
-    const url = `$https://navy-blue-panther-sari.cyclic.app/api/auth/${user._id}/verify/${token}`;
+    const url = `http://localhost:3000/auth/verifyemail/user/${user._id}/verify/${token}`;
     sendEmail(user.email, "Confirm Account", url);
 
     res

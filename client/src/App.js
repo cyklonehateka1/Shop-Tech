@@ -18,6 +18,7 @@ import AdminProducts from "./admin/pages/AdminProducts";
 import AdminAddProduct from "./admin/pages/AdminAddProduct";
 import Orders from "./admin/pages/AdminOrders";
 import Products from "./pages/Products";
+import ConfirmEmail from "./pages/ConfirmEmail";
 
 function App() {
   const { currentUser } = useSelector((state) => state.user);
@@ -35,6 +36,10 @@ function App() {
           <Route
             path="/login"
             element={currentUser ? <Navigate to="/" /> : <Login />}
+          />
+          <Route
+            path="/auth/verifyemail/user/:userId/verify/:token"
+            element={<ConfirmEmail />}
           />
           <Route path="/forgotpassword" element={<ForgotPassword />} />
           <Route path="/admin/products" element={<AdminProducts />} />
