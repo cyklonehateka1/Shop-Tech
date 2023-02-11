@@ -39,21 +39,15 @@ const Cart = () => {
       channels: ["card"],
       callback: (response) => {
         const reference = response.reference;
-        alert("Payment complete! Reference: " + reference);
-        const verifytransaction = async (reference) => {
-          try {
-            const res = await backendConnection.get(
-              `/payments/verifytransaction?referenc=${reference}`
-            );
-            console.log(res);
 
-            alert("Payment complete! Reference: " + reference);
-          } catch (error) {
+        backendConnection
+          .get(`/payment/verifytransaction?reference=${reference}`)
+          .then((res) => {
+            console.log(res.data);
+          })
+          .catch((error) => {
             console.log(error);
-          }
-        };
-
-        verifytransaction(reference);
+          });
 
         // Make an AJAX call to your server with the reference to verify the transaction
       },
