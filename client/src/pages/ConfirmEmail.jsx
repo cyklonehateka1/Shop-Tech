@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useReducer } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import "../styles/pages/confirmEmail.css";
 import { backendConnection } from "../utils/axiosConnection";
 import confirmEmailReducer from "../utils/reducers/confirmEmailReducer";
@@ -15,6 +15,8 @@ const ConfirmEmail = () => {
   const { userId, token } = useParams();
   console.log(token);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     const verifyAccount = async () => {
       dispatch({ type: "START" });
@@ -23,7 +25,7 @@ const ConfirmEmail = () => {
           `/auth/${userId}/verify/${token}`
         );
         dispatch({ type: "SUCCESS" });
-        console.log(res.data);
+        navigate("/login");
       } catch (error) {
         dispatch({
           type: "FAILURE",
