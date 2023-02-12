@@ -55,6 +55,7 @@ const Register = () => {
         type: "REGISTER_FAILURE",
         payload: error.response.data.message,
       });
+      console.log(error);
       setError("");
     }
   };
