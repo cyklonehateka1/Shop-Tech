@@ -38,7 +38,6 @@ const Navbar = () => {
       console.log(res.data);
       localStorage.removeItem("clientId");
       setAccoutModalOpen(false);
-      navigate("/login");
     } catch (error) {
       console.log(error);
     }

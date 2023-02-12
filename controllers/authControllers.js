@@ -35,8 +35,10 @@ const register = async (req, res, next) => {
       expiresIn: "1h",
     });
     const url = `https://navy-blue-panther-sari.cyclic.app/auth/verifyemail/user/${user._id}/verify/${token}`;
-    sendEmail(user.email, "Confirm Account", url);
+    const emailResponse = sendEmail(user.email, "Confirm Account", url);
 
+    if (emailResponse !== "email sent")
+      return next(errorHandler(400, "Something went wrong"));
     res
       .status(201)
       .json(

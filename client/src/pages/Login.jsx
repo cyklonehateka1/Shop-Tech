@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../styles/pages/login.css";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,8 +15,6 @@ const Login = () => {
     email: "",
     password: "",
   });
-  const navigate = useNavigate();
-
   const [inputError, setInputError] = useState("");
 
   const dispatch = useDispatch();
@@ -45,7 +43,7 @@ const Login = () => {
       });
       dispatch(loginSuccess());
       localStorage.setItem("clientId", JSON.stringify(res.data));
-      navigate("/");
+      window.location.href = "/";
     } catch (error) {
       dispatch(
         loginFailure(

@@ -5,7 +5,7 @@ const sendEmail = async (email, subject, text) => {
   try {
     const transporter = nodemailer.createTransport({
       service: "gmail",
-      port: process.env.EMAIL_PORT,
+      port: 587,
       host: "smtp.gmail.com",
       secure: false,
       auth: {
@@ -35,9 +35,10 @@ const sendEmail = async (email, subject, text) => {
       },
     });
     console.log("email sent");
+    return "email sent";
   } catch (error) {
-    console.log("Email not sent");
     console.log(error);
+    return error;
   }
 };
 
