@@ -20,7 +20,7 @@ const register = async (req, res, next) => {
   if (password.length <= 6)
     return next(errorHandler(400, "Password too short"));
   try {
-    let user = await UserSchema.findOne({ email });
+    let user = await UserSchema.findOne({ email }, { maxTimeMS: 30000 });
     if (user)
       return next(
         errorHandler(
@@ -90,7 +90,7 @@ const login = async (req, res, next) => {
   if (email.trim() === "" || password.trim() === "")
     return next(errorHandler(400, "No field can be left blank"));
   try {
-    const user = await UserSchema.findOne({ email });
+    const user = await UserSchema.findOne({ email }, { maxTimeMS: 30000 });
     if (!user)
       return next(
         errorHandler(404, "User not found, would you like to sign up instead?")
