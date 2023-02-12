@@ -38,7 +38,7 @@ const register = async (req, res, next) => {
     const emailResponse = sendEmail(user.email, "Confirm Account", url);
 
     if (emailResponse !== "email sent")
-      return next(errorHandler(400, "Something went wrong"));
+      return next(errorHandler(400, emailResponse));
     res
       .status(201)
       .json(

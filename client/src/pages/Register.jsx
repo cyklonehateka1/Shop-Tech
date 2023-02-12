@@ -51,10 +51,10 @@ const Register = () => {
       dispatch({ type: "REGISTER_SUCCESS" });
       navigate("/awaitEmailconfirm");
     } catch (error) {
-      dispatch({
-        type: "REGISTER_FAILURE",
-        payload: error.response.data.message,
-      });
+      // dispatch({
+      //   type: "REGISTER_FAILURE",
+      //   payload: error.response.data.message,
+      // });
       console.log(error);
       setError("");
     }
