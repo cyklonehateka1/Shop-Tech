@@ -35,8 +35,8 @@ const getProduct = async (req, res, next) => {
 };
 
 const getProducts = async (req, res, next) => {
-  const qPCategory = req.query.parentCategory;
-  const qSCategory = req.query.subCategory;
+  const qPCategory = req.query.pCategory;
+  const qSCategory = req.query.sCategory;
   const qSearch = req.query.search;
   const qBrand = req.query.brand;
   const qLimit = req.query.limit;

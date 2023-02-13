@@ -18,7 +18,6 @@ const Home = () => {
         <Hero />
         <Categories />
         <Brands />
-        <FilterList />
         <Products />
       </div>
       <Footer />

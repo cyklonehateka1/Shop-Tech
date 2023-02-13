@@ -26,7 +26,7 @@ export const catData = [
   {
     id: "monitors",
     className: "monitors",
-    text: "Monitors",
+    text: "TVs/Monitors",
     bgImg: "../assets/images/Pixel7-6.jpg",
   },
   {
