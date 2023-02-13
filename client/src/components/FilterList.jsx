@@ -7,14 +7,15 @@ const FilterList = () => {
       <div className="filterListCont">
         <div className="parentCont">
           <div className="selectCont">
-            <select name="" id="" defaultValue="headphoneTypes">
-              <option value="headphoneTypes">Headphone Type</option>
-            </select>
-          </div>
-          <div className="selectCont">
-            <select name="" id="" defaultValue="headphoneTypes">
-              <option value="headphoneTypes">Price</option>
-            </select>
+            <label htmlFor="price">Price</label>
+            <input
+              type="range"
+              id="price"
+              name="price"
+              min="0"
+              max="100"
+              step="1"
+            />
           </div>
           <div className="selectCont">
             <select name="" id="" defaultValue="headphoneTypes">
@@ -28,18 +29,16 @@ const FilterList = () => {
           </div>
           <div className="selectCont">
             <select name="" id="" defaultValue="headphoneTypes">
-              <option value="headphoneTypes">Material</option>
-            </select>
-          </div>
-          <div className="selectCont">
-            <select name="" id="" defaultValue="headphoneTypes">
               <option value="headphoneTypes">Offer</option>
             </select>
           </div>
         </div>
         <div className="sortBy">
           <select name="" id="">
-            <option value="">Sort By</option>
+            <option value="">Recomended</option>
+            <option value="">Newest</option>
+            <option value="">Lowest Price</option>
+            <option value="">Highest Price Price</option>
           </select>
         </div>
       </div>

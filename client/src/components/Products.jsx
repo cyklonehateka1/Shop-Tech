@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import Product from "./Product";
 import "../styles/components/products.css";
 import { backendConnection } from "../utils/axiosConnection";
+import FilterList from "./FilterList";
 
 const Products = () => {
   const [products, setProducts] = useState(null);
@@ -29,6 +30,7 @@ const Products = () => {
   return (
     <div className="products">
       <div className="productsCont">
+        <FilterList />
         <h4>Products For You!</h4>
         <div>
           {products && products.length > 0 ? (
