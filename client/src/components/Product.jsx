@@ -1,14 +1,12 @@
 import { AiOutlineHeart, AiFillStar } from "react-icons/ai";
 import "../styles/components/product.css";
-import { useNavigate, useLocation } from "react-router-dom";
-import { backendConnection } from "../utils/axiosConnection";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addTocart } from "../redux/slices/cartSlice";
 
 const Product = (props) => {
   const dispatch = useDispatch();
   const { name, price, desc, ratingCount, profileImg } = props.item;
-  const location = useLocation();
   const navigate = useNavigate();
   const sendProduct = (e) => {
     if (!e.target.closest("#wishlist")) {

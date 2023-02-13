@@ -37,8 +37,9 @@ const register = async (req, res, next) => {
     const url = `https://navy-blue-panther-sari.cyclic.app/auth/verifyemail/user/${user._id}/verify/${token}`;
     const emailResponse = sendEmail(user.email, "Confirm Account", url);
 
-    if (emailResponse !== "email sent")
-      return next(errorHandler(400, emailResponse));
+    // if (emailResponse !== "email sent")
+    //   return next(errorHandler(400, emailResponse));
+
     res
       .status(201)
       .json(

@@ -34,7 +34,6 @@ const sendEmail = async (email, subject, text) => {
         token: text,
       },
     });
-    console.log("email sent");
     return "email sent";
   } catch (error) {
     console.log(error);

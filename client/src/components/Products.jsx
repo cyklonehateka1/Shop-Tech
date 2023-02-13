@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Product from "./Product";
 import "../styles/components/products.css";
-import { productsData } from "../utils/ProductsData";
 import { backendConnection } from "../utils/axiosConnection";
 
 const Products = () => {
@@ -26,7 +25,7 @@ const Products = () => {
     };
 
     getProducts();
-  }, [location.pathname]);
+  }, [location.pathname, query]);
   return (
     <div className="products">
       <div className="productsCont">
