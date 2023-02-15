@@ -1,5 +1,4 @@
 import React from "react";
-import "../styles/components/filterList.css";
 
 const FilterList = () => {
   return (
@@ -7,11 +6,11 @@ const FilterList = () => {
       <div className="filterListCont">
         <div className="parentCont">
           <div className="selectCont">
-            <label htmlFor="price">Price</label>
+            <label htmlFor="price">Pric</label>
             <input
               type="range"
-              id="price"
-              name="price"
+              id="brightness"
+              name="brightness"
               min="0"
               max="100"
               step="1"

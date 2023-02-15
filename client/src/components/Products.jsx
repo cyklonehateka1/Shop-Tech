@@ -3,11 +3,12 @@ import { useLocation } from "react-router-dom";
 import Product from "./Product";
 import "../styles/components/products.css";
 import { backendConnection } from "../utils/axiosConnection";
-import FilterList from "./FilterList";
+import { AiOutlineDown } from "react-icons/ai";
 
 const Products = () => {
   const [products, setProducts] = useState(null);
   const [error, setError] = useState(null);
+  // const [filters, setFilters] = useState({})
 
   const location = useLocation();
 
@@ -30,7 +31,46 @@ const Products = () => {
   return (
     <div className="products">
       <div className="productsCont">
-        <FilterList />
+        <div className="filterList">
+          <div className="filterListCont">
+            <div className="priceFilter">
+              <p>
+                Price{" "}
+                <span>
+                  <AiOutlineDown />
+                </span>
+              </p>
+              <div>
+                <input type="number" name="min" placeholder="min" />
+                <input type="number" name="max" placeholder="max" />
+                <button>Apply</button>
+              </div>
+            </div>
+            <div className="selectCont">
+              <select name="" id="" defaultValue="headphoneTypes">
+                <option value="headphoneTypes">Review</option>
+                <option>1 star</option>
+                <option>2 stars</option>
+                <option>2 stars</option>
+                <option>4 stars</option>
+                <option>5 stars</option>
+              </select>
+            </div>
+            <div className="selectCont">
+              <p>
+                Discount <span style={{ color: "red" }}>*</span>
+              </p>
+            </div>
+            <div className="sortBy">
+              <select name="" id="">
+                <option value="">Recomended</option>
+                <option value="">Newest</option>
+                <option value="">Lowest Price</option>
+                <option value="">Highest Price</option>
+              </select>
+            </div>
+          </div>
+        </div>
         <h4>Products For You!</h4>
         <div>
           {products && products.length > 0 ? (
