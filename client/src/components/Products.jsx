@@ -5,10 +5,21 @@ import "../styles/components/products.css";
 import { backendConnection } from "../utils/axiosConnection";
 import { AiOutlineDown } from "react-icons/ai";
 
-const Products = () => {
+const Products = ({ modalsClose, closeAllModals }) => {
   const [products, setProducts] = useState(null);
   const [error, setError] = useState(null);
-  // const [filters, setFilters] = useState({})
+  const [filters, setFilters] = useState({});
+  const [sort, setSort] = useState(null);
+  const [priceFilter, setPriceFilter] = useState({ min: null, max: null });
+  const [priceModalOpen, setPriceModalOpen] = useState(false);
+
+  const priceModalHandler = () => {
+    if (!priceModalOpen) {
+      setPriceModalOpen(true);
+    } else return;
+  };
+
+  // (e.target.closest(".active-image-box"))
 
   const location = useLocation();
 
@@ -33,18 +44,20 @@ const Products = () => {
       <div className="productsCont">
         <div className="filterList">
           <div className="filterListCont">
-            <div className="priceFilter">
+            <div className="priceFilter" onClick={priceModalHandler}>
               <p>
                 Price{" "}
                 <span>
                   <AiOutlineDown />
                 </span>
               </p>
-              <div>
-                <input type="number" name="min" placeholder="min" />
-                <input type="number" name="max" placeholder="max" />
-                <button>Apply</button>
-              </div>
+              {priceModalOpen && (
+                <div className="modal">
+                  <input type="number" name="min" placeholder="min" />
+                  <input type="number" name="max" placeholder="max" />
+                  <button>Apply</button>
+                </div>
+              )}
             </div>
             <div className="selectCont">
               <select name="" id="" defaultValue="headphoneTypes">
