@@ -5,7 +5,7 @@ import "../styles/components/products.css";
 import { backendConnection } from "../utils/axiosConnection";
 import { AiOutlineDown } from "react-icons/ai";
 
-const Products = ({ modalsClose, closeAllModals }) => {
+const Products = ({ openModal }) => {
   const [products, setProducts] = useState(null);
   const [error, setError] = useState(null);
   const [filters, setFilters] = useState({});
@@ -13,10 +13,11 @@ const Products = ({ modalsClose, closeAllModals }) => {
   const [priceFilter, setPriceFilter] = useState({ min: null, max: null });
   const [priceModalOpen, setPriceModalOpen] = useState(false);
 
-  const priceModalHandler = () => {
+  const priceModalHandler = (e) => {
+    console.log(e.target.id);
     if (!priceModalOpen) {
       setPriceModalOpen(true);
-    } else return;
+    }
   };
 
   // (e.target.closest(".active-image-box"))
@@ -44,8 +45,11 @@ const Products = ({ modalsClose, closeAllModals }) => {
       <div className="productsCont">
         <div className="filterList">
           <div className="filterListCont">
-            <div className="priceFilter" onClick={priceModalHandler}>
-              <p>
+            <div
+              className="priceFilter modalParent"
+              onClick={(e) => console.log(e.target.className)}
+            >
+              <p className="modalParent">
                 Price{" "}
                 <span>
                   <AiOutlineDown />
