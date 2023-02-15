@@ -91,6 +91,7 @@
     font-size: 13px;
     display: flex;
     align-items: center;
+
 }
 
 .filterListCont>.selectCont>select {
