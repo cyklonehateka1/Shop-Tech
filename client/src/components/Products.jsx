@@ -8,6 +8,7 @@ import { AiOutlineDown } from "react-icons/ai";
 const Products = () => {
   const [products, setProducts] = useState(null);
   const [error, setError] = useState(null);
+  // const [filters, setFilters] = useState({})
 
   const location = useLocation();
 
