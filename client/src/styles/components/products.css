@@ -12,6 +12,109 @@
     color: rgb(92, 92, 92);
 }
 
+.filterList {
+    width: 100%;
+    padding: 30px 0;
+}
+
+.filterListCont {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.filterListCont>.priceFilter {
+    background-color: rgb(241, 241, 241);
+    border-radius: 50px;
+    margin-right: 10px;
+    position: relative;
+    cursor: pointer;
+    padding: 5px 0px;
+}
+
+.filterListCont>.priceFilter>p {
+    color: rgb(92, 92, 92);
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px;
+}
+
+.filterListCont>.priceFilter>p>span {
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.filterListCont>.priceFilter>div {
+    position: absolute;
+    width: 400%;
+    background-color: rgb(241, 241, 241);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 10px;
+    border-radius: 10px;
+    display: none;
+}
+
+.filterListCont>.priceFilter>div>input {
+    width: 100%;
+    background-color: rgb(248, 248, 248);
+    border: 1px solid rgb(139, 139, 139);
+    margin: 10px 0;
+    z-index: 1;
+    outline: none;
+    padding: 10px;
+}
+
+.filterListCont>.priceFilter>div>button {
+    padding: 10px 20px;
+    border: none;
+    background-color: rgb(0, 112, 112);
+    color: white;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.filterListCont>.selectCont {
+    background-color: rgb(241, 241, 241);
+    padding: 5px 10px;
+    border-radius: 50px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.filterListCont>.selectCont>p {
+    color: rgb(92, 92, 92);
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+}
+
+.filterListCont>.selectCont>select {
+    background-color: inherit;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: rgb(92, 92, 92);
+}
+
+.filterListCont>.sortBy {
+    background-color: rgb(241, 241, 241);
+    padding: 5px 10px;
+    border-radius: 50px;
+}
+
+.filterListCont>.sortBy>select {
+    background-color: inherit;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: rgb(92, 92, 92);
+}
+
 .products>.productsCont>div {
     display: grid;
     width: 100%;
