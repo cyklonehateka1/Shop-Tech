@@ -6,19 +6,36 @@ import { backendConnection } from "../utils/axiosConnection";
 import { AiOutlineDown } from "react-icons/ai";
 
 const Products = ({ openModal }) => {
-  const [products, setProducts] = useState(null);
+  const [products, setProducts] = useState([]);
   const [error, setError] = useState(null);
-  const [filters, setFilters] = useState({});
   const [sort, setSort] = useState(null);
   const [priceFilter, setPriceFilter] = useState({ min: null, max: null });
+  const [discount, setDiscount] = useState(false);
+  const [filteredProducts, setFilteredProducts] = useState(null);
   const [priceModalOpen, setPriceModalOpen] = useState(false);
 
   const priceModalHandler = (e) => {
-    console.log(e.target.id);
     if (!priceModalOpen) {
       setPriceModalOpen(true);
     }
   };
+
+  const modalCloseHandler = (e) => {
+    if (!e.target.closest(".priceFilter")) {
+      setPriceModalOpen(false);
+    }
+  };
+
+  const handlePriceFilter = (e) => {
+    setPriceFilter({ ...priceFilter, [e.target.name]: e.target.value });
+  };
+
+  const allFilters = {
+    discount,
+    ...priceFilter,
+  };
+
+  console.log(allFilters);
 
   // (e.target.closest(".active-image-box"))
 
@@ -40,14 +57,24 @@ const Products = ({ openModal }) => {
 
     getProducts();
   }, [location.pathname, query]);
+
+  useEffect(() => {
+    setFilteredProducts(
+      products.filter((item) => {
+        return priceFilter.min && item.price >= priceFilter.min;
+      })
+    );
+  }, [discount, products, priceFilter]);
+
+  console.log(filteredProducts);
   return (
-    <div className="products">
+    <div className="products" onClick={modalCloseHandler}>
       <div className="productsCont">
         <div className="filterList">
           <div className="filterListCont">
             <div
               className="priceFilter modalParent"
-              onClick={(e) => console.log(e.target.className)}
+              onClick={priceModalHandler}
             >
               <p className="modalParent">
                 Price{" "}
@@ -57,8 +84,18 @@ const Products = ({ openModal }) => {
               </p>
               {priceModalOpen && (
                 <div className="modal">
-                  <input type="number" name="min" placeholder="min" />
-                  <input type="number" name="max" placeholder="max" />
+                  <input
+                    type="number"
+                    name="min"
+                    placeholder="min"
+                    onChange={handlePriceFilter}
+                  />
+                  <input
+                    type="number"
+                    name="max"
+                    placeholder="max"
+                    onChange={handlePriceFilter}
+                  />
                   <button>Apply</button>
                 </div>
               )}
@@ -73,7 +110,12 @@ const Products = ({ openModal }) => {
                 <option>5 stars</option>
               </select>
             </div>
-            <div className="selectCont">
+            <div
+              className="selectCont"
+              onClick={() =>
+                discount ? setDiscount(false) : setDiscount(true)
+              }
+            >
               <p>
                 Discount <span style={{ color: "red" }}>*</span>
               </p>
