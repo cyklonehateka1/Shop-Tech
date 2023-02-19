@@ -9,10 +9,13 @@ const Products = ({ openModal }) => {
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(null);
   const [sort, setSort] = useState(null);
-  const [priceFilter, setPriceFilter] = useState({ min: null, max: null });
-  const [discount, setDiscount] = useState(false);
+  const [min, setMin] = useState(0);
+  const [max, setMax] = useState(0);
+  const [priceFilterActive, setPriceFilterActive] = useState(false);
+  const [discount, setDiscount] = useState("");
   const [filteredProducts, setFilteredProducts] = useState(null);
   const [priceModalOpen, setPriceModalOpen] = useState(false);
+  const [filtersActive, setFiltersActive] = useState(false);
 
   const priceModalHandler = (e) => {
     if (!priceModalOpen) {
@@ -25,19 +28,6 @@ const Products = ({ openModal }) => {
       setPriceModalOpen(false);
     }
   };
-
-  const handlePriceFilter = (e) => {
-    setPriceFilter({ ...priceFilter, [e.target.name]: e.target.value });
-  };
-
-  const allFilters = {
-    discount,
-    ...priceFilter,
-  };
-
-  console.log(allFilters);
-
-  // (e.target.closest(".active-image-box"))
 
   const location = useLocation();
 
@@ -58,15 +48,46 @@ const Products = ({ openModal }) => {
     getProducts();
   }, [location.pathname, query]);
 
-  useEffect(() => {
-    setFilteredProducts(
-      products.filter((item) => {
-        return priceFilter.min && item.price >= priceFilter.min;
-      })
-    );
-  }, [discount, products, priceFilter]);
+  const applyPriceFilters = () => {
+    if (min > max) {
+      const temp = min;
 
-  console.log(filteredProducts);
+      setMin(max);
+      setMax(temp);
+    }
+    if (min <= 0 && max <= 0) {
+      setPriceFilterActive(false);
+    } else {
+      setPriceFilterActive(true);
+      setFiltersActive(true);
+    }
+
+    if ((discount === "discount" || discount === "") && min <= 0 && max <= 0) {
+      setFiltersActive(false);
+    }
+  };
+
+  const discountHandler = (e) => {
+    setDiscount(e.target.value);
+
+    if (e.target.value !== "discount" || priceFilterActive) {
+      setFiltersActive(true);
+    } else {
+      setFiltersActive(false);
+    }
+  };
+
+  useEffect(() => {
+    const setProductsAfterFilter = () => {
+      setFilteredProducts(
+        filtersActive &&
+          products.filter((item) => {
+            return item.price >= min && item.price <= max && item;
+          })
+      );
+    };
+  }, [discount, products]);
+
   return (
     <div className="products" onClick={modalCloseHandler}>
       <div className="productsCont">
@@ -87,38 +108,32 @@ const Products = ({ openModal }) => {
                   <input
                     type="number"
                     name="min"
+                    value={min}
                     placeholder="min"
-                    onChange={handlePriceFilter}
+                    onChange={(e) => setMin(e.target.value)}
                   />
                   <input
                     type="number"
                     name="max"
+                    value={max}
                     placeholder="max"
-                    onChange={handlePriceFilter}
+                    onChange={(e) => setMax(e.target.value)}
                   />
-                  <button>Apply</button>
+                  <button onClick={applyPriceFilters}>Apply</button>
                 </div>
               )}
             </div>
             <div className="selectCont">
-              <select name="" id="" defaultValue="headphoneTypes">
-                <option value="headphoneTypes">Review</option>
-                <option>1 star</option>
-                <option>2 stars</option>
-                <option>2 stars</option>
-                <option>4 stars</option>
-                <option>5 stars</option>
+              <select
+                name=""
+                id=""
+                defaultValue="discount"
+                onChange={discountHandler}
+              >
+                <option value="discount">Discount</option>
+                <option>Yes</option>
+                <option>No</option>
               </select>
-            </div>
-            <div
-              className="selectCont"
-              onClick={() =>
-                discount ? setDiscount(false) : setDiscount(true)
-              }
-            >
-              <p>
-                Discount <span style={{ color: "red" }}>*</span>
-              </p>
             </div>
             <div className="sortBy">
               <select name="" id="">
