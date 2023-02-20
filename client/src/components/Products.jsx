@@ -122,8 +122,6 @@ const Products = ({ openModal }) => {
     }
   }, [sort]);
 
-  console.log(filteredProducts);
-
   return (
     <div className="products" onClick={modalCloseHandler}>
       <div className="productsCont">
