@@ -105,15 +105,24 @@ const Products = ({ openModal }) => {
 
   useEffect(() => {
     const filteredProductsCopy = [...filteredProducts];
-
     if (sort === "newest") {
-      filteredProductsCopy.sort((a, b) => a.createdAt - b.createdAt);
-      setFilteredProducts(filteredProductsCopy);
+      setFilteredProducts(
+        filteredProductsCopy.sort(
+          (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+        )
+      );
+    } else if (sort === "lowestPrice") {
+      setFilteredProducts(
+        filteredProductsCopy.sort((a, b) => a.price - b.price)
+      );
+    } else if (sort === "highestPrice") {
+      setFilteredProducts(
+        filteredProductsCopy.sort((a, b) => b.price - a.price)
+      );
     }
+  }, [sort]);
 
-    if (sort === "lowestPrice") {
-    }
-  }, [filteredProducts, sort]);
+  console.log(filteredProducts);
 
   return (
     <div className="products" onClick={modalCloseHandler}>
