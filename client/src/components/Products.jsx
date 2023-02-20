@@ -13,7 +13,7 @@ const Products = ({ openModal }) => {
   const [max, setMax] = useState(0);
   const [priceFilterActive, setPriceFilterActive] = useState(false);
   const [discount, setDiscount] = useState("");
-  const [filteredProducts, setFilteredProducts] = useState(null);
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const [priceModalOpen, setPriceModalOpen] = useState(false);
   const [filtersActive, setFiltersActive] = useState(false);
 
@@ -77,16 +77,43 @@ const Products = ({ openModal }) => {
     }
   };
 
+  const sortHandler = (e) => {
+    setSort(e.target.value);
+  };
+
+  console.log(sort);
+
   useEffect(() => {
     const setProductsAfterFilter = () => {
-      setFilteredProducts(
-        filtersActive &&
-          products.filter((item) => {
-            return item.price >= min && item.price <= max && item;
-          })
-      );
+      let filteredProducts = products.filter((item) => {
+        if (discount === "Yes" && priceFilterActive) {
+          return item.price >= min && item.price <= max && item.onDiscount;
+        } else if (discount === "Yes" && !priceFilterActive) {
+          return item.onDiscount;
+        } else if (discount === "No" && priceFilterActive) {
+          return item.price >= min && item.price <= max && !item.onDiscount;
+        } else if (discount === "No" && !priceFilterActive) {
+          return !item.onDiscount;
+        } else {
+          return item.price >= min && item.price <= max;
+        }
+      });
+      setFilteredProducts(filteredProducts);
     };
-  }, [discount, products]);
+    filtersActive && setProductsAfterFilter();
+  }, [products, discount, priceFilterActive, filtersActive, min, max]);
+
+  useEffect(() => {
+    const filteredProductsCopy = [...filteredProducts];
+
+    if (sort === "newest") {
+      filteredProductsCopy.sort((a, b) => a.createdAt - b.createdAt);
+      setFilteredProducts(filteredProductsCopy);
+    }
+
+    if (sort === "lowestPrice") {
+    }
+  }, [filteredProducts, sort]);
 
   return (
     <div className="products" onClick={modalCloseHandler}>
@@ -136,18 +163,22 @@ const Products = ({ openModal }) => {
               </select>
             </div>
             <div className="sortBy">
-              <select name="" id="">
-                <option value="">Recomended</option>
-                <option value="">Newest</option>
-                <option value="">Lowest Price</option>
-                <option value="">Highest Price</option>
+              <select name="" id="" onChange={sortHandler}>
+                <option value="recomended">Recomended</option>
+                <option value="newest">Newest</option>
+                <option value="lowestPrice">Lowest Price</option>
+                <option value="highestPrice">Highest Price</option>
               </select>
             </div>
           </div>
         </div>
         <h4>Products For You!</h4>
         <div>
-          {products && products.length > 0 ? (
+          {products && filtersActive ? (
+            filteredProducts.map((item, index) => {
+              return <Product item={item} key={index} />;
+            })
+          ) : products && products.length > 0 ? (
             products.map((item, index) => {
               return <Product item={item} key={index} />;
             })
