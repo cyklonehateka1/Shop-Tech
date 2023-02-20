@@ -19,7 +19,7 @@ const Brands = (props) => {
                 <div className="imgCont" id={item.id}>
                   <img src={item.img} alt="" id={item.id} />
                 </div>
-                <div className="detailsCont" ide={item.id}>
+                <div className="detailsCont" id={item.id}>
                   <span id={item.id}>{item.name}</span>
                   <p id={item.id}>{item.quantity} products available</p>
                 </div>

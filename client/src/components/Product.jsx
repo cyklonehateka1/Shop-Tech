@@ -22,6 +22,10 @@ const Product = (props) => {
     color: props.item.colors[0],
   };
 
+  const addToCartHandler = () => {
+    dispatch(addTocart(payload));
+  };
+
   return (
     <div className="product">
       <div className="productCont">
@@ -57,9 +61,7 @@ const Product = (props) => {
             </div>
             <span className="text">({ratingCount})</span>
           </div>
-          <button onClick={() => dispatch(addTocart(payload))}>
-            Add to Cart
-          </button>
+          <button onClick={addToCartHandler}>Add to Cart</button>
         </div>
       </div>
     </div>
