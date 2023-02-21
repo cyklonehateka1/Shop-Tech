@@ -92,7 +92,7 @@ const login = async (req, res, next) => {
   if (email.trim() === "" || password.trim() === "")
     return next(errorHandler(400, "No field can be left blank"));
   try {
-    const user = await UserSchema.findOne({ email }, { maxTimeMS: 30000 });
+    const user = await UserSchema.findOne({ email });
     if (!user)
       return next(
         errorHandler(404, "User not found, would you like to sign up instead?")
@@ -103,17 +103,11 @@ const login = async (req, res, next) => {
         errorHandler(403, "You already signed in with a different method")
       );
 
-    if (!user.isVerified) {
-      const token = jwt.sign({ id: user._id }, process.env.EMAIL_CON_KEY, {
-        expiresIn: "1h",
-      });
-      const url = `${process.env.BASE_URL}/api/auth/${user._id}/verify/${token}`;
-      sendEmail(user.email, "Confirm Account", url);
-    }
+    console.log(user);
 
-    const checkPassword = bcrypt.compareSync(req.body.password, user.password); // true
+    const checkPassword = bcrypt.compareSync(password, user.password);
 
-    if (!checkPassword) return next(errorHandler(403, "Incorrect password"));
+    if (!checkPassword) return next(errorHandler(400, "Wrong password"));
 
     const accessToken = jwt.sign(
       { id: user._id, fromGoogle: user.fromGoogle, accType: user.accountType },
