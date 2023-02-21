@@ -3,6 +3,7 @@ import {
   BiSearch,
   BiUser,
   BiLogOut,
+  BiLogIn,
   BiWindowClose,
 } from "react-icons/bi";
 import { Link, useNavigate } from "react-router-dom";
@@ -38,6 +39,7 @@ const Navbar = () => {
       console.log(res.data);
       localStorage.removeItem("clientId");
       setAccoutModalOpen(false);
+      window.location.href = "/";
     } catch (error) {
       console.log(error);
     }
@@ -150,13 +152,9 @@ const Navbar = () => {
                       <p>Cyklone Hateka</p>
                     </div>
                   ) : (
-                    <Link
-                      to="/register"
-                      className="sign"
-                      onClick={logoutHandler}
-                    >
+                    <Link to="/register" className="sign">
                       <span>
-                        <BiLogOut />
+                        <BiUser />
                       </span>
                       <p>Sign Up</p>
                     </Link>
@@ -169,9 +167,9 @@ const Navbar = () => {
                       <p>Logout</p>
                     </div>
                   ) : (
-                    <Link to="/login" className="sign" onClick={logoutHandler}>
+                    <Link to="/login" className="sign">
                       <span>
-                        <BiLogOut />
+                        <BiLogIn />
                       </span>
                       <p>Login</p>
                     </Link>
