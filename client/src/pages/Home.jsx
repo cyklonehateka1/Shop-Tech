@@ -7,6 +7,7 @@ import Navbar from "../components/Navbar";
 import Products from "../components/Products";
 import TopBar from "../components/TopBar";
 import "../styles/pages/home.css";
+import "../styles/pages/homeResponsive.css";
 import Footer from "../components/Footer";
 import { useState } from "react";
 

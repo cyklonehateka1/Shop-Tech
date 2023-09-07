@@ -1,16 +1,16 @@
 const express = require("express");
 const {
-  confirmAccount,
-  login,
+  // confirmAccount,
+  // login,
   register,
-  logout,
+  // logout,
 } = require("../controllers/authControllers.js");
 
 const router = express.Router();
 
 router.post("/register", register);
-router.get("/:userId/verify/:token", confirmAccount);
-router.post("/login", login);
-router.get("/logout", logout);
+// router.get("/:userId/verify/:token", confirmAccount);
+// router.post("/login", login);
+// router.get("/logout", logout);
 
 module.exports = router;

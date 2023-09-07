@@ -14,7 +14,6 @@
 
 .topBarCont>.left {
     display: flex;
-    display: flex;
     align-items: center;
 }
 
@@ -22,7 +21,7 @@
     font-size: 17px;
     margin-right: 6px;
     color: rgb(240, 240, 240);
-    display: flex;
+    /* display: flex; */
     align-items: center;
 }
 

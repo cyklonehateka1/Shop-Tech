@@ -4,6 +4,7 @@ import Product from "./Product";
 import "../styles/components/products.css";
 import { backendConnection } from "../utils/axiosConnection";
 import { AiOutlineDown } from "react-icons/ai";
+import LoadingWidget from "./LoadingWidget";
 
 const Products = ({ openModal }) => {
   const [products, setProducts] = useState([]);
@@ -153,7 +154,13 @@ const Products = ({ openModal }) => {
                     placeholder="max"
                     onChange={(e) => setMax(e.target.value)}
                   />
-                  <button onClick={applyPriceFilters}>Apply</button>
+                  <button
+                    onClick={{
+                      applyPriceFilters,
+                    }}
+                  >
+                    Apply
+                  </button>
                 </div>
               )}
             </div>
@@ -190,7 +197,8 @@ const Products = ({ openModal }) => {
               return <Product item={item} key={index} />;
             })
           ) : (
-            <h2>...Ooops! No Products found</h2>
+            // <h2>...Ooops! No Products found</h2>
+            <LoadingWidget />
           )}
         </div>
       </div>

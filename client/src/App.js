@@ -19,7 +19,7 @@ import AdminAddProduct from "./admin/pages/AdminAddProduct";
 import Orders from "./admin/pages/AdminOrders";
 import Products from "./pages/Products";
 import ConfirmEmail from "./pages/ConfirmEmail";
-
+import HubtelTest from "./pages/HubtelTest";
 function App() {
   const { currentUser } = useSelector((state) => state.user);
   return (
@@ -45,6 +45,7 @@ function App() {
           <Route path="/admin/products" element={<AdminProducts />} />
           <Route path="/admin/addproduct" element={<AdminAddProduct />} />
           <Route path="/admin/orders" element={<Orders />} />
+          <Route path="/hubtel" element={<HubtelTest />} />
         </Routes>
       </Router>
     </div>

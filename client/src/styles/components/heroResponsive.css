@@ -1,0 +1,45 @@
+@media only screen and (min-device-width: 100px) and (max-device-width: 480px) {
+    .hero {
+        top: -8vh;
+        align-items: center;
+        border: 1px solid red;
+    }
+
+    .heroCont {
+        align-items: center;
+        padding: 10px 0;
+    }
+
+    .heroLeft {
+        width: 70%;
+        padding: 10px 10px;
+        flex-direction: column;
+        margin-left: 0px;
+        /* border: 1px solid red; */
+    }
+
+    .heroTextCont>h1 {
+        font-size: 19px;
+        color: rgb(43, 43, 43);
+        line-height: 25px;
+    }
+
+    .heroLeft>button {
+        width: 70%;
+        margin-top: 10px;
+        padding: 5px;
+        font-size: 11px;
+    }
+
+    .heroImgCont {
+        width: 60%;
+        overflow: hidden;
+        position: relative;
+        top: 0px;
+        /* border: 1px solid red; */
+    }
+
+    .heroImgCont>img {
+        width: 60%;
+    }
+}

@@ -1,0 +1,62 @@
+@media only screen and (min-device-width: 100px) and (max-device-width: 480px) {
+    .topBar {
+        padding: 5px 5px;
+        position: fixed;
+        z-index: 1000;
+        display: none;
+    }
+
+    .topBarCont {
+        padding: 7px
+    }
+
+    .topBarCont>.left {
+        flex-direction: column;
+    }
+
+    .topBarCont>.left>div {
+        font-size: 14px;
+        margin-bottom: 4px;
+        align-items: center;
+    }
+
+    .topBarCont>.left>span {
+        font-size: 12px;
+    }
+
+    .topBarCont>.center {
+        flex-direction: column;
+    }
+
+    .topBarCont>.center>p {
+        font-size: 11px;
+    }
+
+    .topBarCont>.center>span {
+        display: none;
+    }
+
+    .topBarCont>.right {
+        flex-direction: column;
+    }
+
+    .topBarCont>.right>div {
+        flex-direction: column;
+    }
+
+    .topBarCont>.right>div>p {
+        font-size: 11px;
+    }
+
+    .topBarCont>.right>div>div {
+        margin-left: 3px;
+        font-size: 15px;
+        display: flex;
+        color: white;
+    }
+
+    .topBarCont>.right>.lang {
+        display: flex;
+        margin-right: 0px;
+    }
+}

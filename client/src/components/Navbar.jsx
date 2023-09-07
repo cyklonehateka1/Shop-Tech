@@ -8,6 +8,7 @@ import {
 } from "react-icons/bi";
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/components/navbar.css";
+import "../styles/components/navbarResponsive.css";
 import { useState } from "react";
 import { backendConnection } from "../utils/axiosConnection";
 import Badge from "@mui/material/Badge";
@@ -187,6 +188,18 @@ const Navbar = () => {
               </div>
               <span>Cart</span>
             </Link>
+          </div>
+        </div>
+      </div>
+      <div className="mobileSearchCont">
+        <div className="mobileSearch">
+          <input
+            type="text"
+            placeholder="Search Products"
+            onChange={handleChange}
+          />
+          <div>
+            <BiSearch />
           </div>
         </div>
       </div>

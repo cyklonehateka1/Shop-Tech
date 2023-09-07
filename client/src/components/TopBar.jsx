@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/components/topBar.css";
+import "../styles/components/topBarResponsive.css";
 import { BiPhoneCall, BiChevronDown } from "react-icons/bi";
 
 const TopBar = () => {

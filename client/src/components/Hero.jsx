@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/components/hero.css";
+import "../styles/components/heroResponsive.css";
 
 const Hero = () => {
   return (

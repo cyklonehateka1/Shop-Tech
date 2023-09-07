@@ -1,0 +1,61 @@
+.loadingWidget {
+    width: 90vw;
+    height: 100%;
+}
+
+.loadingWidgetCont {
+    width: 92vw;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 23.6%);
+    padding: 20px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.simulatorCont {
+    width: 100%;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+
+}
+
+.simulatorImg {
+    background: rgb(207, 207, 207);
+    width: 100%;
+    height: 250px;
+}
+
+.simulatorDet {
+    width: 100%;
+    padding-top: 10px;
+}
+
+.simulatorName {
+    height: 20px;
+    width: 80%;
+    background: rgb(207, 207, 207);
+}
+
+.simulatorDesc {
+    width: 90%;
+    height: 20px;
+    margin: 10px 0;
+    background: rgb(207, 207, 207);
+
+}
+
+.simulatorRating {
+    width: 70%;
+    display: flex;
+}
+
+.simulatorAddToCart {
+    width: 50%;
+    height: 20px;
+    margin: 10px 0;
+    background: rgb(207, 207, 207);
+}

@@ -1,0 +1,82 @@
+@media only screen and (min-device-width: 100px) and (max-device-width: 480px) {
+    .navbar {
+        padding: 10px 10px;
+        top: 0vh;
+    }
+
+    .navbarCont>.navLogoCont {
+        width: 5%;
+    }
+
+    .navMenu {
+        width: 75%;
+    }
+
+    .navMenu>ul>li {
+        margin: 0 7px;
+        font-size: 11px;
+    }
+
+    .navSearchCont {
+        display: none;
+    }
+
+    .cartAccountCont {
+        display: flex;
+        position: relative;
+    }
+
+
+
+    .cartAccountCont>div>.closedOptions>span {
+        display: none;
+    }
+
+    .cartAccountCont>.cart>a>span {
+        display: none;
+    }
+
+    .cartAccountCont>.cart {
+        margin-left: 10px;
+    }
+
+
+
+
+    .mobileSearchCont {
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        height: 30px;
+    }
+
+    .mobileSearchCont>.mobileSearch {
+        display: flex;
+        width: 100%;
+        background-color: rgb(241, 241, 241);
+        height: 100%;
+        padding: 5px 10px;
+        border-radius: 50px;
+        position: relative;
+    }
+
+    .mobileSearchCont>.mobileSearch>input {
+        border: none;
+        width: 90%;
+        height: 100%;
+        background-color: inherit;
+        font-size: 14px;
+        border-radius: 50px;
+        outline: none;
+        color: rgb(92, 92, 92);
+        padding-left: 10px;
+    }
+
+    .mobileSearchCont>.mobileSearch>div {
+        width: 10%;
+        display: flex;
+        align-items: center;
+        color: rgb(92, 92, 92);
+        font-size: 20px;
+    }
+}

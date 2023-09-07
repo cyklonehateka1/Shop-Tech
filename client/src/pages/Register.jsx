@@ -11,9 +11,9 @@ const INITAL_STATE = {
 };
 
 const Register = () => {
-  const [error, setError] = useState("");
   const [state, dispatch] = useReducer(registerReducer, INITAL_STATE);
-  const [inputValue, setInputValue] = useState({
+  const [formError, setFormError] = useState("");
+  const [value, setValue] = useState({
     name: "",
     email: "",
     password: "",
@@ -21,43 +21,41 @@ const Register = () => {
   });
 
   const handleChange = (e) => {
-    setInputValue({ ...inputValue, [e.target.name]: e.target.value });
-  };
-  const { name, email, password, confirmPassword } = inputValue;
-  const details = {
-    name,
-    email,
-    password,
+    setValue({
+      ...value,
+      [e.target.name]: e.target.value,
+    });
   };
 
-  const navigate = useNavigate();
-
-  const registerHandler = async (e) => {
+  const { password, email, name, confirmPassword } = value;
+  const submitHandler = (e) => {
     e.preventDefault();
-
-    if (name.trim() === "" || email.trim() === "" || password.trim() === "") {
-      dispatch({ type: "RESET" });
-      return setError("All fields are required");
+    if (!password || !email || !name) {
+      setFormError("All feilds are required");
     }
-
+    if (password.length < 6) {
+      setFormError("Password cannot be less than 6 characters");
+    }
     if (password !== confirmPassword) {
-      dispatch({ type: "RESET" });
-      return setError("Passwords do not match");
+      setFormError("Passwords do not match");
     }
-
-    dispatch({ type: "REGISTER_START" });
-    try {
-      await backendConnection.post("/auth/register", details);
-      dispatch({ type: "REGISTER_SUCCESS" });
-      navigate("/awaitEmailconfirm");
-    } catch (error) {
-      // dispatch({
-      //   type: "REGISTER_FAILURE",
-      //   payload: error.response.data.message,
-      // });
-      console.log(error);
-      setError("");
-    }
+    backendConnection
+      .post("/auth/register", {
+        name,
+        email,
+        password,
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        setFormError(
+          err.response.data.message === {}
+            ? "something went wrong"
+            : err.response.data.message
+        );
+        console.log(err.response.data.message);
+      });
   };
 
   return (
@@ -69,16 +67,16 @@ const Register = () => {
             <h2>Create Account</h2>
           </div>
 
-          <form action="" onSubmit={registerHandler}>
+          <form action="" onSubmit={submitHandler}>
             <div className="name">
               <label htmlFor="name">FULL NAME</label>
               <input
                 type="text"
                 id="name"
                 placeholder="Your Name"
-                onChange={handleChange}
                 name="name"
                 required
+                onChange={handleChange}
               />
             </div>
             <div className="email">
@@ -87,9 +85,9 @@ const Register = () => {
                 type="email"
                 id="email"
                 placeholder="example@mail.com"
-                onChange={handleChange}
                 required
                 name="email"
+                onChange={handleChange}
               />
             </div>
             <div className="password">
@@ -98,9 +96,9 @@ const Register = () => {
                 type="password"
                 id="password"
                 placeholder="Your Password"
-                onChange={handleChange}
                 required
                 name="password"
+                onChange={handleChange}
               />
             </div>
             <div className="password">
@@ -109,8 +107,8 @@ const Register = () => {
                 type="password"
                 id="confirmPassword"
                 placeholder="Your Password"
-                onChange={handleChange}
                 name="confirmPassword"
+                onChange={handleChange}
               />
             </div>
             <div className="termsAgree">
@@ -120,8 +118,8 @@ const Register = () => {
                 <Link>terms and conditions</Link>
               </p>
             </div>
-            <p>{error}</p>
-            <p>{state.err && state.err}</p>
+            <p>{formError}</p>
+            <p>{}</p>
             <button>SIGN up</button>
           </form>
         </div>

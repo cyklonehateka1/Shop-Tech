@@ -34,8 +34,8 @@ const register = async (req, res, next) => {
     const token = jwt.sign({ id: user._id }, process.env.EMAIL_CON_KEY, {
       expiresIn: "1h",
     });
-    const url = `https://navy-blue-panther-sari.cyclic.app/auth/verifyemail/user/${user._id}/verify/${token}`;
-    // const url = `http://localhost:3000/auth/verifyemail/user/${user._id}/verify/${token}`;
+    // const url = `https://navy-blue-panther-sari.cyclic.app/auth/verifyemail/user/${user._id}/verify/${token}`;
+    const url = `http://localhost:3000/auth/verifyemail/user/${user._id}/verify/${token}`;
     const emailResponse = sendEmail(user.email, "Confirm Account", url);
 
     if (emailResponse !== "email sent")
@@ -51,85 +51,85 @@ const register = async (req, res, next) => {
   }
 };
 
-const confirmAccount = async (req, res, next) => {
-  try {
-    const user = await UserSchema.findById(req.params.userId);
-    if (!user) return next(errorHandler(401, "Invalid user"));
+// const confirmAccount = async (req, res, next) => {
+//   try {
+//     const user = await UserSchema.findById(req.params.userId);
+//     if (!user) return next(errorHandler(401, "Invalid user"));
 
-    const verifyToken = jwt.verify(
-      req.params.token,
-      process.env.EMAIL_CON_KEY,
-      (error, response) => {
-        if (error) return next(errorHandler(401, "Token has expired"));
+//     const verifyToken = jwt.verify(
+//       req.params.token,
+//       process.env.EMAIL_CON_KEY,
+//       (error, response) => {
+//         if (error) return next(errorHandler(401, "Token has expired"));
 
-        if (response.id !== req.params.userId)
-          return next(errorHandler(403, "Invalid token"));
-      }
-    );
+//         if (response.id !== req.params.userId)
+//           return next(errorHandler(403, "Invalid token"));
+//       }
+//     );
 
-    const verify = await UserSchema.findByIdAndUpdate(
-      req.params.userId,
-      {
-        $set: { isVerified: true },
-      },
-      { new: true }
-    );
+//     const verify = await UserSchema.findByIdAndUpdate(
+//       req.params.userId,
+//       {
+//         $set: { isVerified: true },
+//       },
+//       { new: true }
+//     );
 
-    res.status(200).json("Email verified successfully");
-  } catch (error) {
-    return next(error);
-  }
-};
+//     res.status(200).json("Email verified successfully");
+//   } catch (error) {
+//     return next(error);
+//   }
+// };
 
-const login = async (req, res, next) => {
-  let { email, password } = req.body;
+// const login = async (req, res, next) => {
+//   let { email, password } = req.body;
 
-  email = email.trim();
+//   email = email.trim();
 
-  if (!email || !password)
-    return next(errorHandler(400, "All fields are required"));
+//   if (!email || !password)
+//     return next(errorHandler(400, "All fields are required"));
 
-  if (email.trim() === "" || password.trim() === "")
-    return next(errorHandler(400, "No field can be left blank"));
-  try {
-    const user = await UserSchema.findOne({ email });
-    if (!user)
-      return next(
-        errorHandler(404, "User not found, would you like to sign up instead?")
-      );
+//   if (email.trim() === "" || password.trim() === "")
+//     return next(errorHandler(400, "No field can be left blank"));
+//   try {
+//     const user = await UserSchema.findOne({ email });
+//     if (!user)
+//       return next(
+//         errorHandler(404, "User not found, would you like to sign up instead?")
+//       );
 
-    if (user.fromGoogle)
-      return next(
-        errorHandler(403, "You already signed in with a different method")
-      );
+//     if (user.fromGoogle)
+//       return next(
+//         errorHandler(403, "You already signed in with a different method")
+//       );
 
-    const checkPassword = bcrypt.compareSync(password, user.password);
+//     const checkPassword = bcrypt.compareSync(password, user.password);
 
-    if (!checkPassword) return next(errorHandler(400, "Wrong password"));
+//     if (!checkPassword) return next(errorHandler(400, "Wrong password"));
 
-    const accessToken = jwt.sign(
-      { id: user._id, fromGoogle: user.fromGoogle, accType: user.accountType },
-      process.env.JWT_SECRET
-    );
+//     const accessToken = jwt.sign(
+//       { id: user._id, fromGoogle: user.fromGoogle, accType: user.accountType },
+//       process.env.JWT_SECRET
+//     );
 
-    const { _id, ...others } = user._doc;
+//     const { _id, ...others } = user._doc;
 
-    res.cookie("access_token", accessToken).status(200).json(_id);
-  } catch (error) {
-    return next(error);
-  }
-};
+//     res.cookie("access_token", accessToken).status(200).json(_id);
+//   } catch (error) {
+//     return next(error);
+//   }
+// };
 
-const logout = async (req, res, next) => {
-  res
-    .clearCookie("access_token", { sameSite: "none", secure: true, maxAge: 1 })
-    .status(200)
-    .json("Logged out successfully");
-};
+// const logout = async (req, res, next) => {
+//   res
+//     .clearCookie("access_token", { sameSite: "none", secure: true, maxAge: 1 })
+//     .status(200)
+//     .json("Logged out successfully");
+// };
 
 module.exports = {
-  logout,
+  // logout,
   register,
-  login,
-  confirmAccount,
+  // login,
+  // confirmAccount,
 };
