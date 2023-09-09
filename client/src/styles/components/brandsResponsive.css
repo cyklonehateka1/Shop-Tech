@@ -1,0 +1,35 @@
+@media only screen and (min-device-width: 100px) and (max-device-width: 480px) {
+    .brands {
+        position: relative;
+        top: -8vh;
+    }
+
+    .brands>.brandsCont>h4 {
+        margin-bottom: 10px;
+        font-size: 15px;
+    }
+
+    .brands>.brandsCont>div {
+        display: grid;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .brands>.brandsCont>div>div {
+        padding: 5px;
+    }
+
+    .brands>.brandsCont>div>div>.imgCont {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+    }
+
+    .brands>.brandsCont>div>div>.detailsCont>span {
+        font-size: 12px;
+    }
+
+    .brands>.brandsCont>div>div>.detailsCont>p {
+        font-size: 10px;
+    }
+}

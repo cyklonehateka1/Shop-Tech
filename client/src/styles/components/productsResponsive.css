@@ -1,0 +1,33 @@
+@media only screen and (min-device-width: 100px) and (max-device-width: 480px) {
+    .products {
+        padding: 5px 0;
+        position: relative;
+        top: -8vh;
+        border: 1px solid red;
+    }
+
+    .products>.productsCont>h4 {
+        font-size: 15px;
+    }
+
+    .filterList {
+        padding: 10px 0;
+    }
+
+    .filterListCont>.priceFilter {
+        margin-right: 5px;
+    }
+
+    .filterListCont>.priceFilter>p {
+        font-size: 11px;
+        margin: 0 10px;
+    }
+
+    .products>.productsCont>div {
+        grid-template-columns: repeat(2, 48%);
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        margin-top: 20px;
+    }
+}

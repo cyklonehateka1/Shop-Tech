@@ -109,7 +109,7 @@
     padding: 10px 0;
     border: none;
     background-color: rgb(2, 163, 2);
-    cursor: pointer;
+    /* cursor: pointer; */
     color: white;
     font-size: 17px;
     transition: 0.2s;

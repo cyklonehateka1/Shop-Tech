@@ -1,0 +1,32 @@
+@media only screen and (min-device-width: 100px) and (max-device-width: 480px) {
+    .categories {
+        position: relative;
+        top: -8vh;
+        /* border: 1px solid red; */
+        padding: 10px 0;
+    }
+
+    .categoriesCont>h4 {
+        margin-bottom: 7px;
+        font-size: 15px;
+    }
+
+    .categoriesCont>div {
+        display: grid;
+        grid-template-columns: repeat(3, 32.2%);
+        gap: 5px;
+    }
+
+    .categoriesCont>div>div {
+        width: 100%;
+        height: 150px;
+    }
+
+    .categoriesCont>div>div>h5 {
+        color: white;
+        font-weight: 500;
+        font-size: 15px;
+    }
+
+
+}

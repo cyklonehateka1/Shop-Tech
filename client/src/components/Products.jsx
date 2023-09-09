@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Product from "./Product";
 import "../styles/components/products.css";
+import "../styles/components/productsResponsive.css";
 import { backendConnection } from "../utils/axiosConnection";
 import { AiOutlineDown } from "react-icons/ai";
 import LoadingWidget from "./LoadingWidget";

@@ -1,4 +1,5 @@
 import "../styles/components/categories.css";
+import "../styles/components/categoriesResponsive.css";
 import { catData } from "../utils/data";
 import { useNavigate } from "react-router-dom";
 const Categories = () => {

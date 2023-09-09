@@ -1,24 +1,18 @@
 import "../styles/pages/register.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useReducer, useState } from "react";
-import registerReducer from "../utils/reducers/registerReducer";
 import { backendConnection } from "../utils/axiosConnection";
 
-const INITAL_STATE = {
-  err: null,
-  isLoading: false,
-  success: false,
-};
-
 const Register = () => {
-  const [state, dispatch] = useReducer(registerReducer, INITAL_STATE);
   const [formError, setFormError] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
   const [value, setValue] = useState({
     name: "",
     email: "",
     password: "",
     confirmPassword: "",
   });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setValue({
@@ -32,13 +26,18 @@ const Register = () => {
     e.preventDefault();
     if (!password || !email || !name) {
       setFormError("All feilds are required");
+      return;
     }
     if (password.length < 6) {
       setFormError("Password cannot be less than 6 characters");
+      return;
     }
     if (password !== confirmPassword) {
       setFormError("Passwords do not match");
+      return;
     }
+    setIsLoading(true);
+    console.log(isLoading);
     backendConnection
       .post("/auth/register", {
         name,
@@ -46,7 +45,8 @@ const Register = () => {
         password,
       })
       .then((data) => {
-        console.log(data);
+        localStorage.setItem("temporalId", JSON.stringify(data.userId));
+        navigate("/awaitEmailconfirm");
       })
       .catch((err) => {
         setFormError(
@@ -57,6 +57,7 @@ const Register = () => {
         console.log(err.response.data.message);
       });
   };
+  console.log(isLoading);
 
   return (
     <div className="register">
@@ -120,7 +121,7 @@ const Register = () => {
             </div>
             <p>{formError}</p>
             <p>{}</p>
-            <button>SIGN up</button>
+            <button disabled={true}>SIGN up</button>
           </form>
         </div>
         <div className="right">
@@ -128,7 +129,7 @@ const Register = () => {
             <img src="https://i.ibb.co/QMQS2W7/register.png" alt="" />
             <p>Already have an account?</p>
           </div>
-          <button>
+          <button disabled={true}>
             <Link to="/login">Sign in</Link>
           </button>
         </div>

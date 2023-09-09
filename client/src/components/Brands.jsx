@@ -1,4 +1,5 @@
 import "../styles/components/brands.css";
+import "../styles/components/brandsResponsive.css";
 import { brandsData } from "../utils/data";
 import { useNavigate } from "react-router-dom";
 

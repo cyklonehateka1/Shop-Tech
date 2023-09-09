@@ -1,45 +1,27 @@
 const nodemailer = require("nodemailer");
 
-// const hbs = require("nodemailer-express-handlebars");
+const transporter = nodemailer.createTransport({
+  host: "smtp-relay.brevo.com",
+  port: 587,
+  auth: {
+    user: "cyklonehateka1@gmail.com",
+    pass: "mh5VUMFZvsNC43L2",
+  },
+});
 
-// const sendEmail = async (email, subject, text) => {
-//   try {
-//     const transporter = nodemailer.createTransport({
-//       service: "gmail",
-//       port: 587,
-//       host: "smtp.gmail.com",
-//       secure: false,
-//       auth: {
-//         user: process.env.USER,
-//         pass: process.env.PASS,
-//       },
-//     });
-//     transporter.use(
-//       "compile",
-//       hbs({
-//         viewEngine: {
-//           extName: ".handlebars",
-//           partialsDir: "./views",
-//           defaultLayout: false,
-//         },
-//         viewPath: "./views",
-//         extName: ".handlebars",
-//       })
-//     );
-//     await transporter.sendMail({
-//       from: process.env.USER,
-//       to: email,
-//       subject,
-//       template: "verifyEmail",
-//       context: {
-//         token: text,
-//       },
-//     });
-//     return "email sent";
-//   } catch (error) {
-//     console.log(error);
-//     return error;
-//   }
-// };
+const sendEmail = async (reciever, subject, text, html) => {
+  try {
+    const info = await transporter.sendMail({
+      from: "cyklonehateka1@gmail.com",
+      to: reciever,
+      subject,
+      text,
+      html,
+    });
+    return "email sent";
+  } catch (err) {
+    return err;
+  }
+};
 
-// module.exports = sendEmail;
+module.exports = sendEmail;
