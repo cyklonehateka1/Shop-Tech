@@ -83,8 +83,6 @@ const Products = ({ openModal }) => {
     setSort(e.target.value);
   };
 
-  console.log(sort);
-
   useEffect(() => {
     const setProductsAfterFilter = () => {
       let filteredProducts = products.filter((item) => {

@@ -1,9 +1,11 @@
 import "../styles/pages/register.css";
 import { Link, useNavigate } from "react-router-dom";
-import { useReducer, useState } from "react";
+import { useReducer, useState, useContext } from "react";
 import { backendConnection } from "../utils/axiosConnection";
+import { AccessAwaitEmailContext } from "../context/accessAwaitEmailContext";
 
 const Register = () => {
+  const { setCheckInfo } = useContext(AccessAwaitEmailContext);
   const [formError, setFormError] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [value, setValue] = useState({
@@ -36,8 +38,6 @@ const Register = () => {
       setFormError("Passwords do not match");
       return;
     }
-    setIsLoading(true);
-    console.log(isLoading);
     backendConnection
       .post("/auth/register", {
         name,
@@ -45,19 +45,19 @@ const Register = () => {
         password,
       })
       .then((data) => {
-        localStorage.setItem("temporalId", JSON.stringify(data.userId));
+        localStorage.setItem("temporalInfo", JSON.stringify(data.data));
+        setCheckInfo(true);
         navigate("/awaitEmailconfirm");
       })
       .catch((err) => {
         setFormError(
-          err.response.data.message === {}
-            ? "something went wrong"
+          err.response.data.message == {}
+            ? "Something went wrong"
             : err.response.data.message
         );
         console.log(err.response.data.message);
       });
   };
-  console.log(isLoading);
 
   return (
     <div className="register">
@@ -121,7 +121,7 @@ const Register = () => {
             </div>
             <p>{formError}</p>
             <p>{}</p>
-            <button disabled={true}>SIGN up</button>
+            <button>SIGN up</button>
           </form>
         </div>
         <div className="right">
@@ -129,7 +129,7 @@ const Register = () => {
             <img src="https://i.ibb.co/QMQS2W7/register.png" alt="" />
             <p>Already have an account?</p>
           </div>
-          <button disabled={true}>
+          <button>
             <Link to="/login">Sign in</Link>
           </button>
         </div>

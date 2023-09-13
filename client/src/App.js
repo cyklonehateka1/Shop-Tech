@@ -20,8 +20,15 @@ import Orders from "./admin/pages/AdminOrders";
 import Products from "./pages/Products";
 import ConfirmEmail from "./pages/ConfirmEmail";
 import HubtelTest from "./pages/HubtelTest";
+import AdminDashboard from "./admin/pages/AdminDashboard";
+
+import { AccessAwaitEmailContext } from "./context/accessAwaitEmailContext";
+import { useContext } from "react";
 function App() {
   const { currentUser } = useSelector((state) => state.user);
+  const { checkInfo } = useContext(AccessAwaitEmailContext);
+  const accessAwaitEmail =
+    currentUser || localStorage.getItem("temporalInfo") !== null;
   return (
     <div className="App">
       <Router>
@@ -31,7 +38,16 @@ function App() {
           <Route path="/products" element={<Products />} />
           <Route path="/product/:id" element={<Product />} />
           <Route path="/checkout" element={<Checkout />} />
-          <Route path="/awaitEmailconfirm" element={<AwaitEmailConfirm />} />
+          <Route
+            path="/awaitEmailconfirm"
+            element={
+              accessAwaitEmail ? (
+                <AwaitEmailConfirm />
+              ) : (
+                <Navigate to="/login" />
+              )
+            }
+          />
           <Route path="/register" element={<Register />} />
           <Route
             path="/login"
@@ -43,6 +59,7 @@ function App() {
           />
           <Route path="/forgotpassword" element={<ForgotPassword />} />
           <Route path="/admin/products" element={<AdminProducts />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="/admin/addproduct" element={<AdminAddProduct />} />
           <Route path="/admin/orders" element={<Orders />} />
           <Route path="/hubtel" element={<HubtelTest />} />

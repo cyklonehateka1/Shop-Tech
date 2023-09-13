@@ -9,8 +9,10 @@ import {
   loginSuccess,
 } from "../redux/slices/userSlice";
 import { backendConnection } from "../utils/axiosConnection";
+import cartSlice from "../redux/slices/cartSlice";
 
 const Login = () => {
+  const { userCart } = useSelector(cartSlice);
   const [inputValue, setInputValue] = useState({
     email: "",
     password: "",

@@ -1,7 +1,14 @@
 import React from "react";
 import "../styles/pages/awaitEmail.css";
+import { backendConnection } from "../utils/axiosConnection";
 
 const AwaitEmailConfirm = () => {
+  const temporalInfo = JSON.parse(localStorage.getItem("temporalInfo"));
+  const resendHandler = () => {
+    const resend = backendConnection.post(
+      `/auth/resendconfirmationemail/${temporalInfo.userId}`
+    );
+  };
   return (
     <div className="awaitEmailConfirm">
       <div className="awaitConfirmCont">
@@ -14,14 +21,17 @@ const AwaitEmailConfirm = () => {
         <div className="bottom">
           <h3>Email Confirmation</h3>
           <p>
-            We have sent a confirmation email to <span>example@mail.com</span>
+            We have sent a confirmation email to{" "}
+            <span>
+              {temporalInfo ? temporalInfo.email : "example@mail.com"}
+            </span>
             {". "}
             follow the link provided to complete your registration.
           </p>
           <hr />
           <div>
             <p>
-              Didn't get the mail? <span>Resend</span>
+              Didn't get the mail? <span onClick={resendHandler}>Resend</span>
             </p>
           </div>
         </div>

@@ -5,6 +5,7 @@ const cors = require("cors");
 const authRoutes = require("./routes/authRoutes.js");
 const productRoutes = require("./routes/productRoutes.js");
 const cartRoutes = require("./routes/cartRoutes.js");
+const orderRoutes = require("./routes/orderRoutes.js");
 const paymentRoutes = require("./routes/paymentRoutes.js");
 const hubtel = require("./routes/hubtel.js");
 const cookieParser = require("cookie-parser");
@@ -38,6 +39,7 @@ app.use("/api/products", productRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/payment", paymentRoutes);
 app.use("/api/hubtel", hubtel);
+app.use("/api/orders", orderRoutes);
 
 app.use((err, req, res, next) => {
   const status = err.status || 500;

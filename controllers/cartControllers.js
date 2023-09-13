@@ -1,13 +1,12 @@
 const errorHandler = require("../middlewares/errorHandler.js");
 const CartSchema = require("../models/Cart.js");
 
-const createCart = async (req, res, next) => {
+const getUserCart = async (req, res, next) => {
   try {
     let cart = await CartSchema.findOne({ user: req.params.userId });
-    if (cart) return errorHandler(400, "User already has a cart");
-
-    cart = new CartSchema({ user: req.params.userId });
-    await cart.save();
+    if (!cart) return next(errorHandler(400, "Cart not found"));
+    res.status(200).json(cart);
+    console.log("object");
   } catch (error) {
     return next(error);
   }
@@ -26,6 +25,7 @@ const addToCart = async (req, res, next) => {
       cart.products.push({
         product: req.body.productId,
         quantity: req.body.quantity || 1,
+        color: req.body.color,
       });
     } else {
       cart.products[product].quantity += req.body.quantity || 1;
@@ -59,5 +59,5 @@ const removeFromCart = async (req, res, next) => {
 module.exports = {
   addToCart,
   removeFromCart,
-  createCart,
+  getUserCart,
 };

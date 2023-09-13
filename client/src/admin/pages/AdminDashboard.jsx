@@ -1,16 +1,18 @@
 import React from "react";
-import TopBar from "../components/TopBar";
+import TopBar from "../components/AdminTopBar";
+import Navbar from "../components/AdminNavbar";
 import "../styles/adminDashboard.css";
-import StatsWidget from "../components/StatsWidget";
-import Charts from "../components/Charts";
-import Reviews from "../components/Reviews";
-import Table from "../components/Table";
-import TopProduct from "../components/TopProduct";
+import StatsWidget from "../components/AdminStatsWidget";
+import Charts from "../components/AdminCharts";
+import Reviews from "../components/AdminReviews";
+import Table from "../components/AdminTable";
+import TopProduct from "../components/AdminTopProduct";
 import { tableRows } from "../utils/data";
 import { tableColumns } from "../utils/data";
 const Dashboard = () => {
   return (
     <div className="dashboard">
+      <Navbar />
       <div className="dashboardCont">
         <TopBar />
         <div className="statsWidgetCont">

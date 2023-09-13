@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  products: [],
-  quantity: 0,
-  total: 0,
+  cart: JSON.parse(localStorage.getItem("clientCart")),
+  isLoading: false,
+  failure: false,
+  success: false,
 };
 
 const cartSlice = createSlice({
@@ -11,28 +12,29 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addTocart: (state, action) => {
-      const itemIndex = state.products.findIndex(
+      const itemIndex = state.cart.products.findIndex(
         (item) => item.product._id === action.payload.product._id
       );
       if (itemIndex === -1) {
-        state.products.push(action.payload);
-        state.quantity += action.payload.quantity;
-        state.total += action.payload.product.price * action.payload.quantity;
+        state.cart.products.push(action.payload);
+        state.cart.quantity += action.payload.quantity;
+        state.cart.total +=
+          action.payload.product.price * action.payload.quantity;
       } else {
-        if (state.products[itemIndex].quantity > action.payload.quantity) {
+        if (state.cart.products[itemIndex].quantity > action.payload.quantity) {
           const addedProd =
-            state.products[itemIndex].quantity - action.payload.quantity;
-          state.total -= addedProd * action.payload.product.price;
-          state.quantity -= addedProd;
-          state.products[itemIndex].quantity = action.payload.quantity;
+            state.cart.products[itemIndex].quantity - action.payload.quantity;
+          state.cart.total -= addedProd * action.payload.product.price;
+          state.cart.quantity -= addedProd;
+          state.cart.products[itemIndex].quantity = action.payload.quantity;
         } else if (
-          state.products[itemIndex].quantity < action.payload.quantity
+          state.cart.products[itemIndex].quantity < action.payload.quantity
         ) {
           const addedProd =
-            action.payload.quantity - state.products[itemIndex].quantity;
-          state.total += addedProd * action.payload.price;
-          state.quantity += addedProd;
-          state.products[itemIndex].quantity = action.payload.quantity;
+            action.payload.quantity - state.cart.products[itemIndex].quantity;
+          state.cart.total += addedProd * action.payload.price;
+          state.cart.quantity += addedProd;
+          state.cart.products[itemIndex].quantity = action.payload.quantity;
         }
       }
     },

@@ -27,50 +27,50 @@ const Navbar = () => {
               <div>
                 <AiOutlineDashboard />
               </div>
-              <Link to="/"> Dashboard</Link>
+              <Link to="/admin/dashboard"> Dashboard</Link>
             </li>
             <li>
               <div>
                 <BsHandbag />
               </div>
-              <Link to="/products">All Products</Link>
+              <Link to="/admin/products">All Products</Link>
             </li>
 
             <li>
               <div>
                 <HiOutlineViewGridAdd />
               </div>
-              <Link to="/addproduct">Add Product</Link>
+              <Link to="/admin/addproduct">Add Product</Link>
             </li>
             <li>
               <div>
                 <TfiShoppingCartFull />
               </div>
-              <Link to="/orders">Orders</Link>
+              <Link to="/admin/orders">Orders</Link>
             </li>
             <li>
               <div>
                 <RiCoupon3Line />
               </div>
-              <Link to="/coupons">Coupons</Link>
+              <Link to="/admin/coupons">Coupons</Link>
             </li>
             <li>
               <div>
                 <FiUsers />
               </div>
-              <Link to="/">Customers</Link>
+              <Link to="/admin/customers">Customers</Link>
             </li>
             <li>
               <div>
                 <TfiStatsUp />
               </div>
-              <Link to="/">Analytics</Link>
+              <Link to="/admin/analytics">Analytics</Link>
             </li>
             <li>
               <div>
                 <AiOutlineMessage />
               </div>
-              <Link to="/messages">
+              <Link to="/admin/messages">
                 <Badge color="warning" variant="dot">
                   Messages
                 </Badge>

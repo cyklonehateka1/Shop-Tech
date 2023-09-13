@@ -7,7 +7,7 @@ import "../styles/pages/product.css";
 import { useLocation } from "react-router-dom";
 import { backendConnection } from "../utils/axiosConnection";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addTocart } from "../redux/slices/cartSlice";
 
 const Product = () => {
@@ -17,6 +17,7 @@ const Product = () => {
 
   const dispatch = useDispatch();
   const location = useLocation();
+  const { cart } = useSelector((state) => state.cart);
 
   const id = location.pathname.split("/")[2];
 
@@ -50,7 +51,18 @@ const Product = () => {
     color,
   };
 
-  const addProductHandler = () => {
+  const addProductHandler = async () => {
+    try {
+      const addProductToCart = await backendConnection.post(
+        "/cart/addproduct",
+        {
+          productId: id,
+          quantity,
+          color: product.color[0],
+        }
+      );
+      localStorage.setItem("clientCart", cart);
+    } catch (error) {}
     dispatch(addTocart(payload));
   };
 

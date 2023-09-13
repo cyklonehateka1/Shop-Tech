@@ -35,9 +35,9 @@ const ConfirmEmail = () => {
     verifyAccount();
   }, [userId, token]);
   return (
-    <div className="awaitEmailCont">
+    <div className="confirmEmailCont">
       <div className="messageBox">
-        <div className="imgContainer">
+        <div className="imgCont">
           {state.success ? (
             <img
               src="https://images.vexels.com/media/users/3/157893/isolated/preview/d6f4e679138673eb3223362c70ecf7ce-check-mark-tick-icon.png"
@@ -57,7 +57,7 @@ const ConfirmEmail = () => {
             ? state.err
             : state.isLoading
             ? "...Loading"
-            : "Account verified successfully"}
+            : "Account verified successfully.. Click on the login butto below and let's go shopping at affordable prices"}
         </p>
         <button onClick={() => (window.location.href = "/login")}>Login</button>
       </div>

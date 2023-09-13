@@ -1,0 +1,50 @@
+.confirmEmailCont {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.671);
+}
+
+.confirmEmailCont>.messageBox {
+    width: 40%;
+    height: 60%;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+.confirmEmailCont>.messageBox>.imgCont {
+    width: 100%;
+    height: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.confirmEmailCont>.messageBox>.imgCont>img {
+    width: 30%;
+}
+
+.confirmEmailCont>.messageBox>p {
+    text-align: center;
+    font-size: 14px;
+    color: rgb(112, 112, 112);
+    margin-bottom: 20px;
+}
+
+.confirmEmailCont>.messageBox>button {
+    width: 30%;
+    height: 40px;
+    border: none;
+    background-color: #02A302;
+    color: white;
+    border-radius: 50px;
+    cursor: pointer;
+}

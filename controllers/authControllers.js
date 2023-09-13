@@ -4,6 +4,7 @@ const sendEmail = require("../utils/sendEmail.js");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const verifyEmailTemplate = require("../utils/emailTemplates/verifyEmailTemplate.js");
+const CartSchema = require("../models/Cart.js");
 
 const register = async (req, res, next) => {
   let { name, email, password } = req.body;
@@ -53,6 +54,7 @@ const register = async (req, res, next) => {
       message:
         "Please click on the link in the email sent to you to verify your account",
       userId: user._id,
+      email: user.email,
     });
   } catch (error) {
     return next(error);
@@ -82,6 +84,12 @@ const confirmAccount = async (req, res, next) => {
       },
       { new: true }
     );
+    const userCart = await userCart.findOne({ user: req.params.userId });
+    if (userCart) return next(errorHandler(409, "User already has a cart"));
+    const creatUserCart = new Cart({
+      user: req.params.userId,
+    });
+    await creatUserCart.save();
 
     res.status(200).json("Email verified successfully");
   } catch (error) {
