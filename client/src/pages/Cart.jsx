@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "../components/Navbar";
 import TopBar from "../components/TopBar";
 import Footer from "../components/Footer";
@@ -7,9 +7,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart } from "../redux/slices/cartSlice";
 import { useState } from "react";
 import { backendConnection } from "../utils/axiosConnection";
+import { getMethods, postMethods } from "../utils/protectedRoutes";
 
 const Cart = () => {
-  const { products, total } = useSelector((state) => state.cart);
+  const { cartState } = useSelector((state) => state.cart);
   const { currentUser } = useSelector((state) => state.user);
   const [paymentDetails, setPaymentDetails] = useState({
     email: currentUser ? currentUser.email : "",
@@ -19,9 +20,35 @@ const Cart = () => {
     cvc: "",
   });
   const dispatch = useDispatch();
+  const { total, products } = cartState;
 
-  const tax = Math.ceil((total * 10) / 100);
-  const shippingCost = Math.ceil((total * 15) / 100);
+  const removeItemHandler = (item) => {
+    const newList = [];
+    let quantity = 0;
+    let itemTotal = 0;
+    for (let i = 0; i < products.length; i++) {
+      if (products[i]._id !== item._id) {
+        newList.push(products[i]);
+      } else {
+        itemTotal = products[i].price * products[i].quantity;
+        quantity = products[i].quantity;
+      }
+    }
+    dispatch(
+      removeFromCart({
+        products: newList,
+        quantity,
+        total: itemTotal,
+      })
+    );
+  };
+
+  useEffect(() => {
+    localStorage.setItem("clientCart", JSON.stringify(cartState));
+  }, [cartState]);
+
+  const tax = Math.ceil((total * 15) / 100);
+  const shippingCost = Math.ceil((total * 8) / 100);
 
   const grandTotal = total + tax + shippingCost;
 
@@ -29,21 +56,33 @@ const Cart = () => {
     setPaymentDetails({ ...paymentDetails, [e.target.name]: e.target.value });
   };
 
+  const placeOrder = async (responseData) => {
+    try {
+      const res = await postMethods("/orders/new", {
+        products: cartState.products,
+        quantity: cartState.quantity,
+        total: cartState.total,
+      });
+      console.log(res.data);
+    } catch (error) {}
+  };
+
   const paymentHandler = (e) => {
     e.preventDefault();
     const handler = window.PaystackPop.setup({
       key: process.env.REACT_APP_PAYSTACK_PUBLIC_KEY,
       email: paymentDetails.email,
-      amount: grandTotal * 100, // the amount value is multiplied by 100 to convert to the lowest currency unit
-      currency: "GHS", // Use GHS for Ghana Cedis or USD for US Dollars
+      amount: grandTotal * 100,
+      currency: "GHS",
       channels: ["card"],
       callback: (response) => {
         const reference = response.reference;
-
-        backendConnection
-          .get(`/payment/verifytransaction?reference=${reference}`)
+        getMethods(`/payment/verifytransaction?reference=${reference}`)
           .then((res) => {
-            console.log(res.data);
+            console.log(res);
+            if (res.data && res.data.data.status === "success") {
+              placeOrder();
+            }
           })
           .catch((error) => {
             console.log(error);
@@ -74,22 +113,22 @@ const Cart = () => {
                     <div
                       className="itemCont"
                       key={index}
-                      onDoubleClick={(e) => dispatch(removeFromCart(item))}
+                      onDoubleClick={(e) => removeItemHandler(item)}
                     >
                       <div className="left">
                         <div className="imgCont">
                           <img
-                            src={"/uploads/" + item.product.profileImg}
+                            src={"/uploads/" + item.profileImg}
                             alt="Product"
                           />
                         </div>
                         <div className="center">
-                          <h5>{item.product.name}</h5>
+                          <h5>{item.name}</h5>
                           <span>Color: {item.color}</span>
                         </div>
                       </div>
                       <div className="right">
-                        <h5>${item.product.price}</h5>
+                        <h5>${item.price}</h5>
                         <span>Quantity: {item.quantity}</span>
                       </div>
                     </div>
@@ -246,7 +285,7 @@ const Cart = () => {
               <span>{total}</span>
             </div>
             <div className="row">
-              <p>Tax(10%)</p>
+              <p>Tax(12.5%)</p>
               <span>${tax}</span>
             </div>
             <div className="row">

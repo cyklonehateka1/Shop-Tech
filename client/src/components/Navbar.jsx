@@ -9,17 +9,34 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/components/navbar.css";
 import "../styles/components/navbarResponsive.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { backendConnection } from "../utils/axiosConnection";
 import Badge from "@mui/material/Badge";
 import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const [accountModalOpen, setAccoutModalOpen] = useState(false);
-  const { quantity } = useSelector((state) => state.cart);
+  const { quantity } = useSelector((state) => state.cart.cartState);
   const { currentUser } = useSelector((state) => state.user);
   const [searchedProducts, setSearchProducts] = useState(null);
   const [searchSuggestion, setSearchSuggestion] = useState(false);
+  const { cartState } = useSelector((state) => state.cart);
+
+  useEffect(() => {
+    const userCart = async () => {
+      const checkCart = localStorage.getItem("clientCart");
+      if (checkCart) return;
+      try {
+        const getRemoteCart = await backendConnection.get(
+          `/cart/getusercart/${currentUser}`
+        );
+        localStorage.setItem("clientCart", JSON.stringify(getRemoteCart.data));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    userCart();
+  }, [currentUser]);
 
   const accountModalHanlder = () => {
     if (accountModalOpen) {
@@ -77,7 +94,6 @@ const Navbar = () => {
   const handleProductClick = (item) => {
     navigate(`/product/${item._id}`);
   };
-
   return (
     <div className="navbar">
       <div className="navbarCont">

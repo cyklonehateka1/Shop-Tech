@@ -14,29 +14,6 @@ import { backendConnection } from "../utils/axiosConnection";
 import { useSelector } from "react-redux";
 
 const Home = () => {
-  const [remoteCart, setRemoteCart] = useState(null);
-  const { currentUser } = useSelector((state) => state.user);
-
-  useEffect(() => {
-    const getRemoteCart = async () => {
-      try {
-        const remoteCart = await backendConnection.get(
-          `/cart/getusercart/${currentUser}`
-        );
-        console.log(remoteCart.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getRemoteCart();
-    const setLocalCart = () => {
-      const checkCart = localStorage.getItem("clientCart");
-      if (!checkCart) {
-        localStorage.setItem("clientCart", remoteCart);
-      }
-    };
-    setLocalCart();
-  }, []);
   return (
     <div className="home">
       <TopBar />

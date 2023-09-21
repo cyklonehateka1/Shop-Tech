@@ -5,8 +5,22 @@ const OrderSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     required: true,
   },
-  cart: {
+  paymentId: {
     type: mongoose.Schema.Types.ObjectId,
+    required: true,
+  },
+  cart: {
+    products: {
+      type: Array,
+    },
+    quantity: {
+      type: Number,
+      required: true,
+    },
+    total: {
+      type: Number,
+      required: true,
+    },
   },
   address: {
     type: String,

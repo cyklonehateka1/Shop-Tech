@@ -18,7 +18,6 @@ const verifyPayment = async (req, res, next) => {
 
   try {
     const verify = await axios.get(url, options);
-    console.log(verify.data);
     res.status(200).json(verify.data);
   } catch (error) {
     return next(error);

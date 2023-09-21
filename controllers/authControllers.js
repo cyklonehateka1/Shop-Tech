@@ -84,10 +84,12 @@ const confirmAccount = async (req, res, next) => {
       },
       { new: true }
     );
-    const userCart = await userCart.findOne({ user: req.params.userId });
+    const userCart = await CartSchema.findOne({ user: req.params.userId });
     if (userCart) return next(errorHandler(409, "User already has a cart"));
-    const creatUserCart = new Cart({
+    const creatUserCart = new CartSchema({
       user: req.params.userId,
+      quantity: 0,
+      total: 0,
     });
     await creatUserCart.save();
 
@@ -133,13 +135,16 @@ const login = async (req, res, next) => {
   if (!email || !password)
     return next(errorHandler(400, "All fields are required"));
 
-  if (email.trim() === "" || password.trim() === "")
+  if (email === "" || password.trim() === "")
     return next(errorHandler(400, "No field can be left blank"));
   try {
     const user = await UserSchema.findOne({ email });
     if (!user)
       return next(
-        errorHandler(404, "User not found, would you like to sign up instead?")
+        errorHandler(
+          404,
+          "Incorrect username or password, would you like to sign up instead?"
+        )
       );
 
     if (user.fromGoogle)
@@ -158,7 +163,7 @@ const login = async (req, res, next) => {
 
     const { _id, ...others } = user._doc;
 
-    res.cookie("access_token", accessToken).status(200).json(_id);
+    res.status(200).json({ id: _id, accessToken });
   } catch (error) {
     return next(error);
   }

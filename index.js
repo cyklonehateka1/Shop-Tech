@@ -7,7 +7,6 @@ const productRoutes = require("./routes/productRoutes.js");
 const cartRoutes = require("./routes/cartRoutes.js");
 const orderRoutes = require("./routes/orderRoutes.js");
 const paymentRoutes = require("./routes/paymentRoutes.js");
-const hubtel = require("./routes/hubtel.js");
 const cookieParser = require("cookie-parser");
 const path = require("path");
 const multer = require("multer");
@@ -15,7 +14,8 @@ const multer = require("multer");
 dotenv.config();
 
 const app = express();
-app.use(cors({ origin: true, credentials: true }));
+
+app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
 
@@ -38,7 +38,6 @@ app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/payment", paymentRoutes);
-app.use("/api/hubtel", hubtel);
 app.use("/api/orders", orderRoutes);
 
 app.use((err, req, res, next) => {
@@ -55,6 +54,7 @@ app.use((err, req, res, next) => {
 app.use(express.static(path.join(__dirname, "./client/build")));
 
 app.get("*", (req, res) => {
+  req.headers.authorization.split(" ");
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 

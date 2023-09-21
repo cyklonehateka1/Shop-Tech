@@ -10,7 +10,7 @@ const {
 const router = express.Router();
 
 router.post("/createproduct", verifyToken, addProduct);
-router.get("/getone/:productId", getProduct);
+router.get("/getone/:productId", verifyToken, getProduct);
 router.get("/getproducts", getProducts);
 router.get("/updateone/:id", verifyToken, updateProduct);
 

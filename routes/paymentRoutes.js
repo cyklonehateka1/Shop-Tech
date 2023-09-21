@@ -4,6 +4,6 @@ const verifyPayment = require("../controllers/paymentControllers");
 
 const router = express.Router();
 
-router.get("/verifytransaction", verifyPayment);
+router.get("/verifytransaction", verifyToken, verifyPayment);
 
 module.exports = router;

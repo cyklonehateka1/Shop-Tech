@@ -36,28 +36,34 @@ const UserSchema = mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    cart: [
-      {
-        product: {
-          type: mongoose.Schema.Types.ObjectId,
-          required: true,
-        },
-        quantity: {
-          type: Number,
-          default: 1,
-        },
-        color: {
-          type: String,
-        },
+    associatedCard: {
+      cardNumber: {
+        type: Number,
+        required: true,
       },
-    ],
-    wishlist: [
-      {
-        product: {
-          type: mongoose.Schema.Types.ObjectId,
-        },
+      expDate: {
+        type: String,
+        required: true,
       },
-    ],
+      cvc: {
+        type: String,
+        required: true,
+      },
+    },
+    associatedAddress: {
+      country: {
+        type: String,
+        required: true,
+      },
+      cityOrTown: {
+        type: String,
+        required: true,
+      },
+      Street: {
+        type: String,
+        required: true,
+      },
+    },
   },
   { timestamps: true }
 );

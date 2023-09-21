@@ -8,16 +8,16 @@ import { useLocation } from "react-router-dom";
 import { backendConnection } from "../utils/axiosConnection";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addTocart } from "../redux/slices/cartSlice";
+import { addToCart } from "../redux/slices/cartSlice";
+import { getMethods } from "../utils/protectedRoutes";
 
 const Product = () => {
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [color, setColor] = useState(product && product.colors[0]);
-
+  const { cartState } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const location = useLocation();
-  const { cart } = useSelector((state) => state.cart);
 
   const id = location.pathname.split("/")[2];
 
@@ -44,27 +44,65 @@ const Product = () => {
   const colorHandler = (e) => {
     setColor(e.target.id);
   };
-
-  const payload = {
-    product: product && product,
+  const itemToAdd = {
+    _id: product && product._id,
     quantity,
+    price: product && product.price,
+    profileImg: product && product.profileImg,
+    name: product && product.name,
     color,
   };
-
-  const addProductHandler = async () => {
-    try {
-      const addProductToCart = await backendConnection.post(
-        "/cart/addproduct",
-        {
-          productId: id,
+  const addProductHandler = () => {
+    const checkProduct = cartState.products.findIndex(
+      (item) => item._id === itemToAdd._id
+    );
+    if (checkProduct === -1) {
+      dispatch(
+        addToCart({
+          products: [...cartState.products, itemToAdd],
           quantity,
-          color: product.color[0],
-        }
+          total: itemToAdd.price * quantity,
+        })
       );
-      localStorage.setItem("clientCart", cart);
-    } catch (error) {}
-    dispatch(addTocart(payload));
+    } else if (cartState.products[checkProduct].quantity > itemToAdd.quantity) {
+      const newCart = [...cartState.products];
+      newCart[checkProduct] = {
+        ...newCart[checkProduct],
+        quantity: itemToAdd.quantity,
+      };
+      const newQuantity =
+        newCart[checkProduct].quantity -
+        cartState.products[checkProduct].quantity;
+
+      dispatch(
+        addToCart({
+          products: newCart,
+          quantity: newQuantity,
+          total: quantity * itemToAdd.price,
+        })
+      );
+    } else {
+      const newCart = [...cartState.products];
+      newCart[checkProduct] = {
+        ...newCart[checkProduct],
+        quantity: itemToAdd.quantity,
+      };
+      const newQuantity =
+        newCart[checkProduct].quantity -
+        cartState.products[checkProduct].quantity;
+      dispatch(
+        addToCart({
+          products: newCart,
+          quantity: newQuantity,
+          total: quantity * itemToAdd.price,
+        })
+      );
+    }
   };
+
+  useEffect(() => {
+    localStorage.setItem("clientCart", JSON.stringify(cartState));
+  }, [cartState]);
 
   return (
     <div className="productPage">

@@ -1,5 +1,6 @@
 const ProductSchema = require("../models/Product.js");
 const CartSchema = require("../models/Cart.js");
+const errorHandler = require("../middlewares/errorHandler.js");
 
 const addProduct = async (req, res, next) => {
   const { price, desc, name, profileImg } = req.body;

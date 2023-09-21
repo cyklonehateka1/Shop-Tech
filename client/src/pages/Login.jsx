@@ -9,10 +9,9 @@ import {
   loginSuccess,
 } from "../redux/slices/userSlice";
 import { backendConnection } from "../utils/axiosConnection";
-import cartSlice from "../redux/slices/cartSlice";
+import Cookies from "js-cookie";
 
 const Login = () => {
-  const { userCart } = useSelector(cartSlice);
   const [inputValue, setInputValue] = useState({
     email: "",
     password: "",
@@ -44,7 +43,8 @@ const Login = () => {
         credentials: "include",
       });
       dispatch(loginSuccess());
-      localStorage.setItem("clientId", JSON.stringify(res.data));
+      localStorage.setItem("clientId", JSON.stringify(res.data.id));
+      Cookies.set("access_token", res.data.accessToken, { secure: true });
       window.location.href = "/";
     } catch (error) {
       dispatch(
@@ -54,6 +54,8 @@ const Login = () => {
             : "Something went wrong"
         )
       );
+
+      console.log(error);
     }
   };
 

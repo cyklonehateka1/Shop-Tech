@@ -9,7 +9,7 @@ const {
 const router = express.Router();
 
 router.post("/addproduct/:userId", verifyToken, addToCart);
-router.get("/getusercart/:userId", getUserCart);
+router.get("/getusercart/:userId", verifyToken, getUserCart);
 router.post("/removeproduct/:userId", verifyToken, removeFromCart);
 
 module.exports = router;
