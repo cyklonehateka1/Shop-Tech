@@ -7,7 +7,7 @@ const config = {
   },
 };
 
-export const getMethods = async (path, setState) => {
+export const getMethods = async (path) => {
   try {
     const res = await backendConnection.get(path, config);
     return res;

@@ -7,6 +7,7 @@ const productRoutes = require("./routes/productRoutes.js");
 const cartRoutes = require("./routes/cartRoutes.js");
 const orderRoutes = require("./routes/orderRoutes.js");
 const paymentRoutes = require("./routes/paymentRoutes.js");
+const userRoutes = require("./routes/userRoutes.js");
 const cookieParser = require("cookie-parser");
 const path = require("path");
 const multer = require("multer");
@@ -39,6 +40,7 @@ app.use("/api/products", productRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/payment", paymentRoutes);
 app.use("/api/orders", orderRoutes);
+app.use("/api/users", userRoutes);
 
 app.use((err, req, res, next) => {
   const status = err.status || 500;

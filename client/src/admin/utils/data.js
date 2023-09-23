@@ -48,14 +48,10 @@ export const chartData = [
 export const tableColumns = [
   { field: "id", headerName: "ID", width: 70 },
   {
-    field: "customerName",
-    headerName: "Customer Name",
+    field: "customer",
+    headerName: "Customer",
     width: 130,
-    renderCell: (params) => (
-      <Avatar src="https://i.ibb.co/mymMxyv/download-2.png" />
-    ),
   },
-  // { field: "products", headerName: "Products", width: 230, type: "array" },/
   {
     field: "amount",
     headerName: "Amount",
@@ -66,6 +62,17 @@ export const tableColumns = [
     field: "address",
     headerName: "Address",
     type: "number",
+    width: 90,
+  },
+  {
+    field: "products",
+    headerName: "Products",
+    width: 130,
+  },
+  {
+    field: "fulfilled",
+    headerName: "Fulfilled",
+    width: 90,
   },
 ];
 
@@ -108,13 +115,12 @@ export const tableRows = [
 ];
 
 export const ordersPageColumns = [
-  { field: "id", headerName: "ID", width: 70 },
+  { field: "id", headerName: "ID", width: 130 },
   {
-    field: "customerName",
-    headerName: "Customer Name",
+    field: "customer",
+    headerName: "Customer",
     width: 130,
   },
-  { field: "products", headerName: "Products", width: 230, type: "array" },
   {
     field: "amount",
     headerName: "Amount",
@@ -125,86 +131,17 @@ export const ordersPageColumns = [
     field: "address",
     headerName: "Address",
     type: "number",
-  },
-];
-
-export const ordersPageRows = [
-  {
-    id: 1,
-    customerName: "Snow",
-    products: ["Garri", "Condom", "Paracetamol"],
-    amount: 305,
-    address: "Accra, Airpot City",
+    width: 170,
   },
   {
-    id: 2,
-    customerName: "Eric Bosomtwe",
-    products: ["Beef", "Cheevon", "Mutton"],
-    amount: 705,
-    address: "Accra, East Legon",
+    field: "products",
+    headerName: "Products",
+    width: 350,
   },
   {
-    id: 3,
-    customerName: "Maik Young",
-    products: ["Selfie stick", "Turtle Neck", "Fake Chainz"],
-    amount: 25,
-    address: "Accra, Airpot City",
-  },
-  {
-    id: 4,
-    customerName: "Snow",
-    products: ["Garri", "Condom", "Paracetamol"],
-    amount: 305,
-    address: "Accra, Airpot City",
-  },
-  {
-    id: 5,
-    customerName: "Eric Bosomtwe",
-    products: ["Beef", "Cheevon", "Mutton"],
-    amount: 705,
-    address: "Accra, East Legon",
-  },
-  {
-    id: 6,
-    customerName: "Maik Young",
-    products: ["Selfie stick", "Turtle Neck", "Fake Chainz"],
-    amount: 25,
-    address: "Accra, Airpot City",
-  },
-  {
-    id: 7,
-    customerName: "Eric Bosomtwe",
-    products: ["Beef", "Cheevon", "Mutton"],
-    amount: 705,
-    address: "Accra, East Legon",
-  },
-  {
-    id: 8,
-    customerName: "Eric Bosomtwe",
-    products: ["Beef", "Cheevon", "Mutton"],
-    amount: 705,
-    address: "Accra, East Legon",
-  },
-  {
-    id: 9,
-    customerName: "Maik Young",
-    products: ["Selfie stick", "Turtle Neck", "Fake Chainz"],
-    amount: 25,
-    address: "Accra, Airpot City",
-  },
-  {
-    id: 10,
-    customerName: "Eric Bosomtwe",
-    products: ["Beef", "Cheevon", "Mutton"],
-    amount: 705,
-    address: "Accra, East Legon",
-  },
-  {
-    id: 11,
-    customerName: "Maik Young",
-    products: ["Selfie stick", "Turtle Neck", "Fake Chainz"],
-    amount: 25,
-    address: "Accra, Airpot City",
+    field: "fulfilled",
+    headerName: "Fulfilled",
+    width: 90,
   },
 ];
 

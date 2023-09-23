@@ -8,6 +8,7 @@ import { removeFromCart } from "../redux/slices/cartSlice";
 import { useState } from "react";
 import { backendConnection } from "../utils/axiosConnection";
 import { getMethods, postMethods } from "../utils/protectedRoutes";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const { cartState } = useSelector((state) => state.cart);
@@ -21,6 +22,7 @@ const Cart = () => {
   });
   const dispatch = useDispatch();
   const { total, products } = cartState;
+  const navigate = useNavigate();
 
   const removeItemHandler = (item) => {
     const newList = [];
@@ -68,6 +70,10 @@ const Cart = () => {
   };
 
   const paymentHandler = (e) => {
+    if (!currentUser) {
+      navigate("/login");
+      return;
+    }
     e.preventDefault();
     const handler = window.PaystackPop.setup({
       key: process.env.REACT_APP_PAYSTACK_PUBLIC_KEY,

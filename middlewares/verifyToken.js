@@ -3,7 +3,6 @@ const errorHandler = require("./errorHandler.js");
 
 const verifyToken = (req, res, next) => {
   let token = req.headers.authorization;
-  console.log(token);
 
   if (!token) return next(errorHandler(401, "You're not authenticated"));
   if (token.startsWith("Bearer")) {

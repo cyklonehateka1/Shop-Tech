@@ -1,5 +1,6 @@
 import { AiOutlineHeart, AiFillStar } from "react-icons/ai";
 import "../styles/components/product.css";
+import "../styles/components/productResponsive.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../redux/slices/cartSlice";

@@ -1,14 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/adminOrder.css";
 import Table from "./AdminTable";
 import { orderProductsCol, orderProductRow } from "../utils/data";
+import { getMethods } from "../../utils/protectedRoutes";
 
-const Order = () => {
-  const [modalIsOpen, setModalIsOpen] = useState(true);
+const Order = ({ orderData }) => {
+  const [modalIsOpen, setModalIsOpen] = useState(orderData.state);
   const modalHandler = (e) => {
     if (e.target.closest(".orderCont")) return;
     setModalIsOpen(false);
   };
+
+  useEffect(() => {
+    const getUserData = async () => {
+      const res = await getMethods(`/users/getuser/${orderData.row.customer}`);
+    };
+  });
   return (
     <>
       {modalIsOpen && (

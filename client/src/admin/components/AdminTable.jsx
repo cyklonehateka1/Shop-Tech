@@ -2,7 +2,10 @@ import React from "react";
 import "../styles/adminTable.css";
 import { DataGrid } from "@mui/x-data-grid";
 
-const Table = ({ rows, columns, pagination, pageSize }) => {
+const Table = ({ rows, columns, pagination, pageSize, rowClickData }) => {
+  const rowClickHandler = (e) => {
+    rowClickData(e);
+  };
   return (
     <div className="adminTable">
       <div className="tableCont">
@@ -11,7 +14,7 @@ const Table = ({ rows, columns, pagination, pageSize }) => {
           columns={columns}
           pageSize={pageSize}
           rowsPerPageOptions={[pagination]}
-          checkboxSelection
+          onRowClick={rowClickHandler}
         />
       </div>
     </div>

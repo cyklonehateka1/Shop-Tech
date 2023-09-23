@@ -5,6 +5,7 @@ import {
   AiFillLinkedin,
 } from "react-icons/ai";
 import "../styles/components/footer.css";
+import "../styles/components/footerResponsive.css";
 
 const Footer = () => {
   return (

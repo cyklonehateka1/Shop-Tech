@@ -20,6 +20,69 @@ const newOrder = async (req, res, next) => {
   }
 };
 
+const getOrders = async (req, res, next) => {
+  try {
+    if (!req.user.id)
+      return next(errorHandler(400, "You are not authenticated"));
+    if (req.user.accType !== "admin")
+      return next(errorHandler(403, "You are not authorized"));
+
+    const orders = await OrderSchema.find();
+    if (!orders || orders.length === 0)
+      return next(errorHandler(404, "No order made"));
+
+    res.status(200).json(orders);
+  } catch (error) {
+    return next(error);
+  }
+};
+
+const getOrder = async (req, res, next) => {
+  const id = req.query.id;
+  let order;
+  try {
+    if (rreq.user.accType === "admin") {
+      order = await OrderSchema.findById(id);
+    } else {
+      order = await OrderSchema.findOne({ customer: req.user.id, _id: id });
+    }
+
+    if (!order) return next(errorHandler(404, "Order not found"));
+    res.status(200).json(order);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const getUnfulfilledOrders = async (req, res, next) => {
+  let orders;
+  try {
+    if (req.user.accType !== "admin") return next(errorHandler);
+    orders = await OrderSchema.find({ orderFulfilled: false });
+    if (!orders || orders.length === 0)
+      return next(errorHandler(404, "No order found"));
+    res.status(200).json(orders);
+  } catch (error) {
+    next(error);
+  }
+};
+const getfulfilledOrders = async (req, res, next) => {
+  let orders;
+  try {
+    if (req.user.accType !== "admin") return next(errorHandler);
+    orders = await OrderSchema.find({ orderFulfilled: true });
+    if (!orders || orders.length === 0)
+      return next(errorHandler(404, "No order found"));
+    res.status(200).json(orders);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   newOrder,
+  getOrder,
+  getOrders,
+  getUnfulfilledOrders,
+  getfulfilledOrders,
 };
