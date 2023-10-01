@@ -6,8 +6,6 @@ const verifyPayment = async (req, res, next) => {
   const reference = req.query.reference;
   const paystackSecretKey = process.env.PAYSTACK_SEC_KEY;
 
-  console.log("hell");
-
   const url = `https://api.paystack.co/transaction/verify/${reference}`;
 
   const options = {

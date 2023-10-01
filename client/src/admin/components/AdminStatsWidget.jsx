@@ -1,8 +1,12 @@
 import React from "react";
 import "../styles/adminStatsWidget.css";
-import { MdOutlineSell, MdOutlineKeyboardArrowUp } from "react-icons/md";
+import {
+  MdOutlineSell,
+  MdOutlineKeyboardArrowUp,
+  MdOutlineKeyboardArrowDown,
+} from "react-icons/md";
 
-const StatsWidget = () => {
+const StatsWidget = ({ title, amount, percentage, weekChange }) => {
   return (
     <div className="statsWidget">
       <div className="statsWidgetSubCont">
@@ -10,17 +14,18 @@ const StatsWidget = () => {
           <div>
             <MdOutlineSell />
           </div>
-          <span>Total Sales</span>
+          <span>{title}</span>
         </div>
-        <h4>$874,763.87</h4>
+        <h4>${amount}</h4>
         <div className="bottom">
           <div className="left">
             <div>
               <MdOutlineKeyboardArrowUp />
+              {/* <MdOutlineKeyboardArrowDown /> */}
             </div>
-            <span>34%</span>
+            <span>{percentage}%</span>
           </div>
-          <span>+18.4k this week</span>
+          <span>{weekChange} this week</span>
         </div>
       </div>
     </div>

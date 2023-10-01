@@ -57,6 +57,9 @@ const ProuctSchema = mongoose.Schema(
     about: {
       type: [String],
     },
+    quantitySold: {
+      type: Number,
+    },
   },
   { timestamps: true }
 );

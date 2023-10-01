@@ -1,5 +1,6 @@
 const errorHandler = require("../middlewares/errorHandler.js");
 const OrderSchema = require("../models/Order.js");
+const SaleSchema = require("../models/Sale.js");
 
 const newOrder = async (req, res, next) => {
   const { quantity, products, total, address } = req.body;
@@ -13,7 +14,9 @@ const newOrder = async (req, res, next) => {
     if (!req.user.id)
       return next(errorHandler(402, "You are not authenticated"));
     const order = new OrderSchema(details);
+    console.log("hell");
     await order.save();
+
     res.status(201).json("Order placed successfully");
   } catch (error) {
     return next(error);
@@ -69,7 +72,8 @@ const getUnfulfilledOrders = async (req, res, next) => {
 const getfulfilledOrders = async (req, res, next) => {
   let orders;
   try {
-    if (req.user.accType !== "admin") return next(errorHandler);
+    if (req.user.accType !== "admin")
+      return next(errorHandler(400, "You're not authorized"));
     orders = await OrderSchema.find({ orderFulfilled: true });
     if (!orders || orders.length === 0)
       return next(errorHandler(404, "No order found"));
@@ -79,10 +83,37 @@ const getfulfilledOrders = async (req, res, next) => {
   }
 };
 
+const fulfillAnOrder = async (req, res, next) => {
+  let fulfilledOrder;
+  try {
+    if (req.user.accType !== "admin")
+      return next(errorHandler(400, "You're not authorized"));
+    fulfilledOrder = await OrderSchema.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: { orderFulfilled: true },
+      },
+      { new: true }
+    );
+    if (!fulfilledOrder) return next(errorHandler(404, "Cant find Order"));
+    const newSale = await new SaleSchema({
+      ...req.body,
+      order: req.params.id,
+    }).save();
+    res.status(200).json({
+      fulfilledOrder,
+      newSale,
+    });
+  } catch (error) {
+    next(errorHandler);
+  }
+};
+
 module.exports = {
   newOrder,
   getOrder,
   getOrders,
   getUnfulfilledOrders,
   getfulfilledOrders,
+  fulfillAnOrder,
 };

@@ -23,7 +23,7 @@ const Products = () => {
               model: product.model,
               price: product.price,
               quantity: product.quantity,
-              colors: JSON.stringify(product.colors),
+              colors: product.colors,
               onDiscount: product.onDiscount,
             };
           })
@@ -36,7 +36,10 @@ const Products = () => {
 
     //
   }, []);
-  console.log(productsData);
+  const date = new Date();
+  const lastMonth = new Date(date.setMonth(date.getMonth() - 1));
+  // console.log(date.getMonth());
+  console.log(new Date(new Date().setMonth(lastMonth.getMonth() - 1)));
 
   return (
     <div className="adminParent">

@@ -64,9 +64,12 @@ const Cart = () => {
         products: cartState.products,
         quantity: cartState.quantity,
         total: cartState.total,
+        shippingCost,
       });
       console.log(res.data);
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const paymentHandler = (e) => {

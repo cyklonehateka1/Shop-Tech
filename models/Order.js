@@ -6,9 +6,20 @@ const OrderSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       required: true,
     },
-    paymentId: {
-      type: mongoose.Schema.Types.ObjectId,
-      required: true,
+    payment: {
+      cardHolderName: {
+        type: String,
+      },
+
+      cardNumber: {
+        type: Number,
+      },
+      cardCvc: {
+        type: Number,
+      },
+      cardExpiryDate: {
+        type: String,
+      },
     },
     cart: {
       products: {

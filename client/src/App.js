@@ -9,7 +9,6 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Cart from "./pages/Cart";
-import Checkout from "./pages/Checkout";
 import Product from "./pages/Product";
 import AwaitEmailConfirm from "./pages/AwaitEmailConfirm";
 import ForgotPassword from "./pages/ForgotPassword";
@@ -23,6 +22,7 @@ import AdminDashboard from "./admin/pages/AdminDashboard";
 
 import { AccessAwaitEmailContext } from "./context/accessAwaitEmailContext";
 import { useContext } from "react";
+
 function App() {
   const { currentUser } = useSelector((state) => state.user);
   const { checkInfo } = useContext(AccessAwaitEmailContext);
@@ -36,7 +36,6 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/products" element={<Products />} />
           <Route path="/product/:id" element={<Product />} />
-          <Route path="/checkout" element={<Checkout />} />
           <Route
             path="/awaitEmailconfirm"
             element={

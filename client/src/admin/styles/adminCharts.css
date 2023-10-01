@@ -3,14 +3,21 @@
     padding: 15px 15px;
     border-radius: 5px;
     width: 74.7%;
+    height: 360px;
 }
 
 .chartsCont {
     width: 100%;
+    height: 100%;
 }
 
 .chartsCont>h5 {
     margin-bottom: 20px;
     font-size: 17px;
     color: #1d96e2;
+}
+
+.charts>.chartsCont>.diagramCont {
+    width: 100%;
+    height: 90%;
 }

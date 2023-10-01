@@ -151,23 +151,21 @@ export const orderProductsCol = [
     field: "img",
     headerName: "img",
     width: 90,
-    renderCell: (params) => (
-      <Avatar src="https://i.ibb.co/mymMxyv/download-2.png" />
-    ),
+    renderCell: (params) => <Avatar src={`/uploads/${params.value}`} />,
   },
   {
     field: "productName",
     headerName: "Product Name",
-    width: 130,
+    width: 300,
   },
   {
     field: "quantity",
     headerName: "Qty",
     width: 90,
   },
-  // { field: "products", headerName: "Products", width: 230, type: "array" },/
+
   {
-    field: "Price",
+    field: "price",
     headerName: "Price",
     type: "number",
     width: 90,
@@ -176,11 +174,6 @@ export const orderProductsCol = [
   {
     field: "color",
     headerName: "Color",
-    width: 90,
-  },
-  {
-    field: "size",
-    headerName: "Size",
     width: 90,
   },
 ];
