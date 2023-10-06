@@ -93,3 +93,91 @@ export const brandsData = [
     id: "nokia",
   },
 ];
+
+export const catPageCatBar = [
+  {
+    id: "phones",
+    className: "phones",
+    text: "Phones",
+    img: "https://i.ibb.co/HqNPpMH/catphones.png",
+  },
+  {
+    id: "laptops",
+    className: "laptops",
+    text: "Laptops",
+    img: "https://i.ibb.co/71r57Wh/cat-Laptops.png",
+  },
+  {
+    id: "gaming",
+    className: "gaming",
+    text: "Gaming",
+    img: "https://i.ibb.co/Xb0QJkS/cat-Gaming.png",
+  },
+  {
+    id: "accessories",
+    className: "accessories",
+    text: "Accessories",
+    img: "https://i.ibb.co/PD0gwJk/headphones.png",
+  },
+  {
+    id: "monitors",
+    className: "monitors",
+    text: "TVs/Monitors",
+    img: "https://i.ibb.co/K94PghG/Adobe-Stock-1.png",
+  },
+  {
+    id: "desktops",
+    className: "desktops",
+    text: "Desktops",
+    img: "https://i.ibb.co/k5NrY7y/cat-Desktop.png",
+  },
+  {
+    id: "networking",
+    className: "networking",
+    text: "Networking",
+    img: "https://i.ibb.co/vB6q3bT/computer-98401-640.png",
+  },
+];
+
+export const catPageItems = [
+  {
+    itemName: "Keyboards",
+    image: "catKeyboard2.jpg",
+    id: 1,
+  },
+  {
+    itemName: "Mice",
+    image: "catMouse.jpg",
+    id: 2,
+  },
+  {
+    itemName: "Printers",
+    image: "printer.jpg",
+    id: 3,
+  },
+  {
+    itemName: "Headsets",
+    image: "catHeadsets.jpg",
+    id: 4,
+  },
+  {
+    itemName: "Bluetooth Speakers",
+    image: "bluetoothSpeaker1.jpg",
+    id: 5,
+  },
+  {
+    itemName: "Softwares",
+    image: "software.jpg",
+    id: 6,
+  },
+  {
+    itemName: "Smart Watches",
+    image: "smartWatch1.jpg",
+    id: 7,
+  },
+  {
+    itemName: "Virtual Reality Headsets",
+    image: "catVr.jpg",
+    id: 8,
+  },
+];

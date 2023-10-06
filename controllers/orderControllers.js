@@ -108,6 +108,16 @@ const fulfillAnOrder = async (req, res, next) => {
     next(errorHandler);
   }
 };
+const getTotalOrders = async (req, res, next) => {
+  if (req.user.accType !== "admin")
+    return next(errorHandler(400, "You're not authorized"));
+  try {
+    const totalOrders = await OrderSchema.countDocuments({}, { hint: "_id_" });
+    res.status(200).json(totalOrders);
+  } catch (error) {
+    return next(error);
+  }
+};
 
 module.exports = {
   newOrder,
@@ -116,4 +126,5 @@ module.exports = {
   getUnfulfilledOrders,
   getfulfilledOrders,
   fulfillAnOrder,
+  getTotalOrders,
 };

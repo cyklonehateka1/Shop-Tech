@@ -39,29 +39,23 @@ const UserSchema = mongoose.Schema(
     associatedCard: {
       cardNumber: {
         type: Number,
-        required: true,
       },
       expDate: {
         type: String,
-        required: true,
       },
       cvc: {
         type: String,
-        required: true,
       },
     },
     associatedAddress: {
       country: {
         type: String,
-        required: true,
       },
       cityOrTown: {
         type: String,
-        required: true,
       },
       Street: {
         type: String,
-        required: true,
       },
     },
   },

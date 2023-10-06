@@ -6,7 +6,7 @@ import {
   MdOutlineKeyboardArrowDown,
 } from "react-icons/md";
 
-const StatsWidget = ({ title, amount, percentage, weekChange }) => {
+const StatsWidget = ({ title, amount, percentage, weekChange, sign }) => {
   return (
     <div className="statsWidget">
       <div className="statsWidgetSubCont">
@@ -16,7 +16,10 @@ const StatsWidget = ({ title, amount, percentage, weekChange }) => {
           </div>
           <span>{title}</span>
         </div>
-        <h4>${amount}</h4>
+        <h4>
+          {sign}
+          {amount}
+        </h4>
         <div className="bottom">
           <div className="left">
             <div>

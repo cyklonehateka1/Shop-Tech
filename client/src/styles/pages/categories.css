@@ -1,0 +1,73 @@
+.catPage {
+    width: 100%;
+}
+
+.catPage>.catPageCont {
+    position: relative;
+    top: 18vh;
+    width: 100%;
+    padding: 0px 50px;
+}
+
+.catPage>.catPageCont>.categoriesBar {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+    background-image: linear-gradient(to right, #00000044,
+            rgba(0, 0, 0, 0.192)),
+        url(../../assets/images/diagonally-earphones.jpg);
+    background-position-y: bottom;
+    background-position-x: right;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.catPage>.catPageCont>.categoriesBar>div {
+    width: 10%;
+    cursor: pointer;
+    transition: 0.3s;
+    /* border: 1px solid red; */
+    margin: 0 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 170px;
+}
+
+
+
+.catPage>.catPageCont>.categoriesBar>div:hover {
+    transform: scale(1.1);
+}
+
+.catPage>.catPageCont>.categoriesBar>div>img {
+    width: 100%;
+}
+
+.catPage>.catPageCont>.categoriesBar>.phones>img {
+    width: 60%;
+}
+
+.catPage>.catPageCont>.categoriesBar>.accessories>img {
+    width: 60%;
+}
+
+.catPage>.catPageCont>.categoriesBar>div>span {
+    color: white;
+    font-size: 15px;
+}
+
+.catPage>.catPageCont>.catsCont {
+    width: 100%;
+    padding: 20px 0;
+    background-color: rgb(255, 255, 255);
+}
+
+.catPage>.catPageCont>.catsCont>.firstCatsCont {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 24%);
+    justify-content: space-between;
+}

@@ -22,6 +22,7 @@ import AdminDashboard from "./admin/pages/AdminDashboard";
 
 import { AccessAwaitEmailContext } from "./context/accessAwaitEmailContext";
 import { useContext } from "react";
+import Categories from "./pages/Categories";
 
 function App() {
   const { currentUser } = useSelector((state) => state.user);
@@ -35,6 +36,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/products" element={<Products />} />
+          <Route path="/categories" element={<Categories />} />
           <Route path="/product/:id" element={<Product />} />
           <Route
             path="/awaitEmailconfirm"
