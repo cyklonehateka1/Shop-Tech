@@ -1,34 +1,18 @@
 const mongoose = require("mongoose");
 
+const subCatAndBrandSchema = new mongoose.Schema({
+  name: String,
+  img: String,
+});
+
 const CategorySchema = new mongoose.Schema(
   {
     categoryName: {
       type: String,
+      unique: true,
     },
-    subCategories: {
-      type: [
-        {
-          name: {
-            type: String,
-          },
-          img: {
-            type: String,
-          },
-        },
-      ],
-    },
-    associatedBrands: {
-      type: [
-        {
-          name: {
-            type: String,
-          },
-          img: {
-            type: String,
-          },
-        },
-      ],
-    },
+    subCategories: [subCatAndBrandSchema],
+    associatedBrands: [subCatAndBrandSchema],
   },
   { timestamps: true }
 );
