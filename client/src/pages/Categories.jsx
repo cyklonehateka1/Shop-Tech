@@ -8,6 +8,7 @@ import Products from "../components/Products";
 import { catPageItems } from "../utils/data";
 import { useEffect, useState } from "react";
 import { backendConnection } from "../utils/axiosConnection";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Categories = () => {
   const [categoryData, setCategoryData] = useState(null);
@@ -15,9 +16,13 @@ const Categories = () => {
     catName: "accessories",
     catType: "subCat",
   });
+  const location = useLocation();
+  const navigate = useNavigate();
   const getCatData = async (item) => {
     setSelectedCat({ catName: item.id, catType: item.catType });
+    navigate(`/categories?pCategory=${item.id}`);
   };
+
   useEffect(() => {
     const getCategoryData = async () => {
       try {
@@ -25,7 +30,6 @@ const Categories = () => {
           `/categories/get?catName=${selectedCat.catName}`
         );
         setCategoryData(res.data);
-        console.log(res.data);
       } catch (error) {
         console.log(error);
       }
@@ -53,7 +57,7 @@ const Categories = () => {
         </div>
         <div className="catsCont">
           <div className="firstCatsCont">
-            {categoryData && selectedCat.catType === "subCat"
+            {selectedCat.catType === "subCat"
               ? categoryData &&
                 categoryData.subCategories.map((item) => {
                   return (
@@ -61,10 +65,11 @@ const Categories = () => {
                       key={item._id}
                       itemName={item.name}
                       image={item.img}
+                      catType={selectedCat.catType}
                     />
                   );
                 })
-              : categoryData && selectedCat.catType === "brand"
+              : selectedCat.catType === "brand"
               ? categoryData &&
                 categoryData.associatedBrands.map((item) => {
                   return (
@@ -72,6 +77,7 @@ const Categories = () => {
                       key={item._id}
                       itemName={item.name}
                       image={item.img}
+                      catType={selectedCat.catType}
                     />
                   );
                 })

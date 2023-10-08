@@ -103,7 +103,7 @@ const Navbar = () => {
         <div className="navMenu">
           <ul>
             <li>
-              <Link to="/categories">Categories</Link>
+              <Link to="/categories?pCategory=accessories">Categories</Link>
             </li>
             <li>
               <Link to="/deals">Deals</Link>

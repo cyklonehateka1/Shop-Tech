@@ -8,7 +8,7 @@ import { AiOutlineDown } from "react-icons/ai";
 import LoadingWidget from "./LoadingWidget";
 
 const Products = ({ openModal }) => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState(null);
   const [error, setError] = useState(null);
   const [sort, setSort] = useState(null);
   const [min, setMin] = useState(0);
@@ -34,6 +34,7 @@ const Products = ({ openModal }) => {
   const location = useLocation();
 
   const query = location.search;
+  console.log(query);
 
   useEffect(() => {
     const getProducts = async () => {
@@ -85,19 +86,21 @@ const Products = ({ openModal }) => {
 
   useEffect(() => {
     const setProductsAfterFilter = () => {
-      let filteredProducts = products.filter((item) => {
-        if (discount === "Yes" && priceFilterActive) {
-          return item.price >= min && item.price <= max && item.onDiscount;
-        } else if (discount === "Yes" && !priceFilterActive) {
-          return item.onDiscount;
-        } else if (discount === "No" && priceFilterActive) {
-          return item.price >= min && item.price <= max && !item.onDiscount;
-        } else if (discount === "No" && !priceFilterActive) {
-          return !item.onDiscount;
-        } else {
-          return item.price >= min && item.price <= max;
-        }
-      });
+      let filteredProducts =
+        products &&
+        products.filter((item) => {
+          if (discount === "Yes" && priceFilterActive) {
+            return item.price >= min && item.price <= max && item.onDiscount;
+          } else if (discount === "Yes" && !priceFilterActive) {
+            return item.onDiscount;
+          } else if (discount === "No" && priceFilterActive) {
+            return item.price >= min && item.price <= max && !item.onDiscount;
+          } else if (discount === "No" && !priceFilterActive) {
+            return !item.onDiscount;
+          } else {
+            return item.price >= min && item.price <= max;
+          }
+        });
       setFilteredProducts(filteredProducts);
     };
     filtersActive && setProductsAfterFilter();
@@ -195,8 +198,9 @@ const Products = ({ openModal }) => {
             products.map((item, index) => {
               return <Product item={item} key={index} />;
             })
+          ) : products && products.length === 0 ? (
+            <h2>...Ooops! No Products found</h2>
           ) : (
-            // <h2>...Ooops! No Products found</h2>
             <LoadingWidget />
           )}
         </div>
