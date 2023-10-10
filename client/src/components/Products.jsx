@@ -33,8 +33,7 @@ const Products = ({ openModal }) => {
 
   const location = useLocation();
 
-  const query = location.search;
-  console.log(query);
+  let query = location.search;
 
   useEffect(() => {
     const getProducts = async () => {

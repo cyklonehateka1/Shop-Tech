@@ -1,0 +1,21 @@
+.halfPriceStore {
+    width: 100%;
+    padding: 20px 0;
+}
+
+.halfPriceStore>.halfPriceStoreCont {
+    width: 100%;
+}
+
+.halfPriceStore>.halfPriceStoreCont>h4 {
+    text-align: center;
+    font-size: 25px;
+    font-weight: 500;
+    letter-spacing: 0px;
+    color: rgb(70, 70, 70);
+}
+
+.halfPriceStore>.halfPriceStoreCont>p {
+    text-align: center;
+    color: rgb(100, 100, 100);
+}

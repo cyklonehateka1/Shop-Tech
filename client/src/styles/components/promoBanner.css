@@ -1,0 +1,82 @@
+.promotionBanner {
+    width: 100%;
+    height: 200px;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.promotionBannerLaptops {
+    background-image: linear-gradient(to top, #ffffff8e,
+            rgba(255, 255, 255, 0.568)), url(../../assets/images/blackbannerground1.jpg);
+}
+
+.promotionBannerGaming {
+    background-color: #dd455e69;
+}
+
+.promotionBannerCoupons {
+    background-color: rgba(255, 255, 0, 0.418);
+}
+
+
+
+
+.promotionBanner>.promoBannerCont {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    overflow: hidden;
+}
+
+.promotionBanner>.promoBannerCont>.left {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    justify-content: center;
+    padding-left: 20px;
+}
+
+.promotionBanner>.promoBannerCont>.left>h3 {
+    font-size: 35px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: white;
+    letter-spacing: -2px;
+    font-weight: 500;
+}
+
+.promotionBanner>.promoBannerCont>.left>h3>span {
+    font-weight: 400;
+    color: rgb(51, 51, 51);
+}
+
+.promotionBanner>.promoBannerCont>.left>span {
+    font-size: 13px;
+    color: rgb(54, 54, 54);
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.promotionBanner>.promoBannerCont>.left>button {
+    width: 120px;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    background-color: green;
+    color: white;
+    font-size: 15px;
+}
+
+.promotionBanner>.promoBannerCont>.right {
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.promotionBanner>.promoBannerCont>.right>img {
+    width: 90%;
+    position: relative;
+    top: 30px;
+}

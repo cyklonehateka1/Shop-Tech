@@ -19,10 +19,12 @@ import Orders from "./admin/pages/AdminOrders";
 import Products from "./pages/Products";
 import ConfirmEmail from "./pages/ConfirmEmail";
 import AdminDashboard from "./admin/pages/AdminDashboard";
+import AdminCoupons from "./admin/pages/AdminCoupons";
 
 import { AccessAwaitEmailContext } from "./context/accessAwaitEmailContext";
 import { useContext } from "react";
 import Categories from "./pages/Categories";
+import Deals from "./pages/Deals";
 
 function App() {
   const { currentUser } = useSelector((state) => state.user);
@@ -37,6 +39,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/products" element={<Products />} />
           <Route path="/categories" element={<Categories />} />
+          <Route path="/deals" element={<Deals />} />
           <Route path="/product/:id" element={<Product />} />
           <Route
             path="/awaitEmailconfirm"
@@ -62,6 +65,7 @@ function App() {
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="/admin/addproduct" element={<AdminAddProduct />} />
           <Route path="/admin/orders" element={<Orders />} />
+          <Route path="/admin/coupons" element={<AdminCoupons />} />
         </Routes>
       </Router>
     </div>

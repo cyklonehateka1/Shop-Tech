@@ -1,18 +1,20 @@
 import React from "react";
-import TopBar from "../components/TopBar";
+import TopBar from "../components/AdminTopBar";
 import "../styles/adminCoupons.css";
-import Table from "../components/Table";
+import Table from "../components/AdminTable";
 import { orderProductsCol, orderProductRow } from "../utils/data";
+import Navbar from "../components/AdminNavbar";
 
 const Coupons = () => {
   return (
-    <div className="coupons">
+    <div className="adminCoupons">
+      {/* <Navbar /> */}
       <div>
         <TopBar />
         <div className="addCoupon">
           <button>+</button>
         </div>
-        <div className="couponsCont">
+        <div className="adminCouponsCont">
           <h5>Coupons</h5>
           <div className="couponsTableCont">
             <Table

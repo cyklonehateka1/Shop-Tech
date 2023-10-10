@@ -1,14 +1,14 @@
 import Navbar from "../components/Navbar";
 import TopBar from "../components/TopBar";
 
-import { catData, catPageCatBar } from "../utils/data";
+import { catPageCatBar } from "../utils/data";
 import "../styles/pages/categories.css";
 import CategoriesPageCat from "../components/CategoriesPageCat";
 import Products from "../components/Products";
-import { catPageItems } from "../utils/data";
 import { useEffect, useState } from "react";
 import { backendConnection } from "../utils/axiosConnection";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Footer from "../components/Footer";
 
 const Categories = () => {
   const [categoryData, setCategoryData] = useState(null);
@@ -16,7 +16,6 @@ const Categories = () => {
     catName: "accessories",
     catType: "subCat",
   });
-  const location = useLocation();
   const navigate = useNavigate();
   const getCatData = async (item) => {
     setSelectedCat({ catName: item.id, catType: item.catType });
@@ -86,6 +85,7 @@ const Categories = () => {
           <Products />
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

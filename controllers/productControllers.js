@@ -47,11 +47,17 @@ const getProducts = async (req, res, next) => {
     let products;
 
     if (qPCategory) {
-      products = await ProductSchema.find({ parentCat: { $in: [qPCategory] } })
+      products = await ProductSchema.find({
+        parentCat: { $in: [qPCategory.toLowerCase()] },
+      })
         .limit(qLimit)
         .skip(qSkip);
     } else if (qSCategory) {
-      products = await ProductSchema.find({ subCat: { $in: [qSCategory] } })
+      products = await ProductSchema.find({
+        subCat: {
+          $in: [new RegExp(qSCategory, "i")],
+        },
+      })
         .limit(qLimit)
         .skip(qSkip);
     } else if (qBrand) {
