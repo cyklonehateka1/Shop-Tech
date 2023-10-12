@@ -42,57 +42,62 @@ const getProducts = async (req, res, next) => {
   const qBrand = req.query.brand;
   const qLimit = req.query.limit;
   const qSkip = req.query.skip;
+  const qDiscount = req.query.discount;
 
   try {
-    let products;
+    let queryCriteria = {};
 
     if (qPCategory) {
-      products = await ProductSchema.find({
-        parentCat: { $in: [qPCategory.toLowerCase()] },
-      })
-        .limit(qLimit)
-        .skip(qSkip);
+      queryCriteria.parentCat = { $in: [new RegExp(qPCategory, "i")] };
     } else if (qSCategory) {
-      products = await ProductSchema.find({
-        subCat: {
-          $in: [new RegExp(qSCategory, "i")],
-        },
-      })
-        .limit(qLimit)
-        .skip(qSkip);
+      queryCriteria.subCat = { $in: [new RegExp(qSCategory, "i")] };
     } else if (qBrand) {
-      products = await ProductSchema.find({ brand: qBrand })
-        .limit(qLimit)
-        .skip(qSkip);
-    } else if (qSearch) {
-      products = await ProductSchema.find({
-        $or: [
-          {
-            name: {
-              $regex: qSearch,
-              $options: "i",
-            },
-          },
-          {
-            model: {
-              $regex: qSearch,
-              $options: "i",
-            },
-          },
-          {
-            brand: {
-              $regex: qSearch,
-              $options: "i",
-            },
-          },
-        ],
-      })
-        .limit(qLimit)
-        .skip(qSkip);
-    } else {
-      products = await ProductSchema.find().limit();
+      queryCriteria.brand = qBrand;
     }
-    res.status(201).json(products);
+
+    if (qDiscount === "all") {
+      queryCriteria.onDiscount = true;
+    } else if (qDiscount) {
+      queryCriteria.onDiscount = true;
+      queryCriteria.discountPercentage = qDiscount;
+    }
+
+    if (qSearch) {
+      queryCriteria.$or = [
+        {
+          name: {
+            $regex: qSearch,
+            $options: "i",
+          },
+        },
+        {
+          model: {
+            $regex: qSearch,
+            $options: "i",
+          },
+        },
+        {
+          brand: {
+            $regex: qSearch,
+            $options: "i",
+          },
+        },
+      ];
+    }
+
+    let query = ProductSchema.find(queryCriteria);
+
+    if (qLimit) {
+      query = query.limit(parseInt(qLimit, 10));
+    }
+
+    if (qSkip) {
+      query = query.skip(parseInt(qSkip, 10));
+    }
+
+    const products = await query.exec();
+
+    res.status(200).json(products);
   } catch (error) {
     return next(error);
   }
@@ -117,9 +122,48 @@ const updateProduct = async (req, res, next) => {
   }
 };
 
+const createDiscount = async (req, res, next) => {
+  if (req.user.accType !== "admin")
+    return next(errorHandler(403, "You're not authorised"));
+  const calcPercentage = (productPrice, discountPrice) => {
+    const discountAmount = productPrice - discountPrice;
+
+    const percentage = (discountAmount / productPrice) * 100;
+    let rounded;
+    if (percentage - Math.floor(percentage) > 0.5) {
+      rounded = Math.ceil(percentage);
+    } else {
+      rounded = Math.floor(percentage);
+    }
+    return rounded;
+  };
+  try {
+    const product = await ProductSchema.findById(req.params.id);
+    if (!product) return next(errorHandler(404, "Product not found"));
+
+    const reqBody = {
+      discountPercentage: calcPercentage(product.price, req.body.discountPrice),
+      discountPrice: req.body.discountPrice,
+      onDiscount: true,
+    };
+
+    const discount = await ProductSchema.findByIdAndUpdate(
+      product._id,
+      {
+        $set: reqBody,
+      },
+      { new: true }
+    );
+    res.status(200).json(discount);
+  } catch (error) {
+    return next(error);
+  }
+};
+
 module.exports = {
   addProduct,
   getProduct,
   getProducts,
   updateProduct,
+  createDiscount,
 };

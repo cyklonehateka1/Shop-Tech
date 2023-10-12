@@ -1,9 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
+import "../styles/components/dealsCoupon.css";
+import { backendConnection } from "../utils/axiosConnection";
+import { getMethods } from "../utils/protectedRoutes";
 
-const Coupon = () => {
+const Coupon = ({ profileImg, title, id, expiresOn }) => {
+  const [couponSent, setCouponSent] = useState();
+  const handleClick = async () => {
+    try {
+      const res = await getMethods(`/coupons/code/${id}`);
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
-    <div className=" coupon">
-      <div className="couponCont"></div>
+    <div className="coupon">
+      <div className="couponCont">
+        <div className="imgCont">
+          <img src={`./couponsImages/${profileImg}`} alt="" />
+        </div>
+        <div className="bottom">
+          <p>{title}</p>
+          <button onClick={handleClick}>Get Coupon Code</button>
+          <span>expires on {expiresOn.split("T")[0]}</span>
+        </div>
+      </div>
     </div>
   );
 };

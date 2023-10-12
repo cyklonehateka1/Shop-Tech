@@ -7,7 +7,7 @@ import { backendConnection } from "../utils/axiosConnection";
 import { AiOutlineDown } from "react-icons/ai";
 import LoadingWidget from "./LoadingWidget";
 
-const Products = ({ openModal }) => {
+const Products = ({ openModal, limit }) => {
   const [products, setProducts] = useState(null);
   const [error, setError] = useState(null);
   const [sort, setSort] = useState(null);
@@ -203,6 +203,7 @@ const Products = ({ openModal }) => {
             <LoadingWidget />
           )}
         </div>
+        <div className="paginationCont"></div>
       </div>
     </div>
   );

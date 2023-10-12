@@ -1,0 +1,25 @@
+.coupons {
+    width: 100%;
+}
+
+.coupons>.couponsCont {
+    width: 100%;
+}
+
+.coupons>.couponsCont>h4 {
+    text-align: center;
+    font-weight: 500;
+    color: rgb(71, 71, 71);
+    margin-top: 20px;
+    font-size: 25px;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.coupons>.couponsCont>.couponsParentCont {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 24%);
+    justify-content: space-between;
+
+}

@@ -194,10 +194,14 @@ export const promoBannerData = [
     itemName: "Laptops",
     img: "https://i.ibb.co/sqhrHkf/promolaptop.png",
     heading: "High Performance Laptops",
+    type: "laptop",
+    discount: 20,
   },
   {
     itemName: "Gaming",
     img: "https://i.ibb.co/vdKmtWg/ps5rotated.png",
     heading: "Best Gaming Experience",
+    type: "gaming",
+    discount: 20,
   },
 ];

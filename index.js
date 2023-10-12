@@ -10,6 +10,7 @@ const paymentRoutes = require("./routes/paymentRoutes.js");
 const userRoutes = require("./routes/userRoutes.js");
 const saleRoutes = require("./routes/saleRoutes.js");
 const categoryRoutes = require("./routes/categoryRoutes.js");
+const couponRoutes = require("./routes/couponRoutes.js");
 const cookieParser = require("cookie-parser");
 const path = require("path");
 const multer = require("multer");
@@ -45,6 +46,7 @@ app.use("/api/orders", orderRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/sales", saleRoutes);
 app.use("/api/categories", categoryRoutes);
+app.use("/api/coupons", couponRoutes);
 
 app.use((err, req, res, next) => {
   const status = err.status || 500;

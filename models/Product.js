@@ -14,6 +14,9 @@ const ProuctSchema = mongoose.Schema(
     discountPrice: {
       type: Number,
     },
+    discountPercentage: {
+      type: Number,
+    },
     desc: {
       type: String,
       required: true,

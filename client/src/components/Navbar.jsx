@@ -20,7 +20,6 @@ const Navbar = () => {
   const { currentUser } = useSelector((state) => state.user);
   const [searchedProducts, setSearchProducts] = useState(null);
   const [searchSuggestion, setSearchSuggestion] = useState(false);
-  const { cartState } = useSelector((state) => state.cart);
 
   useEffect(() => {
     const userCart = async () => {
@@ -109,10 +108,7 @@ const Navbar = () => {
               <Link to="/deals">Deals</Link>
             </li>
             <li>
-              <Link to="/deals">What's New</Link>
-            </li>
-            <li>
-              <Link to="/deals">Delivery</Link>
+              <Link to="/delivery">Delivery</Link>
             </li>
           </ul>
         </div>

@@ -20,6 +20,7 @@ import Products from "./pages/Products";
 import ConfirmEmail from "./pages/ConfirmEmail";
 import AdminDashboard from "./admin/pages/AdminDashboard";
 import AdminCoupons from "./admin/pages/AdminCoupons";
+import Delivery from "./pages/Delivery";
 
 import { AccessAwaitEmailContext } from "./context/accessAwaitEmailContext";
 import { useContext } from "react";
@@ -41,6 +42,7 @@ function App() {
           <Route path="/categories" element={<Categories />} />
           <Route path="/deals" element={<Deals />} />
           <Route path="/product/:id" element={<Product />} />
+          <Route path="/delivery" element={<Delivery />} />
           <Route
             path="/awaitEmailconfirm"
             element={
