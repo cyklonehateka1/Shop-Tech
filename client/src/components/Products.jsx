@@ -6,8 +6,9 @@ import "../styles/components/productsResponsive.css";
 import { backendConnection } from "../utils/axiosConnection";
 import { AiOutlineDown } from "react-icons/ai";
 import LoadingWidget from "./LoadingWidget";
+import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 
-const Products = ({ openModal, limit }) => {
+const Products = ({ openModal, limit, query, headingText }) => {
   const [products, setProducts] = useState(null);
   const [error, setError] = useState(null);
   const [sort, setSort] = useState(null);
@@ -18,6 +19,7 @@ const Products = ({ openModal, limit }) => {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [priceModalOpen, setPriceModalOpen] = useState(false);
   const [filtersActive, setFiltersActive] = useState(false);
+  const [skip, setSkip] = useState(null);
 
   const priceModalHandler = (e) => {
     if (!priceModalOpen) {
@@ -33,14 +35,31 @@ const Products = ({ openModal, limit }) => {
 
   const location = useLocation();
 
-  let query = location.search;
+  const pageClickHandler = (e) => {
+    if (!isNaN(parseInt(e.target.innerText))) {
+      setSkip((parseInt(e.target.innerText) - 1) * 16);
+    }
+  };
+  const prevNextHandler = (e) => {
+    if (e === "next") {
+      setSkip(skip + 16);
+    } else if (skip && skip >= 16) {
+      setSkip(skip - 16);
+    }
+  };
+  // let query = location.search;
 
   useEffect(() => {
     const getProducts = async () => {
       let res;
       try {
-        res = await backendConnection.get(`/products/getproducts${query}`);
+        res = await backendConnection.get(
+          skip
+            ? `/products/getproducts?${query}&limit=16&skip=${skip}`
+            : `/products/getproducts?${query}&limit=16`
+        );
         setProducts(res.data);
+        console.log(res.data);
       } catch (error) {
         console.log(error);
         setError("Something went wrong");
@@ -48,7 +67,7 @@ const Products = ({ openModal, limit }) => {
     };
 
     getProducts();
-  }, [location.pathname, query]);
+  }, [location.pathname, query, limit, skip]);
 
   const applyPriceFilters = () => {
     if (min > max) {
@@ -187,8 +206,7 @@ const Products = ({ openModal, limit }) => {
             </div>
           </div>
         </div>
-        <h4>Products For You!</h4>
-        <div>
+        <div className="productsParent">
           {products && filtersActive ? (
             filteredProducts.map((item, index) => {
               return <Product item={item} key={index} />;
@@ -203,7 +221,30 @@ const Products = ({ openModal, limit }) => {
             <LoadingWidget />
           )}
         </div>
-        <div className="paginationCont"></div>
+        <div className="paginationCont">
+          <button
+            className="prev"
+            name="prevBtn"
+            onClick={() => prevNextHandler("prev")}
+          >
+            <BsArrowLeft />
+          </button>
+          <div className="pagesCount" onClick={pageClickHandler}>
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div className="ellipsis">...</div>
+            <div>8</div>
+            <div>9</div>
+          </div>
+          <button
+            className="next"
+            name="nextBtn"
+            onClick={() => prevNextHandler("next")}
+          >
+            <BsArrowRight />
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -146,49 +146,6 @@ export const catPageCatBar = [
   },
 ];
 
-// export const catPageItems = [
-//   {
-//     itemName: "Keyboards",
-//     image: "catKeyboard2.jpg",
-//     id: 1,
-//   },
-//   {
-//     itemName: "Mice",
-//     image: "catMouse.jpg",
-//     id: 2,
-//   },
-//   {
-//     itemName: "Printers",
-//     image: "printer.jpg",
-//     id: 3,
-//   },
-//   {
-//     itemName: "Headsets",
-//     image: "catHeadsets.jpg",
-//     id: 4,
-//   },
-//   {
-//     itemName: "Bluetooth Speakers",
-//     image: "bluetoothSpeaker1.jpg",
-//     id: 5,
-//   },
-//   {
-//     itemName: "Softwares",
-//     image: "software.jpg",
-//     id: 6,
-//   },
-//   {
-//     itemName: "Smart Watches",
-//     image: "smartWatch1.jpg",
-//     id: 7,
-//   },
-//   {
-//     itemName: "Virtual Reality Headsets",
-//     image: "catVr.jpg",
-//     id: 8,
-//   },
-// ];
-
 export const promoBannerData = [
   {
     itemName: "Laptops",

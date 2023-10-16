@@ -9,7 +9,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Cart from "./pages/Cart";
-import Product from "./pages/Product";
+import SingleProduct from "./pages/SingleProduct";
 import AwaitEmailConfirm from "./pages/AwaitEmailConfirm";
 import ForgotPassword from "./pages/ForgotPassword";
 import { useSelector } from "react-redux";
@@ -41,7 +41,7 @@ function App() {
           <Route path="/products" element={<Products />} />
           <Route path="/categories" element={<Categories />} />
           <Route path="/deals" element={<Deals />} />
-          <Route path="/product/:id" element={<Product />} />
+          <Route path="/product/:id" element={<SingleProduct />} />
           <Route path="/delivery" element={<Delivery />} />
           <Route
             path="/awaitEmailconfirm"

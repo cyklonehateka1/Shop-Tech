@@ -36,30 +36,41 @@ const getProduct = async (req, res, next) => {
 };
 
 const getProducts = async (req, res, next) => {
-  const qPCategory = req.query.pCategory;
-  const qSCategory = req.query.sCategory;
+  let qPCategory = req.query.pCategory;
+  let qSCategory = req.query.sCategory;
   const qSearch = req.query.search;
   const qBrand = req.query.brand;
   const qLimit = req.query.limit;
   const qSkip = req.query.skip;
   const qDiscount = req.query.discount;
+  const pId = req.query.pId;
 
   try {
     let queryCriteria = {};
 
     if (qPCategory) {
-      queryCriteria.parentCat = { $in: [new RegExp(qPCategory, "i")] };
+      const qPCategories = qPCategory.split(",");
+      queryCriteria.parentCat = {
+        $in: qPCategories.map((category) => new RegExp(category, "i")),
+      };
     } else if (qSCategory) {
-      queryCriteria.subCat = { $in: [new RegExp(qSCategory, "i")] };
+      const qSCategories = qSCategory.split(",");
+      queryCriteria.subCat = {
+        $in: qSCategories.map((category) => new RegExp(category, "i")),
+      };
+      //   qPCategory = qPCategory.split(",");
+      //   queryCriteria.parentCat = { $in: [new RegExp(qPCategory, "i")] };
+      // } else if (qSCategory) {
+      //   queryCriteria.subCat = { $in: [new RegExp(qSCategory, "i")] };
     } else if (qBrand) {
-      queryCriteria.brand = qBrand;
+      queryCriteria.brand = new RegExp(qBrand, "i");
     }
 
     if (qDiscount === "all") {
       queryCriteria.onDiscount = true;
     } else if (qDiscount) {
       queryCriteria.onDiscount = true;
-      queryCriteria.discountPercentage = qDiscount;
+      queryCriteria.discountPercentage = parseInt(qDiscount);
     }
 
     if (qSearch) {
@@ -95,8 +106,12 @@ const getProducts = async (req, res, next) => {
       query = query.skip(parseInt(qSkip, 10));
     }
 
-    const products = await query.exec();
-
+    let products = await query.exec();
+    if (pId) {
+      products = products.filter((product) => {
+        return product._id.toString() !== pId;
+      });
+    }
     res.status(200).json(products);
   } catch (error) {
     return next(error);

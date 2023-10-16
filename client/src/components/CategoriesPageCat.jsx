@@ -3,12 +3,19 @@ import "../styles/components/categoriesPageCat.css";
 import { backendConnection } from "../utils/axiosConnection";
 import { useNavigate } from "react-router-dom";
 
-const CategoriesPageCat = ({ itemName, image, catType }) => {
+const CategoriesPageCat = ({
+  itemName,
+  image,
+  catType,
+  setProductsQuery,
+  setSubCategory,
+}) => {
   const navigate = useNavigate();
   const handleClick = async () => {
     catType === "subCat"
-      ? navigate(`/products?sCategory=${itemName.toLowerCase()}`)
-      : navigate(`/products?brand=${itemName.toLowerCase()}`);
+      ? setProductsQuery(`sCategory=${itemName.toLowerCase()}`)
+      : setProductsQuery(`brand=${itemName.toLowerCase()}`);
+    setSubCategory({ itemName, catType });
   };
   return (
     <div className="categoriesPageCat">

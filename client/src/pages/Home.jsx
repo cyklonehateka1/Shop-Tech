@@ -9,9 +9,8 @@ import TopBar from "../components/TopBar";
 import "../styles/pages/home.css";
 import "../styles/pages/homeResponsive.css";
 import Footer from "../components/Footer";
-import { useState } from "react";
-import { backendConnection } from "../utils/axiosConnection";
-import { useSelector } from "react-redux";
+import Label from "../components/Label";
+import PromotionBanner from "../components/PromotionBanner";
 
 const Home = () => {
   return (
@@ -21,7 +20,19 @@ const Home = () => {
       <div className="homeMainCont">
         <Hero />
         <Categories />
+        <Label text={"Selected products for you"} />
+        <Products />
+        <Label text={"New Arrivals"} />
+        <Products />
+        <Label text={"Shop from our most popular brands"} />
         <Brands />
+        <Label text={"Gamer's inspiration"} />
+        <Products />
+        <PromotionBanner
+          item={"Laptops"}
+          img={"https://i.ibb.co/sqhrHkf/promolaptop.png"}
+          heading={"High Performance Laptops"}
+        />
         <Products />
       </div>
       <Footer />

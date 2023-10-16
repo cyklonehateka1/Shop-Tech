@@ -12,7 +12,6 @@ const Brands = (props) => {
   return (
     <div className="brands">
       <div className="brandsCont">
-        <h4>Popular Brands</h4>
         <div>
           {brandsData.map((item, index) => {
             return (

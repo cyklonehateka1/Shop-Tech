@@ -10,8 +10,9 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../redux/slices/cartSlice";
 import { getMethods } from "../utils/protectedRoutes";
+import Products from "../components/Products";
 
-const Product = () => {
+const SingleProduct = () => {
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [color, setColor] = useState(product && product.colors[0]);
@@ -99,7 +100,6 @@ const Product = () => {
       );
     }
   };
-
   useEffect(() => {
     localStorage.setItem("clientCart", JSON.stringify(cartState));
   }, [cartState]);
@@ -184,10 +184,16 @@ const Product = () => {
             </div>
           </div>
         </div>
+        {product && (
+          <Products
+            headingText={"Similar items"}
+            query={`sCategory=${product.subCat.toString()}&pId=${product._id}`}
+          />
+        )}
       </div>
       <Footer />
     </div>
   );
 };
 
-export default Product;
+export default SingleProduct;
