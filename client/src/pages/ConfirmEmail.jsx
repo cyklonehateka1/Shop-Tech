@@ -43,7 +43,7 @@ const ConfirmEmail = () => {
               src="https://images.vexels.com/media/users/3/157893/isolated/preview/d6f4e679138673eb3223362c70ecf7ce-check-mark-tick-icon.png"
               alt=""
             />
-          ) : !state.isLoading ? (
+          ) : state.err ? (
             <img
               src="https://cdn-icons-png.flaticon.com/512/6659/6659895.png"
               alt=""
@@ -59,7 +59,11 @@ const ConfirmEmail = () => {
             ? "...Loading"
             : "Account verified successfully.. Click on the login butto below and let's go shopping at affordable prices"}
         </p>
-        <button onClick={() => (window.location.href = "/login")}>Login</button>
+        {!state.err && (
+          <button onClick={() => (window.location.href = "/login")}>
+            Login
+          </button>
+        )}
       </div>
     </div>
   );

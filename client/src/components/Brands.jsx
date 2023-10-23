@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 const Brands = (props) => {
   const navigate = useNavigate();
   const sendBrand = (e) => {
-    navigate(`/products?brand=${e.target.id}`);
+    navigate(`/products/flex?brand=${e.target.id}`);
   };
 
   return (

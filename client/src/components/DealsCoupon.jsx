@@ -8,7 +8,6 @@ const Coupon = ({ profileImg, title, id, expiresOn }) => {
   const handleClick = async () => {
     try {
       const res = await getMethods(`/coupons/code/${id}`);
-      console.log(res);
     } catch (error) {
       console.log(error);
     }
@@ -16,9 +15,7 @@ const Coupon = ({ profileImg, title, id, expiresOn }) => {
   return (
     <div className="coupon">
       <div className="couponCont">
-        <div className="imgCont">
-          <img src={`./couponsImages/${profileImg}`} alt="" />
-        </div>
+        <div className="imgCont"></div>
         <div className="bottom">
           <p>{title}</p>
           <button onClick={handleClick}>Get Coupon Code</button>

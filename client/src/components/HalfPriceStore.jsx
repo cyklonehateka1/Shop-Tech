@@ -9,7 +9,7 @@ const HalfPriceStore = () => {
       <div className="halfPriceStoreCont">
         <h4>you pay half the cost, to be the boss.</h4>
         <p>Get 50% off selected Items</p>
-        <Products query={query} />
+        <Products query={query} display={"none"} />
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 const Categories = () => {
   const navigate = useNavigate();
   const sendCat = (e) => {
-    navigate(`/products?pCategory=${e.target.id}`);
+    navigate(`/products/flex?pCategory=${e.target.id}`);
   };
 
   return (

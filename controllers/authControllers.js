@@ -77,6 +77,15 @@ const confirmAccount = async (req, res, next) => {
       }
     );
 
+    const userCart = await CartSchema.findOne({ user: req.params.userId });
+    if (userCart)
+      return next(
+        errorHandler(
+          409,
+          "An error occured while verifying your account, please try again later"
+        )
+      );
+
     const verify = await UserSchema.findByIdAndUpdate(
       req.params.userId,
       {
@@ -84,8 +93,6 @@ const confirmAccount = async (req, res, next) => {
       },
       { new: true }
     );
-    const userCart = await CartSchema.findOne({ user: req.params.userId });
-    if (userCart) return next(errorHandler(409, "User already has a cart"));
     const creatUserCart = new CartSchema({
       user: req.params.userId,
       quantity: 0,
@@ -157,7 +164,12 @@ const login = async (req, res, next) => {
     if (!checkPassword) return next(errorHandler(400, "Wrong password"));
 
     const accessToken = jwt.sign(
-      { id: user._id, fromGoogle: user.fromGoogle, accType: user.accountType },
+      {
+        id: user._id,
+        fromGoogle: user.fromGoogle,
+        accType: user.accountType,
+        email: user.email,
+      },
       process.env.JWT_SECRET
     );
 

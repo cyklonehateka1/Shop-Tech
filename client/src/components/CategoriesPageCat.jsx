@@ -13,8 +13,8 @@ const CategoriesPageCat = ({
   const navigate = useNavigate();
   const handleClick = async () => {
     catType === "subCat"
-      ? setProductsQuery(`sCategory=${itemName.toLowerCase()}`)
-      : setProductsQuery(`brand=${itemName.toLowerCase()}`);
+      ? navigate(`/products/flex?sCategory=${itemName.toLowerCase()}`)
+      : navigate(`/products/flex?brand=${itemName.toLowerCase()}`);
     setSubCategory({ itemName, catType });
   };
   return (

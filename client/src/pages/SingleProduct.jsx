@@ -9,8 +9,8 @@ import { backendConnection } from "../utils/axiosConnection";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../redux/slices/cartSlice";
-import { getMethods } from "../utils/protectedRoutes";
 import Products from "../components/Products";
+import Label from "../components/Label";
 
 const SingleProduct = () => {
   const [product, setProduct] = useState(null);
@@ -184,8 +184,12 @@ const SingleProduct = () => {
             </div>
           </div>
         </div>
+        <div>
+          <Label text={"Similar items"} />
+        </div>
         {product && (
           <Products
+            display={"none"}
             headingText={"Similar items"}
             query={`sCategory=${product.subCat.toString()}&pId=${product._id}`}
           />

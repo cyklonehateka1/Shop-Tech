@@ -9,10 +9,11 @@ import { useEffect, useState } from "react";
 import { backendConnection } from "../utils/axiosConnection";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
+import Label from "../components/Label";
 
 const Categories = () => {
   const [categoryData, setCategoryData] = useState(null);
-  const [productsQuery, setProductsQuery] = useState("");
+  const [productsQuery, setProductsQuery] = useState("pCategory=phones");
   const [selectedCat, setSelectedCat] = useState({
     catName: "accessories",
     catType: "subCat",
@@ -24,6 +25,7 @@ const Categories = () => {
   const navigate = useNavigate();
   const getCatData = async (item) => {
     setSelectedCat({ catName: item.id, catType: item.catType });
+    setProductsQuery(`pCategory=${item.id.toLowerCase()}`);
     navigate(`/categories?pCategory=${item.id}`);
   };
 
@@ -88,21 +90,14 @@ const Categories = () => {
                       itemName={item.name}
                       image={item.img}
                       catType={selectedCat.catType}
-                      setProductsQuery={setProductsQuery}
                       setSubCategory={getSubCategory}
                     />
                   );
                 })
               : "No data found"}
           </div>
-          <Products
-            query={productsQuery}
-            headingText={`Shop from a wide range of ${
-              subCategory.itemName && subCategory.catType === "subCat"
-                ? subCategory.itemName
-                : subCategory.itemName + " " + "products"
-            }`}
-          />
+          <Label text={`Shop from a wide range of ${selectedCat.catName}`} />
+          <Products query={productsQuery} />
         </div>
       </div>
       <Footer />

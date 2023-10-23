@@ -44,6 +44,7 @@ const getProducts = async (req, res, next) => {
   const qSkip = req.query.skip;
   const qDiscount = req.query.discount;
   const pId = req.query.pId;
+  const qSort = req.query.sort;
 
   try {
     let queryCriteria = {};
@@ -53,17 +54,15 @@ const getProducts = async (req, res, next) => {
       queryCriteria.parentCat = {
         $in: qPCategories.map((category) => new RegExp(category, "i")),
       };
-    } else if (qSCategory) {
+    }
+    if (qBrand) {
+      queryCriteria.brand = new RegExp(qBrand, "i");
+    }
+    if (qSCategory) {
       const qSCategories = qSCategory.split(",");
       queryCriteria.subCat = {
         $in: qSCategories.map((category) => new RegExp(category, "i")),
       };
-      //   qPCategory = qPCategory.split(",");
-      //   queryCriteria.parentCat = { $in: [new RegExp(qPCategory, "i")] };
-      // } else if (qSCategory) {
-      //   queryCriteria.subCat = { $in: [new RegExp(qSCategory, "i")] };
-    } else if (qBrand) {
-      queryCriteria.brand = new RegExp(qBrand, "i");
     }
 
     if (qDiscount === "all") {
@@ -104,6 +103,10 @@ const getProducts = async (req, res, next) => {
 
     if (qSkip) {
       query = query.skip(parseInt(qSkip, 10));
+    }
+
+    if (qSort === "new") {
+      query = query.sort({ createdAt: -1 });
     }
 
     let products = await query.exec();

@@ -43,8 +43,11 @@ const Login = () => {
         credentials: "include",
       });
       dispatch(loginSuccess());
-      localStorage.setItem("clientId", JSON.stringify(res.data.id));
-      Cookies.set("access_token", res.data.accessToken, { secure: true });
+      // localStorage.setItem("clientId", JSON.stringify(res.data.id));
+      Cookies.set("access_token", res.data.accessToken, {
+        secure: true,
+        expires: 7,
+      });
       window.location.href = "/";
     } catch (error) {
       dispatch(

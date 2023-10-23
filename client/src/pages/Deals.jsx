@@ -21,6 +21,8 @@ const Deals = () => {
               img={item.img}
               heading={item.heading}
               key={item.itemName}
+              text={item.text}
+              link={`products/none?pCategory=${item.type}`}
             />
           );
         })}

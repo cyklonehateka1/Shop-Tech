@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import Product from "./Product";
 import "../styles/components/products.css";
@@ -8,33 +8,49 @@ import { AiOutlineDown } from "react-icons/ai";
 import LoadingWidget from "./LoadingWidget";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 
-const Products = ({ openModal, limit, query, headingText }) => {
+const Products = ({
+  openModal,
+  limit,
+  query,
+  headingText,
+  display,
+  paginationDisplay,
+}) => {
   const [products, setProducts] = useState(null);
   const [error, setError] = useState(null);
   const [sort, setSort] = useState(null);
-  const [min, setMin] = useState(0);
-  const [max, setMax] = useState(0);
+  const [inputPrice, setInputPrice] = useState({ min: 0, max: 0 });
   const [priceFilterActive, setPriceFilterActive] = useState(false);
-  const [discount, setDiscount] = useState("");
+  const [discount, setDiscount] = useState(null);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [priceModalOpen, setPriceModalOpen] = useState(false);
   const [filtersActive, setFiltersActive] = useState(false);
   const [skip, setSkip] = useState(null);
+  const [keyPressed, setKeyPressed] = useState(0);
 
-  const priceModalHandler = (e) => {
-    if (!priceModalOpen) {
-      setPriceModalOpen(true);
-    }
-  };
+  // Getting products
+  const productsCopy = useRef([]);
+  useEffect(() => {
+    const getProducts = async () => {
+      let res;
+      try {
+        res = await backendConnection.get(
+          skip
+            ? `/products/getproducts?${query}&limit=${limit}&skip=${skip}`
+            : `/products/getproducts?${query}&limit=${limit}`
+        );
+        setProducts(res.data);
+        productsCopy.current = [...res.data];
+      } catch (error) {
+        console.log(error);
+        setError("Something went wrong");
+      }
+    };
 
-  const modalCloseHandler = (e) => {
-    if (!e.target.closest(".priceFilter")) {
-      setPriceModalOpen(false);
-    }
-  };
+    getProducts();
+  }, [query, limit, skip]);
 
-  const location = useLocation();
-
+  // Pagination controll
   const pageClickHandler = (e) => {
     if (!isNaN(parseInt(e.target.innerText))) {
       setSkip((parseInt(e.target.innerText) - 1) * 16);
@@ -47,54 +63,56 @@ const Products = ({ openModal, limit, query, headingText }) => {
       setSkip(skip - 16);
     }
   };
-  // let query = location.search;
 
-  useEffect(() => {
-    const getProducts = async () => {
-      let res;
-      try {
-        res = await backendConnection.get(
-          skip
-            ? `/products/getproducts?${query}&limit=16&skip=${skip}`
-            : `/products/getproducts?${query}&limit=16`
-        );
-        setProducts(res.data);
-        console.log(res.data);
-      } catch (error) {
-        console.log(error);
-        setError("Something went wrong");
-      }
-    };
-
-    getProducts();
-  }, [location.pathname, query, limit, skip]);
-
-  const applyPriceFilters = () => {
-    if (min > max) {
-      const temp = min;
-
-      setMin(max);
-      setMax(temp);
-    }
-    if (min <= 0 && max <= 0) {
-      setPriceFilterActive(false);
-    } else {
-      setPriceFilterActive(true);
-      setFiltersActive(true);
-    }
-
-    if ((discount === "discount" || discount === "") && min <= 0 && max <= 0) {
-      setFiltersActive(false);
+  // Filter by price fliter and modal open and close controller
+  const priceModalHandler = (e) => {
+    if (!priceModalOpen) {
+      setPriceModalOpen(true);
     }
   };
 
-  const discountHandler = (e) => {
-    setDiscount(e.target.value);
+  const modalCloseHandler = (e) => {
+    if (!e.target.closest(".modal") && priceModalOpen) {
+      setPriceModalOpen(false);
+    }
+  };
 
-    if (e.target.value !== "discount" || priceFilterActive) {
+  const inputPriceHandler = (e) => {
+    setInputPrice({ ...inputPrice, [e.target.name]: e.target.value });
+  };
+
+  const { min, max } = inputPrice;
+
+  const applyPriceFilters = () => {
+    const newMin = parseFloat(min);
+    const newMax = parseFloat(max);
+    if (newMin > newMax) {
+      setError("Invalid price range");
+      return;
+    } else if (newMax > 0 && newMax >= newMin) {
+      setPriceFilterActive(true);
       setFiltersActive(true);
-    } else {
+    } else if (newMin === 0 && newMax === 0 && discount === null) {
+      setPriceFilterActive(false);
       setFiltersActive(false);
+    }
+    setKeyPressed(keyPressed + 1);
+    console.log(keyPressed);
+  };
+
+  // filter by discount
+  const discountHandler = (e) => {
+    if (e.target.value === "Yes") {
+      setDiscount(true);
+      setFiltersActive(true);
+    } else if (e.target.value === "No") {
+      setFiltersActive(true);
+      setDiscount(false);
+    } else if (!priceFilterActive) {
+      setDiscount(null);
+      filtersActive(false);
+    } else {
+      setDiscount(null);
     }
   };
 
@@ -103,26 +121,27 @@ const Products = ({ openModal, limit, query, headingText }) => {
   };
 
   useEffect(() => {
-    const setProductsAfterFilter = () => {
-      let filteredProducts =
-        products &&
-        products.filter((item) => {
-          if (discount === "Yes" && priceFilterActive) {
-            return item.price >= min && item.price <= max && item.onDiscount;
-          } else if (discount === "Yes" && !priceFilterActive) {
-            return item.onDiscount;
-          } else if (discount === "No" && priceFilterActive) {
-            return item.price >= min && item.price <= max && !item.onDiscount;
-          } else if (discount === "No" && !priceFilterActive) {
-            return !item.onDiscount;
-          } else {
-            return item.price >= min && item.price <= max;
-          }
-        });
-      setFilteredProducts(filteredProducts);
+    const newMin = parseFloat(min);
+    const newMax = parseFloat(max);
+
+    const filterParameters = (i) => {
+      if (priceFilterActive && discount) {
+        return i.price >= newMin && i.price <= newMax && i.onDiscount;
+      } else if (priceFilterActive && discount === false) {
+        return i.price >= newMin && i.price <= newMax && !i.onDiscount;
+      } else if (priceFilterActive && discount === null) {
+        return i.price >= newMin && i.price <= newMax;
+      } else if (!priceFilterActive && discount) {
+        return i.onDiscount;
+      } else if (!priceFilterActive && discount === false) {
+        return !i.onDiscount;
+      } else if (!filtersActive) {
+        return i;
+      }
     };
-    filtersActive && setProductsAfterFilter();
-  }, [products, discount, priceFilterActive, filtersActive, min, max]);
+    const filterProducts = productsCopy.current.filter(filterParameters);
+    setFilteredProducts(filterProducts);
+  }, [discount, filtersActive, priceFilterActive, keyPressed]);
 
   useEffect(() => {
     const filteredProductsCopy = [...filteredProducts];
@@ -146,7 +165,7 @@ const Products = ({ openModal, limit, query, headingText }) => {
   return (
     <div className="products" onClick={modalCloseHandler}>
       <div className="productsCont">
-        <div className="filterList">
+        <div className="filterList" style={{ display: `${display}` }}>
           <div className="filterListCont">
             <div
               className="priceFilter modalParent"
@@ -163,24 +182,18 @@ const Products = ({ openModal, limit, query, headingText }) => {
                   <input
                     type="number"
                     name="min"
-                    value={min}
                     placeholder="min"
-                    onChange={(e) => setMin(e.target.value)}
+                    value={min}
+                    onChange={inputPriceHandler}
                   />
                   <input
                     type="number"
                     name="max"
-                    value={max}
                     placeholder="max"
-                    onChange={(e) => setMax(e.target.value)}
+                    value={max}
+                    onChange={inputPriceHandler}
                   />
-                  <button
-                    onClick={{
-                      applyPriceFilters,
-                    }}
-                  >
-                    Apply
-                  </button>
+                  <button onClick={applyPriceFilters}>Apply</button>
                 </div>
               )}
             </div>
@@ -221,7 +234,7 @@ const Products = ({ openModal, limit, query, headingText }) => {
             <LoadingWidget />
           )}
         </div>
-        <div className="paginationCont">
+        <div className="paginationCont" style={{ display: paginationDisplay }}>
           <button
             className="prev"
             name="prevBtn"

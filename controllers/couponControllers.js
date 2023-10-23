@@ -21,10 +21,11 @@ const getCouponCode = async (req, res, next) => {
   try {
     const coupon = await CouponSchema.findById(req.params.id);
     if (!coupon) return next(errorHandler(404, "Coupon not found"));
-    const user = await UserSchema.findById(req.user.id);
-    console.log(user.email);
-    if (!user) return next(errorHandler(404, "user not found"));
-    sendEmail(user.email, `ShopTech ${coupon.title} coupon code`, coupon.code);
+    sendEmail(
+      req.user.email,
+      `ShopTech ${coupon.title} coupon code`,
+      coupon.code
+    );
     res
       .status(200)
       .json("Coupon sent to the email account associated to this account");

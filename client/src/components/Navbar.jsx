@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import { backendConnection } from "../utils/axiosConnection";
 import Badge from "@mui/material/Badge";
 import { useSelector } from "react-redux";
+import Cookies from "js-cookie";
 
 const Navbar = () => {
   const [accountModalOpen, setAccoutModalOpen] = useState(false);
@@ -54,7 +55,9 @@ const Navbar = () => {
         credentials: "include",
       });
       console.log(res.data);
-      localStorage.removeItem("clientId");
+      Cookies.remove("access_token");
+      // localStorage.removeItem("clientId");
+
       setAccoutModalOpen(false);
       window.location.href = "/";
     } catch (error) {

@@ -26,7 +26,7 @@ export const catData = [
   {
     id: "monitors",
     className: "monitors",
-    text: "TVs/Monitors",
+    text: "Monitors",
     bgImg: "../assets/images/Pixel7-6.jpg",
   },
   {
@@ -124,9 +124,9 @@ export const catPageCatBar = [
     catType: "subCat",
   },
   {
-    id: "monitors",
-    className: "monitors",
-    text: "TVs/Monitors",
+    id: "TV",
+    className: "tv",
+    text: "TV",
     img: "https://i.ibb.co/K94PghG/Adobe-Stock-1.png",
     catType: "subCat",
   },
@@ -151,8 +151,9 @@ export const promoBannerData = [
     itemName: "Laptops",
     img: "https://i.ibb.co/sqhrHkf/promolaptop.png",
     heading: "High Performance Laptops",
-    type: "laptop",
+    type: "laptops",
     discount: 20,
+    text: "Get 25% off on selected laptops",
   },
   {
     itemName: "Gaming",
@@ -160,5 +161,6 @@ export const promoBannerData = [
     heading: "Best Gaming Experience",
     type: "gaming",
     discount: 20,
+    text: "Get 20% off on selected gaming products",
   },
 ];
