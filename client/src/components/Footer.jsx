@@ -36,10 +36,10 @@ const Footer = () => {
             <a href="http://localhost:3000">F&Q</a>
           </div>
           <div className="col">
-            <h4>PRICING</h4>
-            <a href="http://localhost:3000">Overview</a>
-            <a href="http://localhost:3000">Premium Plans</a>
-            <a href="http://localhost:3000">Affiliate Program</a>
+            <h4>PRODUCTS</h4>
+            <a href="http://localhost:3000">Shops</a>
+            <a href="http://localhost:3000">New Arrivals</a>
+            <a href="http://localhost:3000">Categories</a>
             <a href="http://localhost:3000">Promotions</a>
           </div>
           <div className="col">
@@ -50,14 +50,7 @@ const Footer = () => {
             <a href="http://localhost:3000">Careers</a>
             <a href="http://localhost:3000">Press</a>
           </div>
-          <div className="col">
-            <h4>DATA</h4>
-            <a href="http://localhost:3000">About Us</a>
-            <a href="http://localhost:3000">Blog</a>
-            <a href="http://localhost:3000">Partnerships</a>
-            <a href="http://localhost:3000">Careers</a>
-            <a href="http://localhost:3000">Press</a>
-          </div>
+
           <div className="col">
             <h4>SOCIAL</h4>
             <a href="http://localhost:3000">Twitter</a>

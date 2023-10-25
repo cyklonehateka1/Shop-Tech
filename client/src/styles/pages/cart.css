@@ -418,6 +418,12 @@
     transition: 0.2s;
 }
 
+.cartCont>.right>.summary>.totalButton>span {
+    margin-top: 20px;
+    color: rgb(255, 31, 31);
+    font-size: 15px;
+}
+
 .cartCont>.right>.summary>.totalButton>button:hover {
     scale: 1.02;
 }

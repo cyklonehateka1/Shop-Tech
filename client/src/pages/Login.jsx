@@ -57,6 +57,7 @@ const Login = () => {
             : "Something went wrong"
         )
       );
+      setInputValue({ email: "", password: "" });
 
       console.log(error);
     }
@@ -95,6 +96,7 @@ const Login = () => {
                 id="email"
                 placeholder="example@mail.com"
                 name="email"
+                value={inputValue.email}
                 onChange={changeHandler}
               />
             </div>
@@ -105,6 +107,7 @@ const Login = () => {
                 id="password"
                 placeholder="Your Password"
                 name="password"
+                value={inputValue.password}
                 onChange={changeHandler}
               />
             </div>

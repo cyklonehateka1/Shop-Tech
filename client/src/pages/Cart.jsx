@@ -13,12 +13,23 @@ import { useNavigate } from "react-router-dom";
 const Cart = () => {
   const { cartState } = useSelector((state) => state.cart);
   const { currentUser } = useSelector((state) => state.user);
+  const [formError, setFormError] = useState(null);
   const [paymentDetails, setPaymentDetails] = useState({
-    email: currentUser ? currentUser.email : "",
+    email: "",
     cardHolderName: "",
     cardNumber: "",
     expiryDate: "",
     cvc: "",
+    paymentType: "",
+  });
+  const [deliveryDetails, setDeliveryDetails] = useState({
+    firstName: "",
+    lastName: "",
+    address: "",
+    zipCode: "",
+    city: "",
+    mobile: "",
+    email: "",
   });
   const dispatch = useDispatch();
   const { total, products } = cartState;
@@ -49,22 +60,52 @@ const Cart = () => {
     localStorage.setItem("clientCart", JSON.stringify(cartState));
   }, [cartState]);
 
-  const tax = Math.ceil((total * 15) / 100);
-  const shippingCost = Math.ceil((total * 8) / 100);
+  const tax = Math.ceil((12.5 / 100) * total);
+  const shippingCost = Math.ceil((8 / 100) * total);
 
   const grandTotal = total + tax + shippingCost;
 
   const handlePaymentDetailsChange = (e) => {
     setPaymentDetails({ ...paymentDetails, [e.target.name]: e.target.value });
+    console.log(paymentDetails);
+  };
+  const deliveryChangeHandler = (e) => {
+    setDeliveryDetails({ ...deliveryDetails, [e.target.name]: e.target.value });
   };
 
   const placeOrder = async (responseData) => {
+    const { cardNumber, cardHolderName, cvc, expiryDate } = paymentDetails;
+
     try {
       const res = await postMethods("/orders/new", {
         products: cartState.products,
         quantity: cartState.quantity,
         total: cartState.total,
         shippingCost,
+        payment: {
+          cardHolderName,
+          cardNumber,
+          cardCvc: cvc,
+          cardExpiryDate: expiryDate,
+        },
+        address: deliveryDetails.address,
+        totalAmount: grandTotal,
+      });
+      setPaymentDetails({
+        email: "",
+        expiryDate: "",
+        cardHolderName: "",
+        cardNumber: "",
+        cvc: "",
+      });
+      setDeliveryDetails({
+        firstName: "",
+        lastName: "",
+        address: "",
+        zipCode: "",
+        city: "",
+        mobile: "",
+        email: "",
       });
       console.log(res.data);
     } catch (error) {
@@ -73,11 +114,33 @@ const Cart = () => {
   };
 
   const paymentHandler = (e) => {
+    const { firstName, lastName, zipCode, address, city, email, mobile } =
+      deliveryDetails;
+    const { cardNumber, cardHolderName, cvc, expiryDate } = paymentDetails;
+    e.preventDefault();
+    const checkEmtyField =
+      firstName.trim() === "" ||
+      lastName.trim() === "" ||
+      zipCode.trim() === "" ||
+      address.trim() === "" ||
+      city.trim() === "" ||
+      email.trim() === "" ||
+      mobile.trim() === "" ||
+      cardNumber.trim() === "" ||
+      cardHolderName.trim() === "" ||
+      cvc.trim() === "" ||
+      expiryDate.trim() === "" ||
+      paymentDetails.email.trim() === "";
+
     if (!currentUser) {
       navigate("/login");
       return;
     }
-    e.preventDefault();
+    if (checkEmtyField) {
+      setFormError("All fields are required");
+      return;
+    }
+    console.log(formError);
     const handler = window.PaystackPop.setup({
       key: process.env.REACT_APP_PAYSTACK_PUBLIC_KEY,
       email: paymentDetails.email,
@@ -152,16 +215,37 @@ const Cart = () => {
               <div className="names">
                 <div className="name">
                   <label htmlFor="firstName">First Name</label>
-                  <input type="text" id="firstName" placeholder="Type here" />
+                  <input
+                    type="text"
+                    id="firstName"
+                    placeholder="Type here"
+                    name="firstName"
+                    value={deliveryDetails.firstName}
+                    onChange={deliveryChangeHandler}
+                  />
                 </div>
                 <div className="name">
                   <label htmlFor="lastName">Last Name</label>
-                  <input type="text" id="lastName" placeholder="Type here" />
+                  <input
+                    type="text"
+                    id="lastName"
+                    placeholder="Type here"
+                    name="lastName"
+                    value={deliveryDetails.lastName}
+                    onChange={deliveryChangeHandler}
+                  />
                 </div>
               </div>
               <div className="address">
                 <label htmlFor="address">Address</label>
-                <input type="text" id="address" placeholder="Type here" />
+                <input
+                  type="text"
+                  id="address"
+                  placeholder="Type here"
+                  name="address"
+                  value={deliveryDetails.address}
+                  onChange={deliveryChangeHandler}
+                />
               </div>
               <div className="location">
                 <div className="city">
@@ -171,6 +255,8 @@ const Cart = () => {
                     name="city"
                     id="city"
                     placeholder="Type here"
+                    value={deliveryDetails.city}
+                    onChange={deliveryChangeHandler}
                   />
                 </div>
                 <div className="zipCode">
@@ -180,6 +266,8 @@ const Cart = () => {
                     name="zipCode"
                     id="zipCode"
                     placeholder="Type here"
+                    value={deliveryDetails.zipCode}
+                    onChange={deliveryChangeHandler}
                   />
                 </div>
               </div>
@@ -191,6 +279,8 @@ const Cart = () => {
                     name="mobile"
                     id="mobile"
                     placeholder="Type here"
+                    value={deliveryDetails.mobile}
+                    onChange={deliveryChangeHandler}
                   />
                 </div>
                 <div className="email">
@@ -200,6 +290,8 @@ const Cart = () => {
                     name="email"
                     id="email"
                     placeholder="Type here"
+                    value={deliveryDetails.email}
+                    onChange={deliveryChangeHandler}
                   />
                 </div>
               </div>
@@ -218,11 +310,23 @@ const Cart = () => {
           <div className="paymentDetails">
             <ul>
               <li>
-                <input type="radio" id="shoppingCard" name="shoppingCard" />
+                <input
+                  type="radio"
+                  id="shoppingCard"
+                  name="paymentType"
+                  value="shopcartCard"
+                  onChange={handlePaymentDetailsChange}
+                />
                 <label htmlFor="">Shopcart Card</label>
               </li>
               <li>
-                <input type="radio" id="debitCredit" name="creditOrDebit" />
+                <input
+                  type="radio"
+                  id="debitCredit"
+                  value="debitCredit"
+                  name="paymentType"
+                  onChange={handlePaymentDetailsChange}
+                />
                 <label htmlFor="">Credit or Debit Card</label>
               </li>
             </ul>
@@ -246,6 +350,7 @@ const Cart = () => {
                 type="email"
                 placeholder="Type here"
                 name="email"
+                value={paymentDetails.email}
                 onChange={handlePaymentDetailsChange}
               />
             </div>
@@ -255,6 +360,7 @@ const Cart = () => {
                 type="text"
                 placeholder="Type here"
                 name="cardHolderName"
+                value={paymentDetails.cardHolderName}
                 onChange={handlePaymentDetailsChange}
               />
             </div>
@@ -264,6 +370,7 @@ const Cart = () => {
                 type="text"
                 placeholder="0000********1234"
                 name="cardNumber"
+                value={paymentDetails.cardNumber}
                 onChange={handlePaymentDetailsChange}
               />
             </div>
@@ -274,6 +381,7 @@ const Cart = () => {
                   type="text"
                   placeholder="MM/YY"
                   name="expiryDate"
+                  value={paymentDetails.expiryDate}
                   onChange={handlePaymentDetailsChange}
                 />
               </div>
@@ -283,6 +391,7 @@ const Cart = () => {
                   type="text"
                   placeholder="000"
                   name="cvc"
+                  value={paymentDetails.cvc}
                   onChange={handlePaymentDetailsChange}
                 />
               </div>
@@ -311,6 +420,7 @@ const Cart = () => {
                 <span>${grandTotal}</span>
               </div>
               <button onClick={paymentHandler}>Pay ${grandTotal}</button>
+              <span>{formError}</span>
             </div>
           </div>
         </div>
