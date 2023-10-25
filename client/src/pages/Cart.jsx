@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 const Cart = () => {
   const { cartState } = useSelector((state) => state.cart);
   const { currentUser } = useSelector((state) => state.user);
+  const [couponInput,setCouponInput ] = useState("") 
   const [paymentDetails, setPaymentDetails] = useState({
     email: currentUser ? currentUser.email : "",
     cardHolderName: "",
@@ -48,7 +49,10 @@ const Cart = () => {
   useEffect(() => {
     localStorage.setItem("clientCart", JSON.stringify(cartState));
   }, [cartState]);
-
+const handleCouponChange = (e) => {
+  setCouponInput(e.target.value()) 
+} 
+const verifyCouponCode = () =>{} 
   const tax = Math.ceil((total * 15) / 100);
   const shippingCost = Math.ceil((total * 8) / 100);
 
@@ -210,8 +214,8 @@ const Cart = () => {
           <h3>Order Summary</h3>
           <div className="inputCont">
             <div className="input">
-              <input type="text" placeholder="Enter Coupon Code" />
-              <button>Add Coupon</button>
+              <input type="text" placeholder="Enter Coupon Code" onChange={handleCouponChange} />
+              <button onClick={verifyCouponCode} >Add Coupon</button>
             </div>
           </div>
           <h5>Payment Details</h5>
