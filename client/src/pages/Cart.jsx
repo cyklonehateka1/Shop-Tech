@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 const Cart = () => {
   const { cartState } = useSelector((state) => state.cart);
   const { currentUser } = useSelector((state) => state.user);
-  const [couponInput,setCouponInput ] = useState("") 
+  const [couponCode,setCouponCode ] = useState("") 
   const [paymentDetails, setPaymentDetails] = useState({
     email: currentUser ? currentUser.email : "",
     cardHolderName: "",
@@ -21,6 +21,7 @@ const Cart = () => {
     expiryDate: "",
     cvc: "",
   });
+  const [couponRes, setCouponRes] = useState("") 
   const dispatch = useDispatch();
   const { total, products } = cartState;
   const navigate = useNavigate();
@@ -50,9 +51,16 @@ const Cart = () => {
     localStorage.setItem("clientCart", JSON.stringify(cartState));
   }, [cartState]);
 const handleCouponChange = (e) => {
-  setCouponInput(e.target.value()) 
+  setCouponCode(e.target.value()) 
 } 
-const verifyCouponCode = () =>{} 
+const verifyCouponCode = async () =>{
+  try {
+    const res = await getMethods(`/coupons/usecode/${couponCode}`)
+    setCouponRes(rest.data) 
+  } catch(error) {
+    setCouponRes("Something went wrong") 
+  } 
+} 
   const tax = Math.ceil((total * 15) / 100);
   const shippingCost = Math.ceil((total * 8) / 100);
 
