@@ -14,23 +14,15 @@ const Cart = () => {
   const { cartState } = useSelector((state) => state.cart);
   const { currentUser } = useSelector((state) => state.user);
   const [formError, setFormError] = useState(null);
+  const [couponCode, setCouponCode] = useState("");
   const [paymentDetails, setPaymentDetails] = useState({
     email: "",
     cardHolderName: "",
     cardNumber: "",
     expiryDate: "",
     cvc: "",
-    paymentType: "",
   });
-  const [deliveryDetails, setDeliveryDetails] = useState({
-    firstName: "",
-    lastName: "",
-    address: "",
-    zipCode: "",
-    city: "",
-    mobile: "",
-    email: "",
-  });
+  const [couponRes, setCouponRes] = useState({ message: "", data: "" });
   const dispatch = useDispatch();
   const { total, products } = cartState;
   const navigate = useNavigate();
@@ -59,7 +51,17 @@ const Cart = () => {
   useEffect(() => {
     localStorage.setItem("clientCart", JSON.stringify(cartState));
   }, [cartState]);
-
+  const handleCouponChange = (e) => {
+    setCouponCode(e.target.value);
+  };
+  const verifyCouponCode = async () => {
+    try {
+      const res = await getMethods(`/coupons/usecode/${couponCode}`);
+      setCouponRes({ message: "Enjoy your discount", data: res.data });
+    } catch (error) {
+      setCouponRes({ message: "Something went wrong" });
+    }
+  };
   const tax = Math.ceil((12.5 / 100) * total);
   const shippingCost = Math.ceil((8 / 100) * total);
 
@@ -302,8 +304,12 @@ const Cart = () => {
           <h3>Order Summary</h3>
           <div className="inputCont">
             <div className="input">
-              <input type="text" placeholder="Enter Coupon Code" />
-              <button>Add Coupon</button>
+              <input
+                type="text"
+                placeholder="Enter Coupon Code"
+                onChange={handleCouponChange}
+              />
+              <button onClick={verifyCouponCode}>Add Coupon</button>
             </div>
           </div>
           <h5>Payment Details</h5>
