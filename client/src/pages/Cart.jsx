@@ -51,7 +51,7 @@ const Cart = () => {
     localStorage.setItem("clientCart", JSON.stringify(cartState));
   }, [cartState]);
 const handleCouponChange = (e) => {
-  setCouponCode(e.target.value()) 
+  setCouponCode(e.target.value) 
 } 
 const verifyCouponCode = async () =>{
   try {
