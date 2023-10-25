@@ -59,7 +59,7 @@ const getAvailableCoupons = async (req, res, next) => {
 
 const useCoupon = async (req, res, next) =>{
   try{
-    const verifyCoupon = CouponSchema.findOne({couponCode:req.params.code})
+    const verifyCoupon = CouponSchema.findOne({code:req.params.code})
  		if (!verifyCoupon) return next(errorHandler(404,"Invalid coupon code")) 
     rest.status(200).json("Discount applied.")
   }catch (error) {
