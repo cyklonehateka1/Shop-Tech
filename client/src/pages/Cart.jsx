@@ -21,7 +21,7 @@ const Cart = () => {
     expiryDate: "",
     cvc: "",
   });
-  const [couponRes, setCouponRes] = useState("") 
+  const [couponRes, setCouponRes] = useState({message:"", data:"" }) 
   const dispatch = useDispatch();
   const { total, products } = cartState;
   const navigate = useNavigate();
@@ -56,9 +56,9 @@ const handleCouponChange = (e) => {
 const verifyCouponCode = async () =>{
   try {
     const res = await getMethods(`/coupons/usecode/${couponCode}`)
-    setCouponRes(rest.data) 
+    setCouponRes({message:"Enjoy your discount", data:res.data}) 
   } catch(error) {
-    setCouponRes("Something went wrong") 
+    setCouponRes({message:"Something went wrong"}) 
   } 
 } 
   const tax = Math.ceil((total * 15) / 100);
