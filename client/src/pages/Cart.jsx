@@ -22,7 +22,7 @@ const Cart = () => {
     expiryDate: "",
     cvc: "",
   });
-  const [couponRes, setCouponRes] = useState({ message: "", data: "" });
+  const [couponRes, setCouponRes] = useState({ message: "", data: null });
   const [deliveryDetails, setDeliveryDetails] = useState({
     firstName: "",
     lastName: "",
@@ -65,16 +65,22 @@ const Cart = () => {
   };
   const verifyCouponCode = async () => {
     try {
-      const res = await getMethods(`/coupons/usecode/${couponCode}`);
+      const res = await postMethods(`/coupons/usecode/${couponCode}`, {
+        products,
+      });
       setCouponRes({ message: "Enjoy your discount", data: res.data });
+      console.log(res.data);
     } catch (error) {
       setCouponRes({ message: "Something went wrong" });
+      console.log(error);
     }
   };
   const tax = Math.ceil((12.5 / 100) * total);
   const shippingCost = Math.ceil((8 / 100) * total);
 
-  const grandTotal = total + tax + shippingCost;
+  const grandTotal = couponRes.data
+    ? couponRes.data + tax + shippingCost
+    : total + tax + shippingCost;
 
   const handlePaymentDetailsChange = (e) => {
     setPaymentDetails({ ...paymentDetails, [e.target.name]: e.target.value });
@@ -423,7 +429,7 @@ const Cart = () => {
             </div>
             <div className="row">
               <p>Coupon Discount</p>
-              <span>-$0.00</span>
+              <span>${couponRes.data ? total - couponRes.data : 0.0}</span>
             </div>
             <div className="row">
               <p>Shipping Cost</p>

@@ -14,6 +14,6 @@ router.post("/new", verifyToken, createCoupon);
 router.get("/code/:id", verifyToken, getCouponCode);
 router.get("/all", verifyToken, getAllCoupons);
 router.get("/available", getAvailableCoupons);
-router.get("/usecode/:code", useCoupon);
+router.post("/usecode/:code", useCoupon);
 
 module.exports = router;

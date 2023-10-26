@@ -56,6 +56,7 @@ const SingleProduct = () => {
     subCat: product && product.subCat,
     color,
   };
+  console.log(itemToAdd);
   const addProductHandler = () => {
     const checkProduct = cartState.products.findIndex(
       (item) => item._id === itemToAdd._id

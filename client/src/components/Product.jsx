@@ -27,6 +27,9 @@ const Product = (props) => {
     profileImg,
     name,
     color: "",
+    subCat,
+    brand,
+    parentCat,
   };
 
   const addProductToCart = () => {
