@@ -9,7 +9,16 @@ import React, { useEffect } from "react";
 const Product = (props) => {
   const { cartState } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
-  const { name, price, desc, ratingCount, profileImg } = props.item;
+  const {
+    name,
+    price,
+    desc,
+    ratingCount,
+    profileImg,
+    subCat,
+    parentCat,
+    brand,
+  } = props.item;
   const navigate = useNavigate();
   const itemToAdd = {
     _id: props.item._id,

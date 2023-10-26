@@ -23,6 +23,15 @@ const Cart = () => {
     cvc: "",
   });
   const [couponRes, setCouponRes] = useState({ message: "", data: "" });
+  const [deliveryDetails, setDeliveryDetails] = useState({
+    firstName: "",
+    lastName: "",
+    address: "",
+    zipCode: "",
+    city: "",
+    mobile: "",
+    email: "",
+  });
   const dispatch = useDispatch();
   const { total, products } = cartState;
   const navigate = useNavigate();

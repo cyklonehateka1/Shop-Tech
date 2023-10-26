@@ -5,6 +5,7 @@ const {
   getAvailableCoupons,
   getCouponCode,
   createCoupon,
+  useCoupon,
 } = require("../controllers/couponControllers");
 
 const router = Router();
@@ -13,5 +14,6 @@ router.post("/new", verifyToken, createCoupon);
 router.get("/code/:id", verifyToken, getCouponCode);
 router.get("/all", verifyToken, getAllCoupons);
 router.get("/available", getAvailableCoupons);
+router.get("/usecode/:code", useCoupon);
 
 module.exports = router;

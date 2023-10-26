@@ -57,19 +57,41 @@ const getAvailableCoupons = async (req, res, next) => {
   }
 };
 
-const useCoupon = async (req, res, next) =>{
-  try{
-    const verifyCoupon = CouponSchema.findOne({code:req.params.code})
- 		if (!verifyCoupon) return next(errorHandler(404,"Invalid coupon code")) 
-    rest.status(200).json("Discount applied.")
-  }catch (error) {
-    return next(error)
+const useCoupon = async (req, res, next) => {
+  const { products } = req.body;
+  let query;
+  try {
+    const verifyCoupon = CouponSchema.findOne({ code: req.params.code });
+    if (!verifyCoupon) return next(errorHandler(404, "Invalid coupon code"));
+
+    if (verifyCoupon.couponType === "brand") {
+      const matchedBrand = products.filter(
+        (product) =>
+          product.brand.toLowerCase() === verifyCoupon.brand.toLowerCase()
+      );
+      const applyDiscount = matchedBrand.forEach(
+        (product) =>
+          ((100 - verifyCoupon.discountPercentage) / 100) *
+          parseFloat(product.price)
+      );
+
+      const otherProducts = products.filter(
+        (product) =>
+          product.brand.toLowerCase() !== verifyCoupon.brand.toLowerCase
+      );
+      query = [...applyDiscount, ...otherProducts];
+      console.log(query);
+    }
+    res.status(200).json();
+  } catch (error) {
+    return next(error);
   }
-} 
+};
 
 module.exports = {
   createCoupon,
   getAllCoupons,
   getAvailableCoupons,
   getCouponCode,
+  useCoupon,
 };

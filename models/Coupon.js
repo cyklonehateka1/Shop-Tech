@@ -28,6 +28,10 @@ const CouponSchema = new mongoose.Schema(
     subCategory: {
       type: [String],
     },
+    couponType: {
+      type: String,
+      required: true,
+    },
     brand: {
       type: String,
     },

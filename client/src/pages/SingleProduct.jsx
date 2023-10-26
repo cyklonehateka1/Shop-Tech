@@ -51,6 +51,9 @@ const SingleProduct = () => {
     price: product && product.price,
     profileImg: product && product.profileImg,
     name: product && product.name,
+    brand: product && product.brand,
+    parentCat: product && product.parentCat,
+    subCat: product && product.subCat,
     color,
   };
   const addProductHandler = () => {
