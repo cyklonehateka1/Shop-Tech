@@ -64,8 +64,8 @@ const useCoupon = async (req, res, next) => {
 
     const verifyCoupon = await CouponSchema.findOne({ code: req.params.code });
     if (!verifyCoupon) return next(errorHandler(404, "Invalid coupon code"));
-
     const couponBrand = verifyCoupon.brand.toLowerCase();
+
     if (verifyCoupon.couponType.toLowerCase() === "brand") {
       let matchedProducts = 0;
       let unMatchedProducts = 0;
@@ -82,6 +82,27 @@ const useCoupon = async (req, res, next) => {
       }
 
       newTotal = matchedProducts + unMatchedProducts;
+    } else if (verifyCoupon.couponType.toLowerCase() === "parentcat") {
+      let matchedProducts = 0;
+      let unMatchedProducts = 0;
+      for (let i = 0; i < products.length; i++) {
+        const productPCat = products[i].parentCat;
+        if (
+          productPCat.some((category) =>
+            verifyCoupon.parentCategory.includes(category)
+          )
+        ) {
+          matchedProducts +=
+            ((100 - verifyCoupon.discountPercentage) / 100) *
+            parseFloat(products[i].price) *
+            products[i].quantity;
+        } else {
+          unMatchedProducts += products[i].price * products[i].quantity;
+        }
+      }
+
+      console.log(matchedProducts);
+      console.log(unMatchedProducts);
     }
     res.status(200).json(newTotal);
   } catch (error) {
