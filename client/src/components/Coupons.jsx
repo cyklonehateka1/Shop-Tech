@@ -6,12 +6,14 @@ import { backendConnection } from "../utils/axiosConnection";
 
 const Coupons = () => {
   const [coupons, setCoupons] = useState(null);
+  const [error, setError ] = useState(null) 
   useEffect(() => {
     const getAvailableCoupons = async () => {
       try {
         const res = await backendConnection.get(`/coupons/available`);
         setCoupons(res.data);
       } catch (error) {
+        setError(error.response.data? error.response.data:"Something went wrong") 
         console.log(error);
       }
     };
@@ -27,6 +29,7 @@ const Coupons = () => {
           type={"all"}
         />
         <h4>get latest coupons and deals</h4>
+        <p>{error}<p/>
         <div className="couponsParentCont">
           {coupons &&
             coupons.map((item) => {
