@@ -100,10 +100,30 @@ const useCoupon = async (req, res, next) => {
           unMatchedProducts += products[i].price * products[i].quantity;
         }
       }
-
-      console.log(matchedProducts);
-      console.log(unMatchedProducts);
-    }
+      
+      newTotal = matchedProducts + unMatchedPRoducts 
+    }else if(verifyCoupon.couponType.toLowerCase()=== "subcat" ) {
+      let matchedProducts = 0;
+      let unMatchedProducts = 0;
+      for (let i = 0; i < products.length; i++) {
+        const productSCat = products[i].subCat;
+        if (
+          productSCat.some((category) =>
+            verifyCoupon.subCategory.includes(category)
+          )
+        ) {
+          matchedProducts +=
+            ((100 - verifyCoupon.discountPercentage) / 100) *
+            parseFloat(products[i].price) *
+            products[i].quantity;
+        } else {
+          unMatchedProducts += products[i].price * products[i].quantity;
+       		}
+   		 } 
+    newTotal = unmatchedProducts + matchedProducts 
+    } else {
+      return next(errorHandler(403, "coupon is not valid")) 
+    } 
     res.status(200).json(newTotal);
   } catch (error) {
     return next(error);
