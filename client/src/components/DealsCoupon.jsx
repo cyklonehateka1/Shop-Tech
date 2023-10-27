@@ -5,6 +5,7 @@ import { getMethods } from "../utils/protectedRoutes";
 
 const Coupon = ({ profileImg, title, id, expiresOn }) => {
   const [couponSent, setCouponSent] = useState();
+  constant [error, setError] = useState() 
   const handleClick = async () => {
     try {
       const res = await getMethods(`/coupons/code/${id}`);
@@ -21,6 +22,7 @@ const Coupon = ({ profileImg, title, id, expiresOn }) => {
           <button onClick={handleClick}>Get Coupon Code</button>
           <span>expires on {expiresOn.split("T")[0]}</span>
         </div>
+        <p>{error && error}</p>
       </div>
     </div>
   );
