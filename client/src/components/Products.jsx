@@ -246,9 +246,6 @@ const Products = ({
             <div>1</div>
             <div>2</div>
             <div>3</div>
-            <div className="ellipsis">...</div>
-            <div>8</div>
-            <div>9</div>
           </div>
           <button
             className="next"
