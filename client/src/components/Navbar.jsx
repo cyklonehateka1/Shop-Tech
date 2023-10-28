@@ -14,6 +14,7 @@ import { backendConnection } from "../utils/axiosConnection";
 import Badge from "@mui/material/Badge";
 import { useSelector } from "react-redux";
 import Cookies from "js-cookie";
+import { getMethods } from "../utils/protectedRoutes";
 
 const Navbar = () => {
   const [accountModalOpen, setAccoutModalOpen] = useState(false);
@@ -24,13 +25,13 @@ const Navbar = () => {
 
   useEffect(() => {
     const userCart = async () => {
+      console.log("hell");
       const checkCart = localStorage.getItem("clientCart");
       if (checkCart) return;
       try {
-        const getRemoteCart = await backendConnection.get(
-          `/cart/getusercart/${currentUser}`
-        );
-        localStorage.setItem("clientCart", JSON.stringify(getRemoteCart.data));
+        const res = await getMethods(`/cart/getusercart/${currentUser}`);
+        console.log(res.data);
+        localStorage.setItem("clientCart", JSON.stringify(res.data));
       } catch (error) {
         console.log(error);
       }

@@ -199,27 +199,28 @@ const Cart = () => {
               {products &&
                 products.map((item, index) => {
                   return (
-                    <div
-                      className="itemCont"
-                      key={index}
-                      onDoubleClick={(e) => removeItemHandler(item)}
-                    >
-                      <div className="left">
-                        <div className="imgCont">
-                          <img
-                            src={"/uploads/" + item.profileImg}
-                            alt="Product"
-                          />
+                    <div className="itemCont" key={index}>
+                      <div>
+                        <div className="left">
+                          <div className="imgCont">
+                            <img
+                              src={"/uploads/" + item.profileImg}
+                              alt="Product"
+                            />
+                          </div>
+                          <div className="center">
+                            <h5>{item.name}</h5>
+                            <span>Color: {item.color}</span>
+                          </div>
                         </div>
-                        <div className="center">
-                          <h5>{item.name}</h5>
-                          <span>Color: {item.color}</span>
+                        <div className="right">
+                          <h5>${item.price}</h5>
+                          <span>Quantity: {item.quantity}</span>
                         </div>
                       </div>
-                      <div className="right">
-                        <h5>${item.price}</h5>
-                        <span>Quantity: {item.quantity}</span>
-                      </div>
+                      <span onClick={(e) => removeItemHandler(item)}>
+                        remove item
+                      </span>
                     </div>
                   );
                 })}

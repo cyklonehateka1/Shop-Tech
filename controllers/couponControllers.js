@@ -28,7 +28,7 @@ const getCouponCode = async (req, res, next) => {
     );
     res
       .status(200)
-      .json("Coupon sent to the email account associated to this account");
+      .json("Coupon sent to the email associated with this account");
   } catch (error) {
     return next(error);
   }
@@ -100,9 +100,9 @@ const useCoupon = async (req, res, next) => {
           unMatchedProducts += products[i].price * products[i].quantity;
         }
       }
-      
-      newTotal = matchedProducts + unMatchedPRoducts 
-    }else if(verifyCoupon.couponType.toLowerCase()=== "subcat" ) {
+
+      newTotal = matchedProducts + unMatchedProducts;
+    } else if (verifyCoupon.couponType.toLowerCase() === "subcat") {
       let matchedProducts = 0;
       let unMatchedProducts = 0;
       for (let i = 0; i < products.length; i++) {
@@ -118,12 +118,12 @@ const useCoupon = async (req, res, next) => {
             products[i].quantity;
         } else {
           unMatchedProducts += products[i].price * products[i].quantity;
-       		}
-   		 } 
-    newTotal = unmatchedProducts + matchedProducts 
+        }
+      }
+      newTotal = unmatchedProducts + matchedProducts;
     } else {
-      return next(errorHandler(403, "coupon is not valid")) 
-    } 
+      return next(errorHandler(403, "coupon is not valid"));
+    }
     res.status(200).json(newTotal);
   } catch (error) {
     return next(error);

@@ -33,6 +33,7 @@ const Product = (props) => {
   };
 
   const addProductToCart = () => {
+    // const res = await;
     const checkItemPresence = cartState.products.findIndex(
       (item) => item._id === itemToAdd._id
     );
