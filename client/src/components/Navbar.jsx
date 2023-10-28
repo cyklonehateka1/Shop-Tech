@@ -25,7 +25,6 @@ const Navbar = () => {
 
   useEffect(() => {
     const userCart = async () => {
-      console.log("hell");
       const checkCart = localStorage.getItem("clientCart");
       if (checkCart) return;
       try {

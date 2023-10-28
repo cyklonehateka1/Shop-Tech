@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "../styles/components/dealsCoupon.css";
-import { backendConnection } from "../utils/axiosConnection";
 import { getMethods } from "../utils/protectedRoutes";
 
 const Coupon = ({ profileImg, title, id, expiresOn }) => {

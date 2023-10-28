@@ -6,7 +6,6 @@ import "../styles/pages/cart.css";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart } from "../redux/slices/cartSlice";
 import { useState } from "react";
-import { backendConnection } from "../utils/axiosConnection";
 import { getMethods, postMethods } from "../utils/protectedRoutes";
 import { useNavigate } from "react-router-dom";
 

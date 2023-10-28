@@ -1,13 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/pages/awaitEmail.css";
 import { backendConnection } from "../utils/axiosConnection";
 
 const AwaitEmailConfirm = () => {
+  const [response, setResponse] = useState({ error: null, message: null });
   const temporalInfo = JSON.parse(localStorage.getItem("temporalInfo"));
-  const resendHandler = () => {
-    const resend = backendConnection.post(
-      `/auth/resendconfirmationemail/${temporalInfo.userId}`
-    );
+  const resendHandler = async () => {
+    try {
+      const resend = await backendConnection.post(
+        `/auth/resendconfirmationemail/${temporalInfo.userId}`
+      );
+      resend.data
+        ? setResponse({ message: resend.data })
+        : resend.name && resend.name === "AxiosError"
+        ? setResponse({ message: resend.response.data.message })
+        : setResponse({ message: "Something went wrong" });
+    } catch (error) {
+      error.name && error.name === "AxiosError"
+        ? setResponse({ message: error.response.data.message })
+        : setResponse({ message: "Something went wrong" });
+    }
   };
   return (
     <div className="awaitEmailConfirm">
@@ -34,6 +46,7 @@ const AwaitEmailConfirm = () => {
               Didn't get the mail? <span onClick={resendHandler}>Resend</span>
             </p>
           </div>
+          <span>{response.message && response.message}</span>
         </div>
       </div>
     </div>

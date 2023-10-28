@@ -115,8 +115,11 @@ const resendConfirmationEmail = async (req, res, next) => {
         expiresIn: "1h",
       }
     );
+    const user = await UserSchema.findById(req.params.userId);
+    if (!user) return next(errorHandler(404, "User not found"));
+    if (user.isVerified)
+      return next(errorHandler(403, "Email is verified already"));
     const url = `http://localhost:3000/auth/verifyemail/user/${req.params.userId}/verify/${token}`;
-
     const emailResponse = sendEmail(
       user.email,
       "Confirm Account",

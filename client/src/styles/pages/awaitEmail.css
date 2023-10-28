@@ -73,3 +73,9 @@
     color: #02A302;
     cursor: pointer;
 }
+
+.awaitConfirmCont>.bottom>span {
+    color: rgb(255, 57, 57);
+    margin-top: 10px;
+    font-weight: 500;
+}

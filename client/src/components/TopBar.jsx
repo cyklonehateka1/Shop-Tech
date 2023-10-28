@@ -18,7 +18,7 @@ const TopBar = () => {
           <span> | </span>
           <p>Shop Now</p>
         </div>
-        <div className="right">
+        {/* <div className="right">
           <div className="lang">
             <p>Eng </p>
             <div>
@@ -31,7 +31,7 @@ const TopBar = () => {
               <BiChevronDown />
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
