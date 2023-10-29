@@ -5,7 +5,7 @@
     }
 
     .navbarCont>.navLogoCont {
-        width: 5%;
+        width: 10%;
     }
 
     .navMenu {
@@ -13,7 +13,7 @@
     }
 
     .navMenu>ul>li {
-        margin: 0 7px;
+        margin: 0 4px;
         font-size: 11px;
     }
 
@@ -32,8 +32,32 @@
         display: none;
     }
 
-    .cartAccountCont>.cart>a>span {
-        display: none;
+    .cartAccountCont>div>.openOptions {
+        height: 100px;
+        width: 200px;
+        background-color: white;
+        padding: 5px;
+        right: 10px;
+        top: 23px;
+    }
+
+    .cartAccountCont>div>.openOptions>.close {
+        font-size: 20px;
+    }
+
+    .cartAccountCont>div>.openOptions>.cont>a {
+        margin-bottom: 5px;
+        font-size: 11px;
+    }
+
+    .cartAccountCont>div>.openOptions>.cont>.account {
+        margin-bottom: 10px;
+    }
+
+    .cartAccountCont>div>.openOptions>.cont>.sign>span {
+        font-size: 20px;
+        width: 20%;
+        margin-right: 10px;
     }
 
     .cartAccountCont>.cart {
@@ -79,4 +103,36 @@
         color: rgb(92, 92, 92);
         font-size: 20px;
     }
+
+    .mobileSearchCont>.mobileSearchSuggestions {
+        display: flex;
+        width: 300px;
+        position: absolute;
+        box-shadow: 1px 1px 10px rgb(204, 204, 204);
+        border-radius: 20px;
+        padding: 10px;
+        max-height: 200px;
+        overflow-y: scroll;
+        background-color: white;
+        overflow-x: hidden;
+        z-index: 1;
+        flex-direction: column;
+        top: 75px;
+        left: 10px;
+    }
+
+    .mobileSearchCont>.mobileSearchSuggestions>div {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        margin: 5px 0;
+        cursor: pointer;
+        height: 100px;
+    }
+
+    .mobileSearchCont>.mobileSearchSuggestions>div>.left>img {
+        width: 40px;
+        margin-right: 20px;
+    }
+
 }

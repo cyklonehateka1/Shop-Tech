@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../styles/pages/login.css";
+import "../styles/pages/loginResponsive.css";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {

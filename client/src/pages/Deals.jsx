@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import PromotionBanner from "../components/PromotionBanner";
 import { promoBannerData } from "../utils/data";
 import "../styles/pages/deals.css";
+import "../styles/pages/dealsResponsive.css";
 import HalfPriceStore from "../components/HalfPriceStore";
 import Footer from "../components/Footer";
 import Coupons from "../components/Coupons";

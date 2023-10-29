@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../styles/components/dealsCoupon.css";
+import "../styles/components/dealsCouponResponsive.css";
 import { getMethods } from "../utils/protectedRoutes";
 
 const Coupon = ({ profileImg, title, id, expiresOn }) => {

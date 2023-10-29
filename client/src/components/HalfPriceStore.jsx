@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/components/halfPriceStore.css";
+import "../styles/components/halfPriceStoreResponsive.css";
 import Products from "./Products";
 
 const HalfPriceStore = () => {

@@ -3,6 +3,7 @@ import TopBar from "../components/TopBar";
 
 import { catPageCatBar } from "../utils/data";
 import "../styles/pages/categories.css";
+import "../styles/pages/categoriesResponsive.css";
 import CategoriesPageCat from "../components/CategoriesPageCat";
 import Products from "../components/Products";
 import { useEffect, useState } from "react";

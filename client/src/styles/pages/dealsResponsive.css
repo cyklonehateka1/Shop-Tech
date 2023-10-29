@@ -1,0 +1,6 @@
+@media only screen and (min-device-width: 100px) and (max-device-width: 480px) {
+    .deals>.dealsCont {
+        top: 7vh;
+        padding: 0px 10px;
+    }
+}

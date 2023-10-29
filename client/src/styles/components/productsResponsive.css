@@ -10,16 +10,47 @@
     }
 
     .filterList {
-        padding: 10px 0;
+        padding: 5px 0;
     }
 
     .filterListCont>.priceFilter {
         margin-right: 5px;
+        /* border: 1px solid red; */
+        height: 30px;
     }
 
     .filterListCont>.priceFilter>p {
         font-size: 11px;
-        margin: 0 10px;
+        margin: 0 5px;
+    }
+
+    .filterListCont>.priceFilter>div {
+        width: 200%;
+        padding: 5px;
+    }
+
+    .filterListCont>.priceFilter>div>input {
+        margin: 5px 0;
+        padding: 4px;
+    }
+
+    .filterListCont>.priceFilter>div>button {
+        padding: 5px 20px;
+    }
+
+    .filterListCont>.selectCont {
+        padding: 0px 0px;
+        margin-right: 5px;
+        height: 30px;
+    }
+
+    .filterListCont>.selectCont>p {
+        font-size: 11px;
+    }
+
+    .filterListCont>.sortBy {
+        padding: 0px 0px;
+        height: 30px;
     }
 
     .products>.productsCont>.productsParent {

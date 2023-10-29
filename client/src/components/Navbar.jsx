@@ -29,7 +29,6 @@ const Navbar = () => {
       if (checkCart) return;
       try {
         const res = await getMethods(`/cart/getusercart/${currentUser}`);
-        console.log(res.data);
         localStorage.setItem("clientCart", JSON.stringify(res.data));
       } catch (error) {
         console.log(error);
@@ -54,7 +53,6 @@ const Navbar = () => {
         withCredentials: true,
         credentials: "include",
       });
-      console.log(res.data);
       Cookies.remove("access_token");
       // localStorage.removeItem("clientId");
 
@@ -71,7 +69,6 @@ const Navbar = () => {
         `products/getproducts?search=${value}`
       );
       setSearchProducts(res.data);
-      console.log(res.data);
     } catch (error) {
       console.log(error);
     }
@@ -217,6 +214,25 @@ const Navbar = () => {
             <BiSearch />
           </div>
         </div>
+
+        {searchSuggestion && (
+          <div className="mobileSearchSuggestions">
+            {searchedProducts && searchedProducts.length > 0
+              ? searchedProducts.map((item, index) => {
+                  return (
+                    <div key={index} onClick={() => handleProductClick(item)}>
+                      <div className="left">
+                        <img src={`/uploads/` + item.profileImg} alt="" />
+                      </div>
+                      <div className="right">
+                        <h5>{item.name}</h5>
+                      </div>
+                    </div>
+                  );
+                })
+              : `No product matched`}
+          </div>
+        )}
       </div>
     </div>
   );

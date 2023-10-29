@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import TopBar from "../components/TopBar";
 import "../styles/pages/products.css";
+import "../styles/pages/productsResponsive.css";
 import Products from "../components/Products";
 import Footer from "../components/Footer";
 import { useLocation, useParams } from "react-router-dom";

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../styles/components/coupons.css";
+import "../styles/components/couponsResponsive.css";
 import PromotionBanner from "./PromotionBanner";
 import DealsCoupon from "./DealsCoupon";
 import { backendConnection } from "../utils/axiosConnection";

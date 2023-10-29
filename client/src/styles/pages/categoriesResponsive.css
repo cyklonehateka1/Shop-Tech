@@ -1,0 +1,47 @@
+@media only screen and (min-device-width: 100px) and (max-device-width: 480px) {
+    .catPage>.catPageCont {
+        top: 8vh;
+        padding: 0px 10px;
+        /* border: 1px solid red; */
+    }
+
+    .catPage>.catPageCont>.categoriesBar {
+        /* border: 1px solid red; */
+        padding: 7px auto;
+        display: grid;
+        grid-template-columns: repeat(3, 33%);
+        justify-content: space-between;
+    }
+
+    .catPage>.catPageCont>.categoriesBar>div {
+        width: 91%;
+        /* border: 1px solid red; */
+        margin: 5px 5px;
+        height: auto;
+    }
+
+    .catPage>.catPageCont>.categoriesBar>div>img {
+        width: 70%;
+    }
+
+    .catPage>.catPageCont>.categoriesBar>.phones>img {
+        width: 40%;
+    }
+
+    .catPage>.catPageCont>.categoriesBar>.accessories>img {
+        width: 40%;
+    }
+
+    .catPage>.catPageCont>.categoriesBar>div>span {
+        font-size: 13px;
+    }
+
+    .catPage>.catPageCont>.catsCont {
+        padding: 5px 0;
+    }
+
+    .catPage>.catPageCont>.catsCont>.firstCatsCont {
+        grid-template-columns: repeat(2, 48%);
+        margin-bottom: 97px;
+    }
+}

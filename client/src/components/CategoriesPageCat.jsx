@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/components/categoriesPageCat.css";
+import "../styles/components/categoriesPageCatResponsive.css";
 import { backendConnection } from "../utils/axiosConnection";
 import { useNavigate } from "react-router-dom";
 
