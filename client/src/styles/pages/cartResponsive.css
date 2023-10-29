@@ -1,0 +1,237 @@
+@media only screen and (min-device-width: 100px) and (max-device-width: 480px) {
+    .cartCont {
+        padding: 0px 10px;
+        flex-direction: column;
+        top: 8vh;
+    }
+
+    .cartCont>.left {
+        width: 100%;
+    }
+
+    .cartCont>.left>.cartProduct {
+        padding: 7px;
+    }
+
+    .cartCont>.left>.cartProduct>h5 {
+        font-size: 17px;
+    }
+
+    .cartCont>.left>.cartProduct>.productsListCont>.itemCont>div>.left>.imgCont {
+        margin-right: 5px;
+        height: 65px;
+        width: 65px;
+    }
+
+    .cartCont>.left>.cartProduct>.productsListCont>.itemCont>div>.left>.imgCont>img {
+        width: 100%;
+    }
+
+    .cartCont>.left>.cartProduct>.productsListCont>.itemCont>div>.left>.center>h5 {
+        font-size: 12px;
+    }
+
+    .cartCont>.left>.cartProduct>.productsListCont>.itemCont>div>.left>.center>span {
+        font-size: 10px;
+    }
+
+    .cartCont>.left>.cartProduct>.productsListCont>.itemCont>.right>h5 {
+        font-size: 12px;
+    }
+
+    .cartCont>.left>.cartProduct>.productsListCont>.itemCont>div>.right>span {
+        font-size: 11px;
+    }
+
+    .cartCont>.left>.cartProduct>.productsListCont>.itemCont>span {
+        font-size: 12px;
+        margin-top: 5px;
+    }
+
+    .cartCont>.left>.shipping {
+        padding: 10px 5px 10px 5px;
+        margin-top: 10px;
+    }
+
+    .cartCont>.left>.shipping>h5 {
+        font-size: 16px;
+        letter-spacing: 0px;
+        margin-bottom: 10px;
+        word-spacing: 4px;
+    }
+
+    .cartCont>.left>.shipping>form>.names {
+        margin-bottom: 5px;
+    }
+
+    .cartCont>.left>.shipping>form>.names>.name>label {
+        font-size: 12px;
+    }
+
+    .cartCont>.left>.shipping>form>.names>.name>input {
+        padding: 5px;
+        font-size: 11px;
+    }
+
+    .cartCont>.left>.shipping>form>.address {
+        margin-bottom: 5px;
+    }
+
+    .cartCont>.left>.shipping>form>.address>label {
+        font-size: 12px;
+    }
+
+    .cartCont>.left>.shipping>form>.address>input {
+        padding: 5px;
+        font-size: 11px;
+    }
+
+    .cartCont>.left>.shipping>form>.location {
+        margin-bottom: 5px;
+    }
+
+    .cartCont>.left>.shipping>form>.location>div>label {
+        font-size: 12px;
+    }
+
+    .cartCont>.left>.shipping>form>.location>div>input {
+        padding: 5px;
+        font-size: 11px;
+    }
+
+    .cartCont>.left>.shipping>form>.contact {
+        margin-bottom: 5px;
+    }
+
+
+
+    .cartCont>.left>.shipping>form>.contact>div>label {
+        font-size: 12px;
+    }
+
+    .cartCont>.left>.shipping>form>.contact>div>input {
+        padding: 5px;
+        font-size: 11px;
+    }
+
+    .cartCont>.right {
+        margin-top: 10px;
+        width: 100%;
+        padding: 5px
+    }
+
+    .cartCont>.right>h3 {
+        font-size: 16px;
+        letter-spacing: 0px;
+    }
+
+    .cartCont>.right>.inputCont {
+        padding: 5px 0;
+        /* border: 1px solid red; */
+    }
+
+    .cartCont>.right>.inputCont>.input {
+        height: 35px;
+        padding: 0;
+        /* border: 1px solid red; */
+    }
+
+    .cartCont>.right>.inputCont>.input>input {
+        margin: 5px 0;
+    }
+
+    .cartCont>.right>.inputCont>.input>button {
+        font-size: 10px;
+    }
+
+    .cartCont>.right>h5 {
+        font-size: 14px;
+        margin: 7px 0;
+    }
+
+    .cartCont>.right>.paymentDetails {
+        padding: 5px 0;
+    }
+
+    .cartCont>.right>.paymentDetails>ul {
+        margin-bottom: 5px;
+    }
+
+    .cartCont>.right>.paymentDetails>ul>li>input {
+        margin-right: 3px;
+        cursor: pointer;
+    }
+
+    .cartCont>.right>.paymentDetails>ul>li>label {
+        font-size: 11px;
+    }
+
+    .cartCont>.right>.paymentDetails>.icons {
+        margin-bottom: 7px;
+
+    }
+
+    .cartCont>.right>.paymentDetails>.icons>img {
+        width: 40px;
+        margin-right: 5px;
+    }
+
+    .cartCont>.right>form>.row {
+        margin: 5px 0;
+    }
+
+    .cartCont>.right>form>.row>label {
+        font-size: 11px;
+    }
+
+    .cartCont>.right>form>.row>input {
+        padding: 5px;
+        font-size: 11px;
+    }
+
+    .cartCont>.right>form>.cvcExpiry>.expiry>label {
+        font-size: 11px;
+    }
+
+    .cartCont>.right>form>.cvcExpiry>.expiry>input {
+        padding: 5px;
+        font-size: 11px;
+    }
+
+    .cartCont>.right>form>.cvcExpiry>.cvc>label {
+        font-size: 11px;
+    }
+
+    .cartCont>.right>form>.cvcExpiry>.cvc>input {
+        padding: 5px;
+        font-size: 11px;
+    }
+
+    .cartCont>.right>.summary {
+        margin-top: 10px;
+    }
+
+    .cartCont>.right>.summary>.row {
+        margin: 5px 0;
+        font-size: 11px;
+    }
+
+    .cartCont>.right>.summary>.totalButton {
+        margin: 5px 0;
+        padding: 5px 0;
+    }
+
+    .cartCont>.right>.summary>.totalButton>.row {
+        margin-bottom: 5px;
+    }
+
+    .cartCont>.right>.summary>.totalButton>button {
+        padding: 15px 0;
+        font-size: 17px;
+    }
+
+    .cartCont>.right>.summary>.totalButton>span {
+        margin-top: 10px;
+        font-size: 12px;
+    }
+}

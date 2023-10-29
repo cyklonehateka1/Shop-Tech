@@ -1,0 +1,36 @@
+@media only screen and (min-device-width: 100px) and (max-device-width: 480px) {
+    .promotionBanner {
+        height: 120px;
+    }
+
+    .promotionBanner>.promoBannerCont>.left {
+        padding-left: 10px;
+    }
+
+    .promotionBanner>.promoBannerCont>.left>h3 {
+        font-size: 15px;
+        letter-spacing: -1px;
+        font-weight: 600;
+    }
+
+    .promotionBanner>.promoBannerCont>.left>span {
+        font-size: 11px;
+        margin-bottom: 10px;
+    }
+
+    .promotionBanner>.promoBannerCont>.left>button {
+        width: 80px;
+        height: 30px;
+        font-size: 11px;
+    }
+
+    .promotionBanner>.promoBannerCont>.right {
+        position: relative;
+    }
+
+    .promotionBanner>.promoBannerCont>.right>img {
+        width: 130%;
+        position: absolute;
+        top: 20px;
+    }
+}

@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/components/promoBanner.css";
+import "../styles/components/promoBannerResponsive.css";
 import { useNavigate } from "react-router-dom";
 
 const PromotionBanner = ({ item, img, heading, type, text, link }) => {

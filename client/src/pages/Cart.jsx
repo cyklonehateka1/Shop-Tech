@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import TopBar from "../components/TopBar";
 import Footer from "../components/Footer";
 import "../styles/pages/cart.css";
+import "../styles/pages/cartResponsive.css";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart } from "../redux/slices/cartSlice";
 import { useState } from "react";
@@ -34,6 +35,12 @@ const Cart = () => {
   const dispatch = useDispatch();
   const { total, products } = cartState;
   const navigate = useNavigate();
+
+  const handleProductClick = (item, e) => {
+    if (!e.target.closest(".removeItem")) {
+      navigate(`/product/${item._id}`);
+    }
+  };
 
   const removeItemHandler = (item) => {
     const newList = [];
@@ -193,12 +200,15 @@ const Cart = () => {
         <div className="left">
           <div className="cartProduct">
             <h5>Review Item And Shipping</h5>
-            <span>Double click on item to remove</span>
             <div className="productsListCont">
               {products &&
                 products.map((item, index) => {
                   return (
-                    <div className="itemCont" key={index}>
+                    <div
+                      className="itemCont"
+                      key={index}
+                      onClick={(e) => handleProductClick(item, e)}
+                    >
                       <div>
                         <div className="left">
                           <div className="imgCont">
@@ -217,7 +227,10 @@ const Cart = () => {
                           <span>Quantity: {item.quantity}</span>
                         </div>
                       </div>
-                      <span onClick={(e) => removeItemHandler(item)}>
+                      <span
+                        onClick={(e) => removeItemHandler(item)}
+                        className="removeItem"
+                      >
                         remove item
                       </span>
                     </div>

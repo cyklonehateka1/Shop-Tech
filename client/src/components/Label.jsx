@@ -1,4 +1,5 @@
 import "../styles/components/label.css";
+import "../styles/components/labelResponsive.css";
 import { BiChevronRight } from "react-icons/bi";
 import { Link } from "react-router-dom";
 const Label = ({ text, link, seeAll }) => {

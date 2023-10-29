@@ -1,0 +1,16 @@
+@media only screen and (min-device-width: 100px) and (max-device-width: 480px) {
+    .label {
+        top: -8vh;
+        height: 50px;
+        position: relative;
+        padding: 0 5px;
+    }
+
+    .label>.labelCont>h3 {
+        font-size: 15px;
+    }
+
+    .label>.labelCont>.seeAll {
+        font-size: 14px;
+    }
+}

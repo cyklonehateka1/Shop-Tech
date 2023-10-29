@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import TopBar from "../components/TopBar";
 import Footer from "../components/Footer";
 import "../styles/pages/product.css";
+import "../styles/pages/productResponsive.css";
 import { useLocation } from "react-router-dom";
 import { backendConnection } from "../utils/axiosConnection";
 import { useEffect } from "react";
@@ -56,7 +57,6 @@ const SingleProduct = () => {
     subCat: product && product.subCat,
     color,
   };
-  console.log(itemToAdd);
   const addProductHandler = () => {
     const checkProduct = cartState.products.findIndex(
       (item) => item._id === itemToAdd._id
@@ -113,12 +113,8 @@ const SingleProduct = () => {
       <TopBar />
       <Navbar />
       <div className="productPageCont">
-        <div>
-          <div
-            className="left"
-            name="hell"
-            onClick={(e) => console.log(e.target.name)}
-          >
+        <div className="singlePTop">
+          <div className="left" name="hell">
             <img src={`/uploads/${product && product.profileImg}`} alt="" />
           </div>
           <div className="right">
