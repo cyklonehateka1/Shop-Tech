@@ -1,9 +1,11 @@
 const express = require("express");
+const verifyToken = require("../middlewares/verifyToken");
 const {
   confirmAccount,
   login,
   register,
   logout,
+  getCredentials,
   resendConfirmationEmail,
 } = require("../controllers/authControllers.js");
 
@@ -14,5 +16,6 @@ router.post("/resendconfirmationemail/:userId", resendConfirmationEmail);
 router.get("/:userId/verify/:token", confirmAccount);
 router.post("/login", login);
 router.get("/logout", logout);
+router.get("/getcredentials", verifyToken, getCredentials);
 
 module.exports = router;

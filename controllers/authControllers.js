@@ -184,6 +184,20 @@ const login = async (req, res, next) => {
   }
 };
 
+const getCredentials = async (req, res, next) => {
+  try {
+    const user = await UserSchema.findById(req.user.id);
+    if (!user)
+      return next(
+        errorHandler(403, "An error happened while authenticating your account")
+      );
+    const credentials = { name: user.name, image: user.profileImage };
+    res.status(200).json(credentials);
+  } catch (error) {
+    return next(error);
+  }
+};
+
 const logout = async (req, res, next) => {
   res
     .clearCookie("access_token", { sameSite: "none", secure: true, maxAge: 1 })
@@ -197,4 +211,5 @@ module.exports = {
   login,
   confirmAccount,
   resendConfirmationEmail,
+  getCredentials,
 };

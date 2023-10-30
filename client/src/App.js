@@ -23,15 +23,41 @@ import AdminCoupons from "./admin/pages/AdminCoupons";
 import Delivery from "./pages/Delivery";
 
 import { AccessAwaitEmailContext } from "./context/accessAwaitEmailContext";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import Categories from "./pages/Categories";
 import Deals from "./pages/Deals";
+import { getMethods } from "./utils/protectedRoutes";
+import { getCredentials } from "./redux/slices/credentialsSlice";
+import { useDispatch } from "react-redux";
 
 function App() {
   const { currentUser } = useSelector((state) => state.user);
   const { checkInfo } = useContext(AccessAwaitEmailContext);
   const accessAwaitEmail =
     currentUser || localStorage.getItem("temporalInfo") !== null;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (currentUser) {
+      const credentials = async () => {
+        try {
+          const res = await getMethods("/auth/getcredentials");
+          dispatch(
+            getCredentials({
+              name: res.data && res.data.name,
+              email: res.data && res.data.email,
+              image: (res.data.image && res.data.image) || null,
+            })
+          );
+          console.log(res);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      credentials();
+    }
+  }, [currentUser]);
+
   return (
     <div className="App">
       <Router>

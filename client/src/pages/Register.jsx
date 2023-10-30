@@ -1,4 +1,5 @@
 import "../styles/pages/register.css";
+import "../styles/pages/registerResponsive.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useReducer, useState, useContext } from "react";
 import { backendConnection } from "../utils/axiosConnection";

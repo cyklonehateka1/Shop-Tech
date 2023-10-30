@@ -1,0 +1,25 @@
+@media only screen and (min-device-width: 100px) and (max-device-width: 480px) {
+    .register {
+        height: auto;
+        padding: 50px 0;
+    }
+
+    .register>.registerCont {
+        flex-direction: column;
+        width: 90%;
+    }
+
+    .register>.registerCont>.left {
+        width: 100%;
+        padding: 20px 4%;
+        border-top-right-radius: 10px;
+        border-bottom-left-radius: 0;
+    }
+
+    .register>.registerCont>.right {
+        width: 100%;
+        padding: 20px 4%;
+        border-bottom-left-radius: 10px;
+        border-top-right-radius: 0;
+    }
+}

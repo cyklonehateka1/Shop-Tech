@@ -189,7 +189,7 @@
     width: 100%;
     align-items: center;
     margin-bottom: 20px;
-    display: none;
+    /* display: none; */
 }
 
 .cartAccountCont>div>.openOptions>.cont>.account>img {

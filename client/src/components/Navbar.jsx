@@ -12,7 +12,8 @@ import "../styles/components/navbarResponsive.css";
 import { useEffect, useState } from "react";
 import { backendConnection } from "../utils/axiosConnection";
 import Badge from "@mui/material/Badge";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { getCredentials } from "../redux/slices/credentialsSlice";
 import Cookies from "js-cookie";
 import { getMethods } from "../utils/protectedRoutes";
 
@@ -20,6 +21,7 @@ const Navbar = () => {
   const [accountModalOpen, setAccoutModalOpen] = useState(false);
   const { quantity } = useSelector((state) => state.cart.cartState);
   const { currentUser } = useSelector((state) => state.user);
+  const { name, image } = useSelector((state) => state.credentials);
   const [searchedProducts, setSearchProducts] = useState(null);
   const [searchSuggestion, setSearchSuggestion] = useState(false);
 
@@ -44,7 +46,6 @@ const Navbar = () => {
       setAccoutModalOpen(true);
     }
   };
-
   const navigate = useNavigate();
 
   const logoutHandler = async () => {
@@ -158,11 +159,8 @@ const Navbar = () => {
                 <div className="cont">
                   {currentUser ? (
                     <div className="account">
-                      <img
-                        src="https://i.ibb.co/dGcxdHw/intern-img-jg.png"
-                        alt=""
-                      />
-                      <p>Cyklone Hateka</p>
+                      <img src={image} alt="" />
+                      <p>{name}</p>
                     </div>
                   ) : (
                     <Link to="/register" className="sign">

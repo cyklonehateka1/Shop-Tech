@@ -1,1 +1,43 @@
-@media only screen and (min-device-width: 100px) and (max-device-width: 480px) {}
+@media only screen and (min-device-width: 100px) and (max-device-width: 480px) {
+    .login {
+        /* height: auto; */
+        padding: 50px 0;
+    }
+
+    .login>.loginCont {
+        flex-direction: column;
+        width: 80%;
+    }
+
+    .login>.loginCont>.left {
+        width: 100%;
+        padding: 20px 0%;
+        border-top-right-radius: 10px;
+        border-bottom-left-radius: 0;
+    }
+
+    .login>.loginCont>.left>div>img {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .login>.loginCont>.left>div>p {
+        margin-bottom: 10px;
+        font-size: 12px;
+    }
+
+    .login>.loginCont>.left>button {
+        padding: 6px 0;
+    }
+
+    .login>.loginCont>.left>button>a {
+        font-size: 14px;
+    }
+
+    .login>.loginCont>.right {
+        width: 100%;
+        padding: 20px 4%;
+        border-bottom-left-radius: 10px;
+        border-top-right-radius: 0;
+    }
+}
