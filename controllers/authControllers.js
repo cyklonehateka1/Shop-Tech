@@ -36,8 +36,8 @@ const register = async (req, res, next) => {
     const token = jwt.sign({ id: user._id }, process.env.EMAIL_CON_KEY, {
       expiresIn: "1h",
     });
-    // const url = `https://navy-blue-panther-sari.cyclic.app/auth/verifyemail/user/${user._id}/verify/${token}`;
-    const url = `http://localhost:3000/auth/verifyemail/user/${user._id}/verify/${token}`;
+    const url = `https://navy-blue-panther-sari.cyclic.app/auth/verifyemail/user/${user._id}/verify/${token}`;
+    // const url = `http://localhost:3000/auth/verifyemail/user/${user._id}/verify/${token}`;
     const emailResponse = sendEmail(
       user.email,
       "Confirm Account",
@@ -119,7 +119,7 @@ const resendConfirmationEmail = async (req, res, next) => {
     if (!user) return next(errorHandler(404, "User not found"));
     if (user.isVerified)
       return next(errorHandler(403, "Email is verified already"));
-    const url = `http://localhost:3000/auth/verifyemail/user/${req.params.userId}/verify/${token}`;
+    const url = `https://navy-blue-panther-sari.cyclic.app/auth/verifyemail/user/${req.params.userId}/verify/${token}`;
     const emailResponse = sendEmail(
       user.email,
       "Confirm Account",
