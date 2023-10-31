@@ -1,0 +1,23 @@
+@media only screen and (min-device-width: 100px) and (max-device-width: 480px) {
+    .awaitConfirmCont {
+        width: 80%;
+        height: 75%;
+        padding: 5px;
+    }
+
+    .awaitConfirmCont>.top {
+        height: 40%;
+    }
+
+    .awaitConfirmCont>.top>img {
+        width: 100%;
+    }
+
+    .awaitConfirmCont>.bottom {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0 10px;
+    }
+}

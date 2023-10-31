@@ -1,0 +1,16 @@
+@media only screen and (min-device-width: 100px) and (max-device-width: 480px) {
+    .coupons>.couponsCont>h4 {
+        margin-top: 7px;
+        font-size: 15px;
+        letter-spacing: 0px;
+        margin-bottom: 5px;
+    }
+
+    .coupons>.couponsCont>.couponsParentCont {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, 49%);
+        justify-content: space-between;
+
+    }
+}

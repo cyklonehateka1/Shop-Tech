@@ -73,9 +73,7 @@ const Login = () => {
               src="https://i.ibb.co/zsKHKLy/undraw-welcome-cats-thqn.png"
               alt=""
             />
-            <p>
-              Get access to your wishlist, orders, recommendatiions and more
-            </p>
+            <p>New here? Sign up to save more.</p>
           </div>
 
           <button>

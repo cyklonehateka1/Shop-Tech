@@ -17,6 +17,10 @@
         font-size: 17px;
     }
 
+    .cartCont>.left>.cartProduct>.productsListCont>.itemCont {
+        margin-bottom: 20px;
+    }
+
     .cartCont>.left>.cartProduct>.productsListCont>.itemCont>div>.left>.imgCont {
         margin-right: 5px;
         height: 65px;

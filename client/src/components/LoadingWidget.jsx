@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/components/loadingWidget.css";
+import "../styles/components/loadingWidgetResponsive.css";
 import { BsStarFill } from "react-icons/bs";
 
 const LoadingWidget = () => {

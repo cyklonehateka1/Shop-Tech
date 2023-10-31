@@ -101,13 +101,13 @@
     border: 2px solid rgb(170, 170, 170);
     padding: 7px 15px;
     border-radius: 50px;
-    background-color: white;
-    color: rgb(92, 92, 92);
+    background-color: rgb(2, 109, 2);
+    color: white;
     cursor: pointer;
     transition: 0.2s;
 }
 
 .product>.productCont>.productDetCont>button:hover {
-    background-color: rgb(2, 109, 2);
+    background-color: rgb(1, 133, 1);
     color: white;
 }

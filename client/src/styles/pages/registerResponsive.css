@@ -22,4 +22,14 @@
         border-bottom-left-radius: 10px;
         border-top-right-radius: 0;
     }
+
+    .register>.registerCont>.right>.imgTextCont>img {
+        display: none;
+    }
+
+    .register>.registerCont>.right>.imgTextCont>p {
+        text-align: center;
+        margin-bottom: 15px;
+        font-size: 15px;
+    }
 }

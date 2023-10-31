@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../styles/pages/awaitEmail.css";
+import "../styles/pages/awaitEmailResponsive.css";
 import { backendConnection } from "../utils/axiosConnection";
 
 const AwaitEmailConfirm = () => {

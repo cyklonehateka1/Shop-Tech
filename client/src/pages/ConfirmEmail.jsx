@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useReducer } from "react";
 import { useParams } from "react-router-dom";
 import "../styles/pages/confirmEmail.css";
+import "../styles/pages/confirmEmailResponsive.css";
 import { backendConnection } from "../utils/axiosConnection";
 import confirmEmailReducer from "../utils/reducers/confirmEmailReducer";
 

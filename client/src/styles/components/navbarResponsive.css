@@ -109,14 +109,15 @@
         width: 300px;
         position: absolute;
         box-shadow: 1px 1px 10px rgb(204, 204, 204);
-        border-radius: 20px;
+        border-radius: 5px;
         padding: 10px;
-        max-height: 200px;
+        max-height: 250px;
         overflow-y: scroll;
         background-color: white;
         overflow-x: hidden;
         z-index: 1;
         flex-direction: column;
+        align-items: flex-start;
         top: 75px;
         left: 10px;
     }

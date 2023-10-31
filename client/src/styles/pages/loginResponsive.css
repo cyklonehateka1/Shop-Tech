@@ -6,7 +6,7 @@
 
     .login>.loginCont {
         flex-direction: column;
-        width: 80%;
+        width: 90%;
     }
 
     .login>.loginCont>.left {
@@ -17,17 +17,18 @@
     }
 
     .login>.loginCont>.left>div>img {
-        width: 100%;
+        display: none;
         margin-bottom: 10px;
     }
 
     .login>.loginCont>.left>div>p {
         margin-bottom: 10px;
-        font-size: 12px;
+        font-size: 15px;
     }
 
     .login>.loginCont>.left>button {
         padding: 6px 0;
+        width: 55%;
     }
 
     .login>.loginCont>.left>button>a {
