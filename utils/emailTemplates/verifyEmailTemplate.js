@@ -1,5 +1,6 @@
 const verifyEmailTemplate = (text) => {
   return `
+  <!DOCTYPE html>
   <html>
   <div
   style="
