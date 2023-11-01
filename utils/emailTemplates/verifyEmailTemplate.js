@@ -1,5 +1,7 @@
 const verifyEmailTemplate = (text) => {
-  return `<div
+  return `
+  <html>
+  <div
   style="
     width: 100vw;
     padding-top: 10vh;
@@ -160,6 +162,7 @@ const verifyEmailTemplate = (text) => {
     <img src="./Variant2.png" alt="" style="width: 100%" />
   </div>
 </div>
+</html>
 `;
 };
 
