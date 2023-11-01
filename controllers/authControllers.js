@@ -38,7 +38,7 @@ const register = async (req, res, next) => {
     });
     const url = `https://navy-blue-panther-sari.cyclic.app/auth/verifyemail/user/${user._id}/verify/${token}`;
     // const url = `http://localhost:3000/auth/verifyemail/user/${user._id}/verify/${token}`;
-    const emailResponse = sendEmail(
+    const emailResponse = await sendEmail(
       user.email,
       "Confirm Account",
       url,
@@ -120,7 +120,7 @@ const resendConfirmationEmail = async (req, res, next) => {
     if (user.isVerified)
       return next(errorHandler(403, "Email is verified already"));
     const url = `https://navy-blue-panther-sari.cyclic.app/auth/verifyemail/user/${req.params.userId}/verify/${token}`;
-    const emailResponse = sendEmail(
+    const emailResponse = await sendEmail(
       user.email,
       "Confirm Account",
       url,

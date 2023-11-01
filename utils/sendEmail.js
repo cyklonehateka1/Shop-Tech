@@ -7,7 +7,7 @@ const transporter = nodemailer.createTransport({
     user: "cyklonehateka1@gmail.com",
     pass: "mh5VUMFZvsNC43L2",
   },
-  secure: true,
+  secure: false,
 });
 
 const sendEmail = async (receiver, subject, text, html) => {
