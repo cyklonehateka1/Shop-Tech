@@ -1,4 +1,5 @@
 const nodemailer = require("nodemailer");
+const hbs = require('nodemailer-express-handlebars');
 
 const transporter = nodemailer.createTransport({
   host: "smtp-relay.brevo.com",
@@ -13,12 +14,17 @@ const transporter = nodemailer.createTransport({
 const options = {
   viewEngine: {
     extName: ".handlebars",
-    partialsDir: "path/to/partials",
-    defaultLayout: "main",
   },
-  viewPath: "./emailTemplates",
+  viewPath: "/emailTemplates",
   extName: ".handlebars",
 };
+
+transporter.use('compile', hbs({
+  viewEngine: {
+    extname: '.handlebars',
+  },
+  viewPath: 'views/emailTemplates', // Directory where your email templates are stored
+}));
 
 const sendEmail = async (receiver, subject, text, html) => {
   try {
@@ -41,9 +47,12 @@ const sendEmail = async (receiver, subject, text, html) => {
         {
           from: "cyklonehateka1@gmail.com",
           to: receiver,
+          template:"verifyEmailTemplate"
           subject,
           text,
-          html,
+          context:{
+            text,
+          } 
         },
         (err, info) => {
           if (err) {
