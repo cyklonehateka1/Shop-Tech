@@ -1,8 +1,6 @@
-const verifyEmailTemplate = (text) => {
-  return `
-  <!DOCTYPE html>
-  <html>
-  <div
+const verifyEmailTemplate = (text) => { return `
+
+<div
   style="
     width: 100vw;
     padding-top: 10vh;
@@ -86,7 +84,7 @@ const verifyEmailTemplate = (text) => {
           word-wrap: break-word;
         "
       >
-      ${text}
+        ${text}
       </p>
     </div>
     <div style="display: flex; max-width: 100%; justify-content: space-between">
@@ -163,8 +161,4 @@ const verifyEmailTemplate = (text) => {
     <img src="./Variant2.png" alt="" style="width: 100%" />
   </div>
 </div>
-</html>
-`;
-};
-
-module.exports = verifyEmailTemplate;
+`; }; module.exports = verifyEmailTemplate;

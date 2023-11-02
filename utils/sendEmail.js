@@ -10,6 +10,16 @@ const transporter = nodemailer.createTransport({
   secure: false,
 });
 
+const options = {
+  viewEngine: {
+    extName: ".handlebars",
+    partialsDir: "path/to/partials",
+    defaultLayout: "main",
+  },
+  viewPath: "./emailTemplates",
+  extName: ".handlebars",
+};
+
 const sendEmail = async (receiver, subject, text, html) => {
   try {
     await new Promise((resolve, reject) => {

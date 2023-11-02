@@ -37,6 +37,13 @@
     width: 100%;
 }
 
+.cartCont>.left>.cartProduct>.productsListCont>.itemCont {
+    margin-bottom: 20px;
+    border: 1px solid rgb(231, 231, 231);
+    padding: 0px 5px;
+    border-radius: 5px;
+}
+
 .cartCont>.left>.cartProduct>.productsListCont>.itemCont>div {
     display: flex;
     justify-content: space-between;
@@ -91,7 +98,7 @@
 }
 
 .cartCont>.left>.cartProduct>.productsListCont>.itemCont>span {
-    color: rgb(255, 52, 52);
+    color: rgb(2, 196, 2);
     cursor: pointer;
     font-weight: 500;
     font-size: 14px;
