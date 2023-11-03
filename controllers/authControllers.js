@@ -3,7 +3,7 @@ const errorHandler = require("../middlewares/errorHandler.js");
 const sendEmail = require("../utils/sendEmail.js");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-const verifyEmailTemplate = require("../utils/emailTemplates/verifyEmailTemplate.js");
+// const verifyEmailTemplate = require("../utils/emailTemplates/verifyEmailTemplate.js");
 const CartSchema = require("../models/Cart.js");
 
 const register = async (req, res, next) => {
@@ -42,7 +42,8 @@ const register = async (req, res, next) => {
       user.email,
       "Confirm Account",
       url,
-      verifyEmailTemplate
+      // verifyEmailTemplate
+      token
     )
       .then((data) => {})
       .catch((err) => {

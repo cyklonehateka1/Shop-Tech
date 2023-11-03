@@ -29,6 +29,7 @@
 
     .product>.productCont>.productDetCont>.bold {
         margin-bottom: 1px;
+        height: 35px;
     }
 
     .product>.productCont>.productDetCont>.bold>h5 {
@@ -43,7 +44,7 @@
     .product>.productCont>.productDetCont>button {
         width: 70%;
         margin-top: 5px;
-        padding: 3px 15px;
-        font-size: 12px;
+        padding: 10px 15px;
+        font-size: 11px;
     }
 }

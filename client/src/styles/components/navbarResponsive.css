@@ -106,7 +106,7 @@
 
     .mobileSearchCont>.mobileSearchSuggestions {
         display: flex;
-        width: 300px;
+        width: 280px;
         position: absolute;
         box-shadow: 1px 1px 10px rgb(204, 204, 204);
         border-radius: 5px;
@@ -126,14 +126,18 @@
         display: flex;
         width: 100%;
         align-items: center;
-        margin: 5px 0;
+        margin: 0px 0;
         cursor: pointer;
         height: 100px;
     }
 
     .mobileSearchCont>.mobileSearchSuggestions>div>.left>img {
-        width: 40px;
+        width: 30px;
         margin-right: 20px;
+    }
+
+    .mobileSearchCont>.mobileSearchSuggestions>div>.right>h5 {
+        font-size: 11px;
     }
 
 }
