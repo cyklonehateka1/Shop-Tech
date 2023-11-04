@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.3256809f.css",
-    "main.js": "/static/js/main.91503610.js",
+    "main.js": "/static/js/main.47906920.js",
     "static/media/336500.jpg": "/static/media/336500.df3c5fa266af809f5438.jpg",
     "static/media/Pixel7-6.jpg": "/static/media/Pixel7-6.c0f01358bb1389051d7c.jpg",
     "static/media/diagonally-earphones.jpg": "/static/media/diagonally-earphones.bdf3355d03097ab6382e.jpg",
@@ -11,10 +11,10 @@
     "static/media/xboxx.jpg": "/static/media/xboxx.65138ec4824e147bdde6.jpg",
     "index.html": "/index.html",
     "main.3256809f.css.map": "/static/css/main.3256809f.css.map",
-    "main.91503610.js.map": "/static/js/main.91503610.js.map"
+    "main.47906920.js.map": "/static/js/main.47906920.js.map"
   },
   "entrypoints": [
     "static/css/main.3256809f.css",
-    "static/js/main.91503610.js"
+    "static/js/main.47906920.js"
   ]
 }
