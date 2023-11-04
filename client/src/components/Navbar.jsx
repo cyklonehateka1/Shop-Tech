@@ -58,7 +58,7 @@ const Navbar = () => {
       // localStorage.removeItem("clientId");
 
       setAccoutModalOpen(false);
-      window.location.href = "/";
+      window.location.href = "/login";
     } catch (error) {
       console.log(error);
     }

@@ -31,6 +31,6 @@
     .promotionBanner>.promoBannerCont>.right>img {
         width: 130%;
         position: absolute;
-        top: 20px;
+        top: -25px;
     }
 }
