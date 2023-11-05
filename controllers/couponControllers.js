@@ -1,6 +1,6 @@
 const errorHandler = require("../middlewares/errorHandler");
 const CouponSchema = require("../models/Coupon");
-const sendEmail = require("../utils/sendEmail");
+const { recieveCouponEmail } = require("../utils/sendEmail");
 const UserSchema = require("../models/User");
 
 const createCoupon = async (req, res, next) => {
@@ -21,7 +21,7 @@ const getCouponCode = async (req, res, next) => {
   try {
     const coupon = await CouponSchema.findById(req.params.id);
     if (!coupon) return next(errorHandler(404, "Coupon not found"));
-    sendEmail(
+    await recieveCouponEmail(
       req.user.email,
       `ShopTech ${coupon.title} coupon code`,
       coupon.code

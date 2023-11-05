@@ -9,7 +9,7 @@
         /* border: 1px solid red; */
         padding: 7px auto;
         display: grid;
-        grid-template-columns: repeat(3, 33%);
+        grid-template-columns: repeat(4, 24%);
         justify-content: space-between;
     }
 
@@ -21,15 +21,15 @@
     }
 
     .catPage>.catPageCont>.categoriesBar>div>img {
-        width: 70%;
+        width: 60%;
     }
 
     .catPage>.catPageCont>.categoriesBar>.phones>img {
-        width: 40%;
+        width: 30%;
     }
 
     .catPage>.catPageCont>.categoriesBar>.accessories>img {
-        width: 40%;
+        width: 35%;
     }
 
     .catPage>.catPageCont>.categoriesBar>div>span {

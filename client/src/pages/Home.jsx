@@ -51,9 +51,7 @@ const Home = () => {
         <div className="holder2">
           <PromotionBanner
             item={"Laptops"}
-            img={
-              "https://i.ibb.co/vkfXkK9/lenovo-laptop-yoga-slim-series-feature-2-1.png"
-            }
+            img={"https://i.ibb.co/sqhrHkf/promolaptop.png"}
             text={"Get 25% off on selected laptops"}
             heading={"High Performance Laptops"}
             link={"products/flex?pCategory=laptops&discount=25"}

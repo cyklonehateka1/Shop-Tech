@@ -77,5 +77,55 @@ const sendEmail = async (receiver, subject, text) => {
     return error;
   }
 };
+
+const recieveCouponEmail = async (receiver, subject, text) => {
+  try {
+    await new Promise((resolve, reject) => {
+      // Verify connection configuration
+      transporter.verify(function (error, success) {
+        if (error) {
+          console.log(error);
+          reject(error);
+        } else {
+          console.log("Server is ready to take our messages");
+          resolve(success);
+        }
+      });
+    });
+
+    const info = await new Promise((resolve, reject) => {
+      // Send the email
+      transporter.sendMail(
+        {
+          from: "cyklonehateka1@gmail.com",
+          to: receiver,
+          template: "receiveCoupon",
+          subject,
+          context: {
+            couponCode: text,
+            heading: subject,
+          },
+        },
+        (err, info) => {
+          if (err) {
+            console.error(err);
+            reject(err);
+          } else {
+            console.log(info);
+            resolve(info);
+          }
+        }
+      );
+    });
+
+    return info;
+  } catch (error) {
+    console.error(error);
+    return error;
+  }
+};
 //
-module.exports = sendEmail;
+module.exports = {
+  sendEmail,
+  recieveCouponEmail,
+};

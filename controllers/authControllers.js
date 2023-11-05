@@ -1,6 +1,6 @@
 const UserSchema = require("../models/User.js");
 const errorHandler = require("../middlewares/errorHandler.js");
-const sendEmail = require("../utils/sendEmail.js");
+const { sendEmail } = require("../utils/sendEmail.js");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 // const verifyEmailTemplate = require("../utils/emailTemplates/verifyEmailTemplate.js");
@@ -36,7 +36,7 @@ const register = async (req, res, next) => {
     const token = jwt.sign({ id: user._id }, process.env.EMAIL_CON_KEY, {
       expiresIn: "1h",
     });
-    const url = `https://navy-blue-panther-sari.cyclic.app/auth/verifyemail/user/${user._id}/verify/${token}`;
+    const url = `https://shop-tech-iota.vercel.app/auth/verifyemail/user/${user._id}/verify/${token}`;
     // const url = `http://localhost:3000/auth/verifyemail/user/${user._id}/verify/${token}`;
     const emailResponse = await sendEmail(
       user.email,
@@ -120,7 +120,7 @@ const resendConfirmationEmail = async (req, res, next) => {
     if (!user) return next(errorHandler(404, "User not found"));
     if (user.isVerified)
       return next(errorHandler(403, "Email is verified already"));
-    const url = `https://navy-blue-panther-sari.cyclic.app/auth/verifyemail/user/${req.params.userId}/verify/${token}`;
+    const url = `https://shop-tech-iota.vercel.app/auth/verifyemail/user/${req.params.userId}/verify/${token}`;
     const emailResponse = await sendEmail(
       user.email,
       "Confirm Account",
