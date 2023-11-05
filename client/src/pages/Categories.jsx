@@ -97,7 +97,10 @@ const Categories = () => {
                 })
               : "No data found"}
           </div>
-          <Label text={`Shop from a wide range of ${selectedCat.catName}`} />
+          <Label
+            text={`Shop from a wide range of ${selectedCat.catName}`}
+            link={`products/flex?pCategory=${selectedCat.catName}`}
+          />
           <Products query={productsQuery} />
         </div>
       </div>
