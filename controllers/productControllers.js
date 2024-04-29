@@ -115,6 +115,7 @@ const getProducts = async (req, res, next) => {
         return product._id.toString() !== pId;
       });
     }
+    console.log(products)
     res.status(200).json(products);
   } catch (error) {
     return next(error);
